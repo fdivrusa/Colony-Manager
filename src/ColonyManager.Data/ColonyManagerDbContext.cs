@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using ColonyManager.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ColonyManager.Data
 {
     public class ColonyManagerDbContext : DbContext
     {
+
+        public DbSet<Account> Accounts { get; set; }
 
         public ColonyManagerDbContext(DbContextOptions<ColonyManagerDbContext> options) : base(options)
         {

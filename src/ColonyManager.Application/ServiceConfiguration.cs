@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using ColonyManager.Application.Services;
+using ColonyManager.Domain.Interfaces.Services;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ColonyManager.Application
 {
@@ -14,7 +14,8 @@ namespace ColonyManager.Application
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddValidatorsFromAssembly(typeof(ServiceConfiguration).Assembly);
 
-
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             return services;
         }

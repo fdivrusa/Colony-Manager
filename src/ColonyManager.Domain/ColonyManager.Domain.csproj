@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\ColonyManager.Utility\ColonyManager.Utility.csproj" />
   </ItemGroup>
 
 </Project>

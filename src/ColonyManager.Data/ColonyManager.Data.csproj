@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
     <Folder Include="DataSeeds\" />
-    <Folder Include="Entities\" />
     <Folder Include="Views\" />
   </ItemGroup>
 

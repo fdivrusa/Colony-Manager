@@ -7,6 +7,8 @@ using ColonyManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using ColonyManager.Application;
+using ColonyManager.Core;
+using ColonyManager.Utility.Middlewares;
 
 namespace ColonyManager.WebApi.Host
 {
@@ -22,10 +24,13 @@ namespace ColonyManager.WebApi.Host
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.IgnoreNullValues = true);
+            services.AddCors();
             services.ConfigureColonyManagerDbContext(Configuration.GetConnectionString("DefaultConnection"));
             services.AddSwagger();
             services.AddRegisteredServices();
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,12 +42,17 @@ namespace ColonyManager.WebApi.Host
                 app.UseDeveloperExceptionPage();
             }
 
+            app.ConfigureCors(env);
             app.ConfigureSwagger(env);
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseAuthorization();
+
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
