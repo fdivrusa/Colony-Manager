@@ -129,7 +129,7 @@ namespace ColonyManager.Application.Services
             SendPasswordResetEmail(account, origin);
         }
 
-        public async Task Register(RegisterRequestDto request, string origin)
+        public async Task RegisterAsync(RegisterRequestDto request, string origin)
         {
             await _registerRequestValidator.ValidateAndThrowAsync(request);
 

@@ -9,7 +9,7 @@ namespace ColonyManager.Domain.Interfaces.Services
         Task<AuthenticateResponseDto> AuthenticateAsync(AuthenticateRequestDto request, string ipv4Address, string ipv6Address);
         Task<AuthenticateResponseDto> RefreshTokenAsync(string token, string ipv4Address, string ipv6Address);
         Task RevokeToken(string token, string ipv4Address, string ipv6Address);
-        Task Register(RegisterRequestDto request, string origin);
+        Task RegisterAsync(RegisterRequestDto request, string origin);
         Task VerifyEmailAsync(string token);
         Task ForgotPasswordAsync(ForgotPasswordRequestDto request, string origin);
         Task ValidateResetTokenAsync(ValidateResetTokenRequestDto request);
