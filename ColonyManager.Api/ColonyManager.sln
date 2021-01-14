@@ -9,19 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4B59B4BE-12E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F43CBB9D-C90F-4C4E-B2D1-5EF107ED5747}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColonyManager.EfMigrations", "src\ColonyManager.EfMigrations\ColonyManager.EfMigrations.csproj", "{6C43454F-D1F9-4365-980D-2D7A785E2071}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColonyManager.EfMigrations", "src\ColonyManager.EfMigrations\ColonyManager.EfMigrations.csproj", "{6C43454F-D1F9-4365-980D-2D7A785E2071}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColonyManager.Data", "src\ColonyManager.Data\ColonyManager.Data.csproj", "{69CDBB40-3DC7-47E5-8F82-81E494CB6F85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColonyManager.Data", "src\ColonyManager.Data\ColonyManager.Data.csproj", "{69CDBB40-3DC7-47E5-8F82-81E494CB6F85}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColonyManager.Domain", "src\ColonyManager.Domain\ColonyManager.Domain.csproj", "{85684309-EF9D-4590-A8F3-35E024B0594A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColonyManager.Domain", "src\ColonyManager.Domain\ColonyManager.Domain.csproj", "{85684309-EF9D-4590-A8F3-35E024B0594A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColonyManager.Core", "src\ColonyManager.Core\ColonyManager.Core.csproj", "{0556C95D-46B8-41F9-AAA7-9DC775BF78E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColonyManager.Core", "src\ColonyManager.Core\ColonyManager.Core.csproj", "{0556C95D-46B8-41F9-AAA7-9DC775BF78E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColonyManager.Application", "src\ColonyManager.Application\ColonyManager.Application.csproj", "{BECF71DD-68C9-40D8-9B8B-2C61E3C549EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColonyManager.Application", "src\ColonyManager.Application\ColonyManager.Application.csproj", "{BECF71DD-68C9-40D8-9B8B-2C61E3C549EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColonyManager.Utility", "src\ColonyManager.Utility\ColonyManager.Utility.csproj", "{A2A10156-CE4A-4862-AA5F-DDA287153E9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColonyManager.Utility", "src\ColonyManager.Utility\ColonyManager.Utility.csproj", "{A2A10156-CE4A-4862-AA5F-DDA287153E9C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColonyManager.UnitTests", "tests\ColonyManager.UnitTests\ColonyManager.UnitTests.csproj", "{F2321FEC-CCC5-42BA-B7FE-02931DC174C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColonyManager.UnitTests", "tests\ColonyManager.UnitTests\ColonyManager.UnitTests.csproj", "{F2321FEC-CCC5-42BA-B7FE-02931DC174C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
