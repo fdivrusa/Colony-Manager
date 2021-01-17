@@ -78,7 +78,6 @@ namespace ColonyManager.Application.Services
             response.JwtToken = jwtToken;
             response.RefreshToken = refreshToken.Token;
             return response;
-
         }
 
         public async Task<AuthenticateResponseDto> RefreshTokenAsync(string token, string ipv4Address, string ipv6Address)

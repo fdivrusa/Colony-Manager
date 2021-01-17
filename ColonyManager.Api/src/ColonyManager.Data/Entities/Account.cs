@@ -6,6 +6,12 @@ namespace ColonyManager.Data.Entities
 {
     public partial class Account
     {
+
+        public Account()
+        {
+            RefreshTokens = new List<RefreshToken>();
+        }
+
         public long Id { get; set; }
         public string Title { get; set; }
         public string FirstName { get; set; }

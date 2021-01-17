@@ -1,6 +1,7 @@
 ﻿using ColonyManager.Core;
 using ColonyManager.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -49,10 +50,10 @@ namespace ColonyManager.Utility.Middlewares
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var accountId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+                var accountId = int.Parse(jwtToken.Claims.First(x => x.Type == "Id").Value);
 
                 // attach account to context on successful jwt validation
-                context.Items["Account"] = await colonyManagerDbContext.Accounts.FindAsync(accountId);
+                context.Items["Account"] = await colonyManagerDbContext.Accounts.Where(x => x.Id == accountId).SingleOrDefaultAsync();
             }
             catch
             {
