@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using ColonyManager.Application;
 using ColonyManager.Core;
 using ColonyManager.Utility.Middlewares;
+using Serilog;
 
 namespace ColonyManager.WebApi.Host
 {
@@ -36,7 +37,6 @@ namespace ColonyManager.WebApi.Host
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             if(env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -45,6 +45,8 @@ namespace ColonyManager.WebApi.Host
             app.ConfigureCors(env);
             app.ConfigureSwagger(env);
             app.UseHttpsRedirection();
+
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
 
