@@ -29,7 +29,7 @@ namespace ColonyManager.Data.Entities
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
-        public List<RefreshToken> RefreshTokens { get; set; }
+        public virtual List<RefreshToken> RefreshTokens { get; set; }
 
         public bool OwnsToken(string token)
         {
