@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ColonyManager.Core;
 using ColonyManager.Data;
 using ColonyManager.Data.Entities;
 using ColonyManager.Domain.Interfaces.Services;
