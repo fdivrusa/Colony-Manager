@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColonyManager.WPF", "ColonyManager.WPF\ColonyManager.WPF.csproj", "{6496339D-09BA-42FF-A08C-1279B572C2EA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColonyManager.Core", "ColonyManager.Core\ColonyManager.Core.csproj", "{9AF43838-05A8-49C5-AE90-3BCF8F7BEDDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6496339D-09BA-42FF-A08C-1279B572C2EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6496339D-09BA-42FF-A08C-1279B572C2EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6496339D-09BA-42FF-A08C-1279B572C2EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6496339D-09BA-42FF-A08C-1279B572C2EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AF43838-05A8-49C5-AE90-3BCF8F7BEDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF43838-05A8-49C5-AE90-3BCF8F7BEDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AF43838-05A8-49C5-AE90-3BCF8F7BEDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF43838-05A8-49C5-AE90-3BCF8F7BEDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8F2AE48-C342-47F2-B813-78C72920EC4C}
+	EndGlobalSection
+EndGlobal
