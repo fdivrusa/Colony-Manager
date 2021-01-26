@@ -27,9 +27,9 @@ namespace ColonyManager.WebApi.Host.Controllers
         }
 
         [HttpPost("authenticate")]
-        public async Task<ActionResult<AuthenticateResponseDto>> AuthenticateAsync(AuthenticateRequestDto model)
+        public async Task<ActionResult<AuthenticateResponseDto>> AuthenticateAsync(AuthenticateRequestDto request)
         {
-            var response = await _accountService.AuthenticateAsync(model, GetIpv4Address(), GetIpv6Address());
+            var response = await _accountService.AuthenticateAsync(request, GetIpv4Address(), GetIpv6Address());
             SetTokenCookie(response.RefreshToken);
             return Ok(response);
         }

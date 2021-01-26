@@ -1,18 +1,21 @@
-﻿using ColonyManager.Core;
+﻿using ColonyManager.Core.ViewModels;
+using ColonyManager.Global;
 using System.Configuration;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
-namespace ColonyManager.WPF
+namespace ColonyManager.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class LoginWindow : Window
     {
-        public Login()
+        public LoginWindow()
         {
             InitializeComponent();
+            this.DataContext = new LoginViewModel();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -32,7 +35,15 @@ namespace ColonyManager.WPF
 
             if (!string.IsNullOrEmpty(errorMessage.ToString()))
             {
-                MessageBox.Show($"{errorMessage} \n Please contact your administrator", "Configuration error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"{errorMessage} \n Please contact the helpdesk", "Configuration error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            {
+                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).SecurePassword;
             }
         }
     }

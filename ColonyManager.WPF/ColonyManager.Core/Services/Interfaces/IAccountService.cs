@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ColonyManager.Core.Models.Accounts
+namespace ColonyManager.Core.Services.Interfaces
 {
-    public class LoginModel
+    interface IAccountService
     {
-
     }
 }

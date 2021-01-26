@@ -4,15 +4,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Assets\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ColonyManager.Core\ColonyManager.Core.csproj" />
+    <ProjectReference Include="..\ColonyManager.Global\ColonyManager.Global.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,8 +1,6 @@
 ﻿<Application x:Class="ColonyManager.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ColonyManager.WPF"
-             StartupUri="Login.xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -11,10 +9,15 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
             <!--Primary-->
-            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#349fda"/>
-            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#333333"/>
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#003C8F"/>
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#1565C0"/>
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#5E92F3"/>
+
+            <!---Secondary-->
+            <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#64b5f6"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

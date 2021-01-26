@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ColonyManager.Core
+namespace ColonyManager.Global
 {
     public static class LocalSettings
     {
