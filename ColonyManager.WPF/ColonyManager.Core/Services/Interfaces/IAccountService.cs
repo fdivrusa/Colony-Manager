@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ColonyManager.Core.Models;
+using ColonyManager.Provider.Responses;
+using System.Threading.Tasks;
 
 namespace ColonyManager.Core.Services.Interfaces
 {
-    interface IAccountService
+    public interface IAccountService
     {
+        /// <summary>
+        /// Method to authenticate the user in the application
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<AuthenticationResponse> AuthenticateAsync(LoginRequest request);
     }
 }

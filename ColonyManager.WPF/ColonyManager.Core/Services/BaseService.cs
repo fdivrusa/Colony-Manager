@@ -1,4 +1,5 @@
 ﻿using ColonyManager.Global;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,8 +11,14 @@ namespace ColonyManager.Core.Services
     {
         private static readonly object _locker = new object();
         private static volatile HttpClient _httpClient;
+        private readonly AppSettings _appSettings;
 
-        protected static HttpClient HttpClient
+        public BaseService(IOptions<AppSettings> appSettings)
+        {
+            _appSettings = appSettings.Value;
+        }
+
+        protected HttpClient HttpClient
         {
             get
             {
@@ -29,11 +36,11 @@ namespace ColonyManager.Core.Services
             }
         }
 
-        private static HttpClient GenerateHttpClient()
+        private HttpClient GenerateHttpClient()
         {
             HttpClient httpClient = new HttpClient
             {
-                BaseAddress = new Uri(LocalSettings.ColonyManagerApiUrl)
+                BaseAddress = new Uri(_appSettings.ColonyManagerApiUrl)
             };
             httpClient.DefaultRequestHeaders.Add("User-Agent", "ColonyManager.Provider");
             return httpClient;

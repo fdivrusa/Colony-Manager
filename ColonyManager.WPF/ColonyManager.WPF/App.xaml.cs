@@ -1,5 +1,13 @@
-﻿using ColonyManager.Core.ViewModels;
+﻿using ColonyManager.Core.Services;
+using ColonyManager.Core.Services.Interfaces;
+using ColonyManager.Core.ViewModels;
+using ColonyManager.Global;
 using ColonyManager.WPF.Views;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
+using System;
+using System.IO;
 using System.Windows;
 
 namespace ColonyManager.WPF
@@ -9,29 +17,64 @@ namespace ColonyManager.WPF
     /// </summary>
     public partial class App : Application
     {
+
+        public IServiceProvider _serviceProvider { get; private set; }
+        public IConfiguration _configuration { get; private set; }
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            InitializeAutoMapper();
             base.OnStartup(e);
 
-            var loginWindow = new LoginWindow();
-            var loginVM = new LoginViewModel();
-            loginVM.LoginCompleted += (sender, args) =>
+            _configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false, true)
+                .Build();
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(_configuration)
+                .CreateLogger();
+
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+            serviceCollection.Configure<AppSettings>(_configuration.GetSection("AppSettings"));
+            _serviceProvider = serviceCollection.BuildServiceProvider();
+
+            try
             {
-                MainWindow main = new MainWindow();
+                Log.Information("WPF application starting up");
 
-                loginWindow.Close();
-                main.Show();
-            };
+                var loginWindow = _serviceProvider.GetRequiredService<LoginWindow>();
+                var loginVM = _serviceProvider.GetRequiredService<LoginViewModel>();
 
-            loginWindow.DataContext = loginVM;
-            loginWindow.ShowDialog();
+                loginVM.LoginCompleted += (sender, args) =>
+                {
+                    MainWindow main = new MainWindow();
 
+                    loginWindow.Close();
+                    main.Show();
+                };
+
+                loginWindow.DataContext = loginVM;
+                loginWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "WPF application failed to start correctly");
+                throw;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
-        private void InitializeAutoMapper()
+        private void ConfigureServices(IServiceCollection services)
         {
-            
+            //Services
+            services.AddScoped<IAccountService, AccountService>();
+
+            services.AddTransient(typeof(LoginViewModel));
+            services.AddTransient(typeof(LoginWindow));
         }
     }
 }

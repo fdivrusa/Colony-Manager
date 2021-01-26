@@ -4,8 +4,8 @@ using System.Text;
 
 namespace ColonyManager.Global
 {
-    public static class LocalSettings
+    public class AppSettings
     {
-        public static string ColonyManagerApiUrl = string.Empty;
+        public string ColonyManagerApiUrl { get; set; }
     }
 }

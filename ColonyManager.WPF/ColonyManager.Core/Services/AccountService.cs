@@ -1,6 +1,10 @@
 ﻿using ColonyManager.Core.Helpers;
 using ColonyManager.Core.Models;
+using ColonyManager.Core.Services.Interfaces;
+using ColonyManager.Global;
 using ColonyManager.Provider.Responses;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -9,8 +13,15 @@ using System.Threading.Tasks;
 
 namespace ColonyManager.Core.Services
 {
-    public class AccountService : BaseService
+    public class AccountService : BaseService, IAccountService
     {
+
+        private readonly ILogger<AccountService> _logger;
+
+        public AccountService(IOptions<AppSettings> appSettings) : base(appSettings)
+        {
+        }
+
         public async Task<AuthenticationResponse> AuthenticateAsync(LoginRequest request)
         {
             HttpResponseMessage httpResponseMessage = new HttpResponseMessage();

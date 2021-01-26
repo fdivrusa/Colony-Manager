@@ -1,6 +1,7 @@
-﻿using ColonyManager.Core.ViewModels;
+﻿using ColonyManager.Core.Services.Interfaces;
+using ColonyManager.Core.ViewModels;
 using ColonyManager.Global;
-using System.Configuration;
+using Microsoft.Extensions.Options;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,10 +13,15 @@ namespace ColonyManager.WPF.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public LoginWindow()
+        private readonly IAccountService _accoutnService;
+        private readonly AppSettings _appSettings;
+
+        public LoginWindow(IAccountService accountService, IOptions<AppSettings> appSettings) 
         {
+            _appSettings = appSettings.Value;
+            _accoutnService = accountService;
             InitializeComponent();
-            this.DataContext = new LoginViewModel();
+            this.DataContext = new LoginViewModel(_accoutnService);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -26,9 +32,8 @@ namespace ColonyManager.WPF.Views
         private void InitConfiguration()
         {
             StringBuilder errorMessage = new StringBuilder();
-            LocalSettings.ColonyManagerApiUrl = ConfigurationManager.AppSettings["ColonyManagerApiUrl"];
 
-            if (string.IsNullOrEmpty(LocalSettings.ColonyManagerApiUrl))
+            if (string.IsNullOrEmpty(_appSettings.ColonyManagerApiUrl))
             {
                 errorMessage.AppendLine("Cannot load ColonyManagerApiUrl value from configuration");
             }

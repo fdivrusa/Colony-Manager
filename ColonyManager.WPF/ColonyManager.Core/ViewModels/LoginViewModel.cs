@@ -1,6 +1,7 @@
 ﻿using ColonyManager.Core.Helpers;
 using ColonyManager.Core.Models;
 using ColonyManager.Core.Services;
+using ColonyManager.Core.Services.Interfaces;
 using ColonyManager.Global;
 using ColonyManager.Provider.Responses;
 using System;
@@ -14,6 +15,14 @@ namespace ColonyManager.Core.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+
+        private readonly IAccountService _accountService;
+
+        public LoginViewModel(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
+
         private string _email;
 
         public string Email
@@ -88,8 +97,7 @@ namespace ColonyManager.Core.ViewModels
         {
             if (!string.IsNullOrEmpty(Email) && Password != null)
             {
-                using var accountService = new AccountService();
-                var response = await accountService.AuthenticateAsync(new LoginRequest
+                var response = await _accountService.AuthenticateAsync(new LoginRequest
                 {
                     Email = Email,
                     SecurePassword = Password
