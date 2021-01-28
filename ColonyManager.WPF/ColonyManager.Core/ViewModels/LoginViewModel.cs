@@ -1,9 +1,9 @@
 ﻿using ColonyManager.Core.Helpers;
 using ColonyManager.Core.Models;
-using ColonyManager.Core.Services;
 using ColonyManager.Core.Services.Interfaces;
 using ColonyManager.Global;
 using ColonyManager.Provider.Responses;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Security;
@@ -15,12 +15,13 @@ namespace ColonyManager.Core.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-
         private readonly IAccountService _accountService;
+        private readonly ILogger<LoginViewModel> _logger;
 
-        public LoginViewModel(IAccountService accountService)
+        public LoginViewModel(IAccountService accountService, ILogger<LoginViewModel> logger) : base(logger)
         {
             _accountService = accountService;
+            _logger = logger;
         }
 
         private string _email;
@@ -66,7 +67,6 @@ namespace ColonyManager.Core.ViewModels
             {
                 AddError(nameof(Email), "Email is not valid");
             }
-
         }
 
         private ICommand _authenticateCommand;
@@ -97,6 +97,8 @@ namespace ColonyManager.Core.ViewModels
         {
             if (!string.IsNullOrEmpty(Email) && Password != null)
             {
+                _logger.LogDebug($"Begin Authentication for user with email {Email}");
+
                 var response = await _accountService.AuthenticateAsync(new LoginRequest
                 {
                     Email = Email,
@@ -110,27 +112,28 @@ namespace ColonyManager.Core.ViewModels
                     {
                         if(response.IsVerified)
                         {
+                            _logger.LogDebug("Account is verified and loggin is valid");
+
                             //User is verified, store user informations in Global and close
                             StoreGlobalUserInformations(response);
                             RaiseLoginCompletedEvent();
                         }
                         else
                         {
+                            _logger.LogDebug($"Account with Email {Email} is not verified but tries to connect");
+
                             //User is not verified, display error message
                             MessageBox.Show("Your account is not verified, please contact your administrator");
                         }
                     }
                     else
                     {
-                        //Response is not success, display error message
-                        MessageBox.Show($"An error occured during the login.\n Error : {response.Message}");
+                        ShowErrorAndLogMessage(Global.Enums.ErrorLevel.Error, "Login response error", $"An error occured during the login for user with email {Email}. \nError : {response.Message}");
                     }
                 }
                 else
                 {
-                    //Display error message
-                    MessageBox.Show("An uknown error occured");
-
+                    ShowErrorAndLogMessage(Global.Enums.ErrorLevel.Error, "Unknown Error", $"An unknown error occured during the login for user with email {Email}");
                     //TODO : put in place some logging
                 }
             }
@@ -139,9 +142,7 @@ namespace ColonyManager.Core.ViewModels
         public event EventHandler LoginCompleted;
         private void RaiseLoginCompletedEvent()
         {
-            var handler = LoginCompleted;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
+            LoginCompleted?.Invoke(this, EventArgs.Empty);
         }
 
         private void StoreGlobalUserInformations(AuthenticationResponse response)

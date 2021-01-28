@@ -5,6 +5,7 @@ using ColonyManager.Global;
 using ColonyManager.WPF.Views;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
 using System.IO;
@@ -20,6 +21,7 @@ namespace ColonyManager.WPF
 
         public IServiceProvider _serviceProvider { get; private set; }
         public IConfiguration _configuration { get; private set; }
+        private readonly IHost _host;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -30,12 +32,11 @@ namespace ColonyManager.WPF
                 .AddJsonFile("appsettings.json", false, true)
                 .Build();
 
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(_configuration)
-                .CreateLogger();
-
+            ConfigureLogger(_configuration);
+            
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
+
             serviceCollection.Configure<AppSettings>(_configuration.GetSection("AppSettings"));
             _serviceProvider = serviceCollection.BuildServiceProvider();
 
@@ -48,10 +49,9 @@ namespace ColonyManager.WPF
 
                 loginVM.LoginCompleted += (sender, args) =>
                 {
-                    MainWindow main = new MainWindow();
-
+                    MainWindow mainWindow = new MainWindow();
                     loginWindow.Close();
-                    main.Show();
+                    mainWindow.Show();
                 };
 
                 loginWindow.DataContext = loginVM;
@@ -64,8 +64,16 @@ namespace ColonyManager.WPF
             }
             finally
             {
+                Log.Information("Closing and flushing logger");
                 Log.CloseAndFlush();
             }
+        }
+
+        private void ConfigureLogger(IConfiguration _configuration)
+        {
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(_configuration)
+                .CreateLogger();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -73,8 +81,17 @@ namespace ColonyManager.WPF
             //Services
             services.AddScoped<IAccountService, AccountService>();
 
+            //VIewModel
             services.AddTransient(typeof(LoginViewModel));
+
+            //View
             services.AddTransient(typeof(LoginWindow));
+
+            //Others
+            services.AddLogging(x =>
+            {
+                x.AddSerilog(dispose: true);
+            });
         }
     }
 }

@@ -13,19 +13,13 @@ using System.Windows.Shapes;
 namespace ColonyManager.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ErrorWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ErrorWindow : Window
     {
-        public MainWindow()
+        public ErrorWindow()
         {
             InitializeComponent();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
         }
     }
 }

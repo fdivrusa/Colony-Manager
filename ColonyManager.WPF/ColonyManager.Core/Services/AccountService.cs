@@ -3,7 +3,6 @@ using ColonyManager.Core.Models;
 using ColonyManager.Core.Services.Interfaces;
 using ColonyManager.Global;
 using ColonyManager.Provider.Responses;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
@@ -15,8 +14,6 @@ namespace ColonyManager.Core.Services
 {
     public class AccountService : BaseService, IAccountService
     {
-
-        private readonly ILogger<AccountService> _logger;
 
         public AccountService(IOptions<AppSettings> appSettings) : base(appSettings)
         {

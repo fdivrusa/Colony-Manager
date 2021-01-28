@@ -1,15 +1,25 @@
-﻿using System;
+﻿using ColonyManager.Global.Enums;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
 
 namespace ColonyManager.Core.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged, INotifyDataErrorInfo
     {
+        private readonly ILogger _logger;
+
+        public ViewModelBase(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         #region INotifyPropertyChanged members
 
         public virtual string DisplayName { get; protected set; }
@@ -129,5 +139,28 @@ namespace ColonyManager.Core.ViewModels
         }
 
         #endregion
+
+        public void ShowErrorAndLogMessage(Global.Enums.ErrorLevel errorLevel, string title, string message)
+        {
+            switch (errorLevel)
+            {
+                case ErrorLevel.Warning:
+                    _logger.LogWarning(message);
+                    MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    break;
+
+                case ErrorLevel.Error:
+                    _logger.LogError(message);
+                    MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
+
+                case ErrorLevel.Fatal:
+                    _logger.LogCritical(message);
+                    MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
+            }
+
+            //TODO : Show a custom message box
+        }
     }
 }
