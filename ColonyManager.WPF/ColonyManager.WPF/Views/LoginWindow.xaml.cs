@@ -24,7 +24,6 @@ namespace ColonyManager.WPF.Views
             _accoutnService = accountService;
             _logger = logger;
             InitializeComponent();
-            this.DataContext = new LoginViewModel(_accoutnService, _logger);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -21,7 +21,6 @@ namespace ColonyManager.WPF
 
         public IServiceProvider _serviceProvider { get; private set; }
         public IConfiguration _configuration { get; private set; }
-        private readonly IHost _host;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -33,7 +32,7 @@ namespace ColonyManager.WPF
                 .Build();
 
             ConfigureLogger(_configuration);
-            
+
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
 
@@ -46,16 +45,26 @@ namespace ColonyManager.WPF
 
                 var loginWindow = _serviceProvider.GetRequiredService<LoginWindow>();
                 var loginVM = _serviceProvider.GetRequiredService<LoginViewModel>();
+                var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+                var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
 
+
+#if DEBUG 
+                loginWindow.DataContext = loginVM;
                 loginVM.LoginCompleted += (sender, args) =>
                 {
-                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.DataContext = mainViewModel;
                     loginWindow.Close();
-                    mainWindow.Show();
+                    mainWindow.ShowDialog();
                 };
 
                 loginWindow.DataContext = loginVM;
                 loginWindow.ShowDialog();
+
+#else
+                mainWindow.DataContext = mainViewModel;
+                mainWindow.ShowDialog();
+#endif
             }
             catch (Exception ex)
             {
@@ -83,8 +92,10 @@ namespace ColonyManager.WPF
 
             //VIewModel
             services.AddTransient(typeof(LoginViewModel));
+            services.AddTransient(typeof(MainViewModel));
 
             //View
+            services.AddTransient(typeof(MainWindow));
             services.AddTransient(typeof(LoginWindow));
 
             //Others

@@ -110,7 +110,7 @@ namespace ColonyManager.Core.ViewModels
                     //Check that the user is verified
                     if (response.Success)
                     {
-                        if(response.IsVerified)
+                        if (response.IsVerified)
                         {
                             _logger.LogDebug("Account is verified and loggin is valid");
 

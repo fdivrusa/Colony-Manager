@@ -10,7 +10,8 @@
     TextOptions.TextRenderingMode="Auto"
     Title="ColonyManager Login" Height="500" Width="350" WindowStartupLocation="CenterScreen"
     Loaded="Window_Loaded"
-    FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize"
+    FontFamily="{DynamicResource MaterialDesignFont}" 
+    ResizeMode="NoResize"
     Name="Login">
     <Grid>
         <Rectangle Height="280" VerticalAlignment="Top">
