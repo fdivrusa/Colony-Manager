@@ -1,21 +1,21 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using ColonyManager.WebApi.Host.Configurations;
-using ColonyManager.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using ColonyManager.Application;
 using ColonyManager.Core;
+using ColonyManager.Data;
 using ColonyManager.Utility.Middlewares;
+using ColonyManager.WebApi.Host.Configurations;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 
 namespace ColonyManager.WebApi.Host
 {
     public class Startup
     {
-         public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -37,7 +37,7 @@ namespace ColonyManager.WebApi.Host
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if(env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }

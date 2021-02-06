@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ColonyManager.Domain.Interfaces.Services
+﻿namespace ColonyManager.Domain.Interfaces.Services
 {
     public interface IEmailService
     {
