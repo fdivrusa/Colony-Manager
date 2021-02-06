@@ -61,7 +61,9 @@ namespace ColonyManager.Application.Services
             var account = _dbContext.Accounts.SingleOrDefault(x => x.Email == request.Email);
 
             if (account == null || !account.IsVerified || !BC.Verify(request.Password, account.PasswordHash))
+            {
                 throw new AppException("Email or password is incorrect");
+            }
 
             // authentication successful so generate jwt and refresh tokens
             var jwtToken = GenerateJwtToken(account);
@@ -166,8 +168,9 @@ namespace ColonyManager.Application.Services
             var account = _dbContext.Accounts.SingleOrDefault(x => x.ResetToken == request.Token && x.ResetTokenExpires > DateTime.UtcNow);
 
             if (account == null)
+            {
                 throw new AppException("Invalid token");
-
+            }
             // update password and remove reset token
             account.PasswordHash = BC.HashPassword(request.Password);
             account.PasswordReset = DateTime.UtcNow;
@@ -190,20 +193,14 @@ namespace ColonyManager.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public void ValidateResetToken(ValidateResetTokenRequestDto model)
-        {
-
-            var account = _dbContext.Accounts.SingleOrDefault(x => x.ResetToken == model.Token && x.ResetTokenExpires > DateTime.UtcNow);
-
-            if (account == null)
-                throw new AppException("Invalid token");
-        }
-
         public async Task VerifyEmailAsync(string token)
         {
             var account = _dbContext.Accounts.SingleOrDefault(x => x.VerificationToken == token);
 
-            if (account == null) throw new AppException("Verification failed");
+            if (account == null)
+            {
+                throw new AppException("Verification failed");
+            }
 
             account.Verified = DateTime.UtcNow;
             account.VerificationToken = null;
@@ -212,9 +209,16 @@ namespace ColonyManager.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        Task IAccountService.ValidateResetTokenAsync(ValidateResetTokenRequestDto request)
+        public async Task ValidateResetTokenAsync(ValidateResetTokenRequestDto model)
         {
-            throw new NotImplementedException();
+            var account = await _dbContext.Accounts.SingleOrDefaultAsync(x =>
+                x.ResetToken == model.Token &&
+                x.ResetTokenExpires > DateTime.UtcNow);
+
+            if (account == null)
+            {
+                throw new AppException("Invalid token");
+            }
         }
 
         public IEnumerable<AccountResponseDto> GetAll()
@@ -224,7 +228,7 @@ namespace ColonyManager.Application.Services
 
         public async Task<AccountResponseDto> GetByIdAsync(int id)
         {
-            var account = await GetAccount(id);
+            var account = await GetAccount(id).ConfigureAwait(false);
             return _mapper.Map<AccountResponseDto>(account);
         }
 
@@ -235,7 +239,9 @@ namespace ColonyManager.Application.Services
 
             // validate
             if (_dbContext.Accounts.Any(x => x.Email == request.Email))
+            {
                 throw new AppException($"Email '{request.Email}' is already registered");
+            }
 
             // map model to new account object
             var account = _mapper.Map<Account>(request);
@@ -260,11 +266,15 @@ namespace ColonyManager.Application.Services
 
             // validate
             if (account.Email != request.Email && _dbContext.Accounts.Any(x => x.Email == request.Email))
+            {
                 throw new AppException($"Email '{request.Email}' is already taken");
+            }
 
             // hash password if it was entered
             if (!string.IsNullOrEmpty(request.Password))
+            {
                 account.PasswordHash = BC.HashPassword(request.Password);
+            }
 
             // copy model to account and save
             _mapper.Map(request, account);
@@ -286,9 +296,16 @@ namespace ColonyManager.Application.Services
         private (RefreshToken, Account) GetRefreshToken(string token)
         {
             var account = _dbContext.Accounts.Include(x => x.RefreshTokens).SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
-            if (account == null) throw new AppException("Invalid token");
+            if (account == null)
+            {
+                throw new AppException("Invalid token");
+            }
             var refreshToken = account.RefreshTokens.Single(x => x.Token == token);
-            if (!refreshToken.IsActive) throw new AppException("Invalid token");
+            if (!refreshToken.IsActive)
+            {
+                throw new AppException("Invalid token");
+            }
+
             return (refreshToken, account);
         }
 
@@ -364,8 +381,9 @@ namespace ColonyManager.Application.Services
             if (!string.IsNullOrEmpty(origin))
                 message = $@"<p>If you don't know your password please visit the <a href=""{origin}/account/forgot-password"">forgot password</a> page.</p>";
             else
+            {
                 message = "<p>If you don't know your password you can reset it via the <code>/accounts/forgot-password</code> api route.</p>";
-
+            }
             _emailService.Send(
                 to: email,
                 subject: "Sign-up Verification API - Email Already Registered",
@@ -401,7 +419,10 @@ namespace ColonyManager.Application.Services
         private async Task<Account> GetAccount(int id)
         {
             var account = await _dbContext.Accounts.FindAsync(id);
-            if (account == null) throw new KeyNotFoundException("Account not found");
+            if (account == null)
+            {
+                throw new KeyNotFoundException("Account not found");
+            }
             return account;
         }
         #endregion
