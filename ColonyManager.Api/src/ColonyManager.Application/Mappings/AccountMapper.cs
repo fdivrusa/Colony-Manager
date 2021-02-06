@@ -21,12 +21,20 @@ namespace ColonyManager.Application.Mappings
                     (src, dest, prop) =>
                     {
                         // ignore null & empty string properties
-                        if (prop == null) return false;
-                        if ((prop is string @string) && string.IsNullOrEmpty(@string)) return false;
+                        if (prop == null)
+                        {
+                            return false;
+                        }
+                        if ((prop is string @string) && string.IsNullOrEmpty(@string))
+                        {
+                            return false;
+                        }
 
                         // ignore null role
-                        if (x.DestinationMember.Name == "Role" && src.Role == null) return false;
-
+                        if (x.DestinationMember.Name == "Role" && src.Role == null)
+                        {
+                            return false;
+                        }
                         return true;
                     }
                 ));
