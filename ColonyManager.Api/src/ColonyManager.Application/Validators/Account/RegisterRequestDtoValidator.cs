@@ -13,7 +13,7 @@ namespace ColonyManager.Application.Validators.Account
             RuleFor(x => x.Title).NotNull();
             RuleFor(x => x.Password).NotNull().MinimumLength(10);
             RuleFor(x => x.ConfirmPassword).NotNull().Equal(x => x.Password);
-            RuleFor(x => x.AcceptTerms).Equals(true);
+            _ = RuleFor(x => x.AcceptTerms).Equals(true);
         }
     }
 }

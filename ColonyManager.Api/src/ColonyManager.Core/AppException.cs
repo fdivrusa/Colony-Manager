@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
+using System.Runtime.Serialization;
 
 namespace ColonyManager.Core
 {
+
+    [Serializable]
     public class AppException : Exception
     {
         public AppException() : base()
@@ -17,7 +18,12 @@ namespace ColonyManager.Core
 
         }
 
-        public AppException(string message, params object[] args) : base(String.Format(CultureInfo.CurrentCulture, message, args))
+        public AppException(string message, params object[] args) : base(string.Format(CultureInfo.CurrentCulture, message, args))
+        {
+
+        }
+
+        public AppException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(serializationInfo, streamingContext)
         {
 
         }

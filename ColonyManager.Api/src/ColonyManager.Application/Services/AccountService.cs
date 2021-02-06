@@ -5,18 +5,18 @@ using ColonyManager.Data.Entities;
 using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models.Account;
 using FluentValidation;
-using BC = BCrypt.Net.BCrypt;
-using Microsoft.Extensions.Options;
-using System;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using System.Collections.Generic;
-using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using BC = BCrypt.Net.BCrypt;
 
 namespace ColonyManager.Application.Services
 {

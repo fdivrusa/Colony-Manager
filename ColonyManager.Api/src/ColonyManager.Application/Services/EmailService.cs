@@ -2,11 +2,9 @@
 using ColonyManager.Domain.Interfaces.Services;
 using MailKit.Net.Smtp;
 using MailKit.Security;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
-using System;
 
 namespace ColonyManager.Application.Services
 {

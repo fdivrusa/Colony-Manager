@@ -1,9 +1,5 @@
-﻿using ColonyManager.Data.Entities;
-using ColonyManager.Domain.Models.Account;
+﻿using ColonyManager.Domain.Models.Account;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ColonyManager.Application.Validators.Account
 {
