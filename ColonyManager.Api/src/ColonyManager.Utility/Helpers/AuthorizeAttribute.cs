@@ -1,4 +1,5 @@
-﻿using ColonyManager.Data.Entities;
+﻿using ColonyManager.Core;
+using ColonyManager.Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
