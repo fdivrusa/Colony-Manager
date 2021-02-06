@@ -1,5 +1,7 @@
 # ColonyManager
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ba60f1b39049426399156c5fd78bf890)](https://app.codacy.com/gh/fdivrusa/ColonyManager?utm_source=github.com&utm_medium=referral&utm_content=fdivrusa/ColonyManager&utm_campaign=Badge_Grade)
+
 ![API status](https://github.com/fdivrusa/ColonyManager/workflows/API%20status/badge.svg)
 
 ----
