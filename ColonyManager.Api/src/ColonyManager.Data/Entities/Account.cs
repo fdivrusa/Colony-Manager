@@ -1,13 +1,11 @@
 ﻿using ColonyManager.Core;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ColonyManager.Data.Entities
 {
-    public partial class Account
+    public class Account
     {
-
         public Account()
         {
             RefreshTokens = new List<RefreshToken>();

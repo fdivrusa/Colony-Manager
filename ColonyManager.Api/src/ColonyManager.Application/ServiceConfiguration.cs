@@ -14,6 +14,8 @@ namespace ColonyManager.Application
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddValidatorsFromAssembly(typeof(ServiceConfiguration).Assembly);
 
+            services.AddScoped<IConfigGenericGroupService, ConfigGenericGroupService>();
+
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IEmailService, EmailService>();
 

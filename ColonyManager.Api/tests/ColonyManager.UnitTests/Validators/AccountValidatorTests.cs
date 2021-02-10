@@ -10,7 +10,7 @@ namespace ColonyManager.UnitTests.Validators
         private AuthenticateRequestDtoValidator AuthenticateRequestValidator { get; }
         private CreateAccountRequestDtoValidator CreateAccountRequestValidator { get; }
 
-        private CreateAccountRequestDto ValidCreateAccountRequestDto = new CreateAccountRequestDto
+        private readonly CreateAccountRequestDto ValidCreateAccountRequestDto = new CreateAccountRequestDto
         {
             FirstName = "FirstName",
             LastName = "LastName",

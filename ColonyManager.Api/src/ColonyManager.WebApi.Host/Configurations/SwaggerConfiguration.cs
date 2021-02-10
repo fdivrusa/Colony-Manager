@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Builder;
+using Microsoft.OpenApi.Models;
 
 namespace ColonyManager.WebApi.Host.Configurations
 {

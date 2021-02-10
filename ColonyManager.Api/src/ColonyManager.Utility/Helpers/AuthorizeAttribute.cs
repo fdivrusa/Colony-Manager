@@ -11,7 +11,7 @@ namespace ColonyManager.Utility.Helpers
 {
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
-        private IList<Role> _roles;
+        private readonly IList<Role> _roles;
 
         public AuthorizeAttribute(params Role[] roles)
         {
