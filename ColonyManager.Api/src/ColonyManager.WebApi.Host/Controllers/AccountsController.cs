@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using ColonyManager.Core;
+﻿using ColonyManager.Core;
 using ColonyManager.Data.Entities;
 using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models.Account;
@@ -17,12 +16,10 @@ namespace ColonyManager.WebApi.Host.Controllers
     public class AccountsController : BaseController
     {
         private readonly IAccountService _accountService;
-        private readonly IMapper _mapper;
 
-        public AccountsController(IAccountService accountService, IMapper mapper)
+        public AccountsController(IAccountService accountService)
         {
             _accountService = accountService;
-            _mapper = mapper;
         }
 
         [HttpPost("authenticate")]

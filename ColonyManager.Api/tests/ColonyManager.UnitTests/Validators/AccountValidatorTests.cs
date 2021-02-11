@@ -8,18 +8,6 @@ namespace ColonyManager.UnitTests.Validators
     public class AccountValidatorTests
     {
         private AuthenticateRequestDtoValidator AuthenticateRequestValidator { get; }
-        private CreateAccountRequestDtoValidator CreateAccountRequestValidator { get; }
-
-        private readonly CreateAccountRequestDto ValidCreateAccountRequestDto = new CreateAccountRequestDto
-        {
-            FirstName = "FirstName",
-            LastName = "LastName",
-            Email = "test@test.com",
-            Role = Core.Role.Admin.ToString(),
-            Password = "test123test123",
-            ConfirmPassword = "test123test123",
-            Title = "Mr"
-        };
 
         public AccountValidatorTests()
         {

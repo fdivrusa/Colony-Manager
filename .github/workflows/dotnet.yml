@@ -2,9 +2,9 @@ name: API status
 
 on:
   push:
-    branches: [ Develop, master ]
+    branches: [ developp, master ]
   pull_request:
-    branches: [ Develop, master ]
+    branches: [ developp, master ]
 
 jobs:
   build:

@@ -25,8 +25,10 @@ namespace ColonyManager.Application.Mappings
                         if ((prop is string) && string.IsNullOrEmpty((string)prop)) return false;
 
                         // ignore null role
-                        if (x.DestinationMember.Name == "Role" && src.Role == null) return false;
-
+                        if (x.DestinationMember.Name == "Role" && src.Role == null)
+                        {
+                            return false;
+                        }
                         return true;
                     }
                 ));
