@@ -10,6 +10,9 @@ namespace ColonyManager.Application.Mappings.Config
         {
             CreateMap<ConfigGenericItem, ConfigGenericItemDto>()
                 .ReverseMap();
+
+            CreateMap<AddConfigGenericItemRequestDto, ConfigGenericItem>()
+                .ReverseMap();
         }
     }
 }

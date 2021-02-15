@@ -39,7 +39,7 @@ namespace ColonyManager.WebApi.Host.Controllers.Config
 
         [HttpGet]
         [Route("details")]
-        public async Task<ConfigGenericGroupDetailedDto> GetGenericGroupByIdAsync(int id)
+        public async Task<ConfigGenericGroupDetailedDto> GetGenericGroupByIdAsync([FromQuery] int id)
         {
             return await _configGenericGroupService.GetGenericGroupByIdAsync(id);
         }

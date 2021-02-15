@@ -15,6 +15,7 @@ namespace ColonyManager.Application
             services.AddValidatorsFromAssembly(typeof(ServiceConfiguration).Assembly);
 
             services.AddScoped<IConfigGenericGroupService, ConfigGenericGroupService>();
+            services.AddScoped<IConfigGenericItemService, ConfigGenericItemService>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IEmailService, EmailService>();

@@ -40,7 +40,7 @@ namespace ColonyManager.Utility.Middlewares
                     KeyNotFoundException _ => (int)HttpStatusCode.NotFound,// not found error
                     _ => (int)HttpStatusCode.InternalServerError,// unhandled error
                 };
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
+                var result = JsonSerializer.Serialize(new { ErrorMessage = error?.Message, Details = error?.InnerException?.Message });
                 await response.WriteAsync(result);
             }
         }

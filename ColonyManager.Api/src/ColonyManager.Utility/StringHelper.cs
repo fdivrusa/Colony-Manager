@@ -1,4 +1,4 @@
-﻿namespace ColonyManager.Utility.Helpers
+﻿namespace ColonyManager.Utility
 {
     public static class StringHelper
     {

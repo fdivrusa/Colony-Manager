@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ColonyManager.Utility.Helpers
+namespace ColonyManager.Application.Helpers
 {
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
