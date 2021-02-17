@@ -1,4 +1,5 @@
 ﻿using ColonyManager.Domain.Models;
+using ColonyManager.Domain.Models.Config;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -39,5 +40,13 @@ namespace ColonyManager.Domain.Interfaces.Services
         /// <param name="request">Request to add new config generic group</param>
         /// <returns></returns>
         Task<ConfigGenericGroupDto> AddNewConfigGenericGroupAsync(AddConfigGenericGroupDto request, string userName);
+
+        /// <summary>
+        /// Update config generic group
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        Task<ConfigGenericGroupDto> UpdateConfigGenericGroupAsync(UpdateConfigGenericGroupRequestDto request, string userName);
     }
 }

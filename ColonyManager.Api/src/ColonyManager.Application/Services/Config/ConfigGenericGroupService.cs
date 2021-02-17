@@ -3,9 +3,11 @@ using ColonyManager.Data;
 using ColonyManager.Data.Entities;
 using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models;
+using ColonyManager.Domain.Models.Config;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,13 +21,16 @@ namespace ColonyManager.Application.Services
         private readonly ILogger<ConfigGenericGroupService> _logger;
         private readonly ColonyManagerDbContext _dbContext;
         private readonly IValidator<AddConfigGenericGroupDto> _addConfigGenericGroupValidator;
+        private readonly IValidator<UpdateConfigGenericGroupRequestDto> _updateConfigGenericGroupvalidator;
 
-        public ConfigGenericGroupService(IMapper mapper, ILogger<ConfigGenericGroupService> logger, ColonyManagerDbContext dbContext, IValidator<AddConfigGenericGroupDto> addConfigGenericGroupValidator)
+        public ConfigGenericGroupService(IMapper mapper, ILogger<ConfigGenericGroupService> logger, ColonyManagerDbContext dbContext,
+            IValidator<AddConfigGenericGroupDto> addConfigGenericGroupValidator, IValidator<UpdateConfigGenericGroupRequestDto> updateConfigGenericGroupValidator)
         {
             _mapper = mapper;
             _logger = logger;
             _dbContext = dbContext;
             _addConfigGenericGroupValidator = addConfigGenericGroupValidator;
+            _updateConfigGenericGroupvalidator = updateConfigGenericGroupValidator;
         }
 
         public async Task<IEnumerable<ConfigGenericGroupDto>> GetAllGenericGroupsAsync()
@@ -67,6 +72,25 @@ namespace ColonyManager.Application.Services
             await _dbContext.SaveChangesAsync();
 
             return _mapper.Map<ConfigGenericGroupDto>(result);
+        }
+
+        public async Task<ConfigGenericGroupDto> UpdateConfigGenericGroupAsync(UpdateConfigGenericGroupRequestDto request, string userName)
+        {
+            await _updateConfigGenericGroupvalidator.ValidateAndThrowAsync(request);
+
+            var entity = await _dbContext.ConfigGenericGroups.SingleOrDefaultAsync(x => x.Id == request.GroupId);
+            if (entity != null)
+            {
+                _mapper.Map(request, entity);
+                entity.LastUpdatedUserName = userName;
+                entity.LastUpdatedDate = DateTime.Now;
+
+                var result = _dbContext.ConfigGenericGroups.Update(entity).Entity;
+                await _dbContext.SaveChangesAsync();
+
+                return _mapper.Map<ConfigGenericGroupDto>(result);
+            }
+            return null;
         }
     }
 }
