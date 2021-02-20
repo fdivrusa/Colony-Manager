@@ -23,6 +23,8 @@
   </a>
 </p>
 
+<p align="center"><i>"I think we are at the dawn of a new era in commercial space exploration." </i><b>Elon Musk</b></p>
+
 ---- 
 
 Set of applications to manage future colonies on Mars (or other planets
