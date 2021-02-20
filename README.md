@@ -16,7 +16,9 @@
   </a>
 </p>
 
----- Set of applications to manage future colonies on Mars (or other planets
+---- 
+
+Set of applications to manage future colonies on Mars (or other planets
 also ! Why not...). These projects are only developped for me to be able to
 learn about new technologies and try to give useful tool to manage future trips
 to other planets. Don't call me crazy, it will happen sooner then we think ! For
