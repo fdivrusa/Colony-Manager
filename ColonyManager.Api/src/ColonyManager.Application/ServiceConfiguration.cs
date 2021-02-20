@@ -16,6 +16,7 @@ namespace ColonyManager.Application
 
             services.AddScoped<IConfigGenericGroupService, ConfigGenericGroupService>();
             services.AddScoped<IConfigGenericItemService, ConfigGenericItemService>();
+            services.AddScoped<IConfigGenericItemExtentionService, ConfigGenericItemExtentionService>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IEmailService, EmailService>();

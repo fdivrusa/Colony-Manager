@@ -21,5 +21,13 @@ namespace ColonyManager.Application.Helpers
                                                .DefaultIfEmpty()
                                                .MaxAsync(x => (int?)x.Id) + 1 ?? 1;
         }
+
+        public static async Task<int> GetNextIdConfigItemExtentionAsync(AddConfigGenericItemExtentionRequestDto request, ColonyManagerDbContext dbContext)
+        {
+            return await dbContext.Set<ConfigGenericItemExtension>()
+                                                .Where(x => x.GroupId == request.GroupId && x.ItemId == request.ItemId)
+                                                .DefaultIfEmpty()
+                                                .MaxAsync(x => (int?)x.Id) + 1 ?? 1;
+        }
     }
 }
