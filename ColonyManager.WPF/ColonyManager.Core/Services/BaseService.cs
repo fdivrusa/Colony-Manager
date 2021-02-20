@@ -57,12 +57,11 @@ namespace ColonyManager.Core.Services
         {
             if (disposing)
             {
-                if (_httpClient != null)
+                if (_httpClient == null)
                 {
-                    _httpClient.Dispose();
+                    return;
                 }
-
-                _httpClient = null;
+                _httpClient.Dispose();
             }
         }
     }

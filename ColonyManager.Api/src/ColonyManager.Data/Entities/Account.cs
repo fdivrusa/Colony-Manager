@@ -4,9 +4,8 @@ using System.Collections.Generic;
 
 namespace ColonyManager.Data.Entities
 {
-    public partial class Account
+    public class Account
     {
-
         public Account()
         {
             RefreshTokens = new List<RefreshToken>();
@@ -28,6 +27,7 @@ namespace ColonyManager.Data.Entities
         public DateTime? PasswordReset { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public string FullName => LastName + " " + FirstName;
 
         public virtual List<RefreshToken> RefreshTokens { get; set; }
 

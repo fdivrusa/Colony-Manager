@@ -11,6 +11,7 @@ namespace ColonyManager.WebApi.Host
     {
         protected Program()
         {
+
         }
 
         public static void Main(string[] args)

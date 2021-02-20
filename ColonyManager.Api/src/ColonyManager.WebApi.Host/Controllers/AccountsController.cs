@@ -1,8 +1,8 @@
-﻿using ColonyManager.Core;
+﻿using ColonyManager.Application.Helpers;
+using ColonyManager.Core;
 using ColonyManager.Data.Entities;
 using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models.Account;
-using ColonyManager.Utility.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

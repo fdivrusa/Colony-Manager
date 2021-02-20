@@ -209,10 +209,10 @@ namespace ColonyManager.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task ValidateResetTokenAsync(ValidateResetTokenRequestDto model)
+        public async Task ValidateResetTokenAsync(ValidateResetTokenRequestDto request)
         {
             var account = await _dbContext.Accounts.SingleOrDefaultAsync(x =>
-                x.ResetToken == model.Token &&
+                x.ResetToken == request.Token &&
                 x.ResetTokenExpires > DateTime.UtcNow);
 
             if (account == null)

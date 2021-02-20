@@ -1,4 +1,4 @@
-﻿using ColonyManager.Utility.Helpers;
+﻿using ColonyManager.Utility;
 
 namespace ColonyManager.Domain.Models.Account
 {
