@@ -1,8 +1,5 @@
 ﻿using ColonyManager.Domain.Models.Config;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ColonyManager.Application.Validators.Config
 {

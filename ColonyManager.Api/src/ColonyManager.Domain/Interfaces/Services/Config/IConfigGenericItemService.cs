@@ -34,15 +34,21 @@ namespace ColonyManager.Domain.Interfaces.Services
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<ConfigGenericItemDto> AddNewConfigGenericItemAsync(AddConfigGenericItemRequestDto request);
+        Task<ConfigGenericItemDto> AddNewConfigGenericItemAsync(AddConfigGenericItemRequestDto request, string userName);
 
         /// <summary>
         /// Delete a config generic item
         /// </summary>
-        /// <param name="groupId"></param>
-        /// <param name="id"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         Task DeleteConfigGenericItemAsync(DeleteConfigGenericItemDto request);
+
+        /// <summary>
+        /// Update existing config generic item
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<ConfigGenericItemDto> UpdateConfigGenericItemDto(UpdateConfigGenericItemRequestDto request, string userName);
 
     }
 }

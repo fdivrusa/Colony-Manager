@@ -48,13 +48,13 @@ namespace ColonyManager.WebApi.Host.Controllers.Config
         [HttpPost]
         public async Task<ConfigGenericGroupDto> AddConfigGenericGroupAsync(AddConfigGenericGroupDto request)
         {
-            return await _configGenericGroupService.AddNewConfigGenericGroupAsync(request, Account?.LastName);
+            return await _configGenericGroupService.AddNewConfigGenericGroupAsync(request, Account?.FullName);
         }
 
         [HttpPut]
         public async Task<ConfigGenericGroupDto> UpdateConfigGenericGroupAsync(UpdateConfigGenericGroupRequestDto request)
         {
-            return await _configGenericGroupService.UpdateConfigGenericGroupAsync(request, Account?.LastName);
+            return await _configGenericGroupService.UpdateConfigGenericGroupAsync(request, Account?.FullName);
         }
     }
 }

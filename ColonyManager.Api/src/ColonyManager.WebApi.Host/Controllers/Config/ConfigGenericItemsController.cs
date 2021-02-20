@@ -41,13 +41,19 @@ namespace ColonyManager.WebApi.Host.Controllers.Config
         [HttpPost]
         public async Task<ConfigGenericItemDto> AddConfigGenericItemAsync([FromBody] AddConfigGenericItemRequestDto request)
         {
-            return await _configGenericItemService.AddNewConfigGenericItemAsync(request);
+            return await _configGenericItemService.AddNewConfigGenericItemAsync(request, Account?.FullName);
         }
 
         [HttpDelete]
         public async Task DeleteConfigGenericItemAsync([FromBody] DeleteConfigGenericItemDto request)
         {
             await _configGenericItemService.DeleteConfigGenericItemAsync(request);
+        }
+
+        [HttpPut]
+        public async Task<ConfigGenericItemDto> UpdateConfigGenericItemAsync([FromBody] UpdateConfigGenericItemRequestDto request)
+        {
+            return await _configGenericItemService.UpdateConfigGenericItemDto(request, Account?.FullName);
         }
     }
 }
