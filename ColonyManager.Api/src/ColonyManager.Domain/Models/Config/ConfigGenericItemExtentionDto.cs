@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ColonyManager.Domain.Models.Config
+namespace ColonyManager.Domain.Models
 {
     public class ConfigGenericItemExtentionDto : BaseDto
     {

@@ -1,6 +1,5 @@
 ﻿using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models;
-using ColonyManager.Domain.Models.Config;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

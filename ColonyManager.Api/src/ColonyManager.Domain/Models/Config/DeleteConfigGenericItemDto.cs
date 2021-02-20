@@ -1,4 +1,4 @@
-﻿namespace ColonyManager.Domain.Models.Config
+﻿namespace ColonyManager.Domain.Models
 {
     public class DeleteConfigGenericItemDto
     {

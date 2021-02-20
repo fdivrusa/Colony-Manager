@@ -1,7 +1,7 @@
 ﻿using ColonyManager.Domain.Models;
 using FluentValidation;
 
-namespace ColonyManager.Application.Validators.Config
+namespace ColonyManager.Application.Validators
 {
     public class AddConfigGenericItemDtoValidator : AbstractValidator<AddConfigGenericItemRequestDto>
     {
