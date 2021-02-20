@@ -1,6 +1,13 @@
 <h1 align="center">🚀 Colony Manager 🚀</h1>
 
 <p align="center">
+
+<a href="https://lbesson.mit-license.org">
+  <img 
+    src="https://img.shields.io/badge/License-MIT-blue.svg"
+    alt="Licence"/>
+</a>
+
   <a href="#">
     <img
       src="https://github.com/fdivrusa/ColonyManager/workflows/API%20status/badge.svg"
@@ -11,12 +18,10 @@
   <a href="#">
     <img
       src="https://api.codacy.com/project/badge/Grade/ba60f1b39049426399156c5fd78bf890"
-      alt="Build Status"
+      alt="Code quality"
     />
   </a>
 </p>
-
-<p align="center"><i>"I think we are at the dawn of a new era in commercial space exploration." </i><b>Elon Musk</b></p>
 
 ---- 
 
