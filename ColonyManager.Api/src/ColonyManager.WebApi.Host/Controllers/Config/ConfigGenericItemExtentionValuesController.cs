@@ -17,9 +17,21 @@ namespace ColonyManager.WebApi.Host.Controllers.Config
         }
 
         [HttpPost]
-        public async Task<ConfigGenericItemExtentionValueDto> AddConfigGenericItemExtentionValueAsync(AddConfigGenericItemExtentionValueRequestDto request)
+        public async Task<ConfigGenericItemExtentionValueDto> AddConfigGenericItemExtentionValueAsync([FromBody] AddConfigGenericItemExtentionValueRequestDto request)
         {
             return await _configGenericItemExtentionValueService.AddConfigGenericItemExtentionValueAsync(request, Account?.FullName);
+        }
+
+        [HttpPut]
+        public async Task<ConfigGenericItemExtentionValueDto> UpdateConfigGenericItemExtentionValueAsync([FromBody] UpdateConfigGenericItemExtentionValueRequestDto request)
+        {
+            return await _configGenericItemExtentionValueService.UpdateConfigGenericItemExtentionValueAsync(request, Account?.FullName);
+        }
+
+        [HttpDelete]
+        public async Task DeleteConfigGenericItemExtentionValueAsync([FromBody] ConfigGenericItemExtentionValueDto request)
+        {
+            await _configGenericItemExtentionValueService.DeleteConfigGenericItemExtentionValueAsync(request);
         }
     }
 }

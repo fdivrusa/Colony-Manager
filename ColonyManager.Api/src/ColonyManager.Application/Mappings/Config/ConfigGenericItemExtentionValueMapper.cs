@@ -8,10 +8,12 @@ namespace ColonyManager.Application.Mappings
     {
         public ConfigGenericItemExtentionValueMapper()
         {
-            CreateMap<ConfigGenericItemExtentionValueDto, ConfigGenericItemExtensionValue>()
+            CreateMap<ConfigGenericItemExtensionValue, ConfigGenericItemExtentionValueDto>()
                 .ReverseMap();
 
             CreateMap<AddConfigGenericItemExtentionValueRequestDto, ConfigGenericItemExtensionValue>();
+
+            CreateMap<UpdateConfigGenericItemExtentionValueRequestDto, ConfigGenericItemExtensionValue>();
         }
     }
 }
