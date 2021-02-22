@@ -8,8 +8,4 @@
     <ProjectReference Include="..\ColonyManager.Utility\ColonyManager.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\Services\System\" />
-  </ItemGroup>
-
 </Project>

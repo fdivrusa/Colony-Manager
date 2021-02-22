@@ -1,6 +1,5 @@
 ﻿using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models;
-using ColonyManager.Domain.Models.Config;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -18,19 +17,19 @@ namespace ColonyManager.WebApi.Host.Controllers.Config
         }
 
         [HttpPost]
-        public async Task<ConfigGenericItemExtentionDto> AddConfigGenericItemExtentionDtoAsync(AddConfigGenericItemExtentionRequestDto request)
+        public async Task<ConfigGenericItemExtentionDto> AddConfigGenericItemExtentionDtoAsync([FromBody] AddConfigGenericItemExtentionRequestDto request)
         {
             return await _configGenericItemExtentionService.AddConfigGenericItemExtentionAsync(request, Account?.FullName);
         }
 
         [HttpDelete]
-        public async Task DeleteConfigGenericItemExtentionAsync(ConfigGenericItemExtentionDto request)
+        public async Task DeleteConfigGenericItemExtentionAsync([FromBody] ConfigGenericItemExtentionDto request)
         {
             await _configGenericItemExtentionService.DeleteConfigGenericItemExtentionAsync(request);
         }
 
         [HttpPut]
-        public async Task<ConfigGenericItemExtentionDto> UpdateConfigGenericItemExtentionDtoAsync(UpdateConfigGenericItemExtentionRequestDto request)
+        public async Task<ConfigGenericItemExtentionDto> UpdateConfigGenericItemExtentionDtoAsync([FromBody] UpdateConfigGenericItemExtentionRequestDto request)
         {
             return await _configGenericItemExtentionService.UpdateConfigGenericItemExtentionAsync(request, Account?.FullName);
         }

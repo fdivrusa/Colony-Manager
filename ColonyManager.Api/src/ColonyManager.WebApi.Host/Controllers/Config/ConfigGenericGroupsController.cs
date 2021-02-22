@@ -1,6 +1,5 @@
 ﻿using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models;
-using ColonyManager.Domain.Models.Config;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -46,13 +45,13 @@ namespace ColonyManager.WebApi.Host.Controllers.Config
         }
 
         [HttpPost]
-        public async Task<ConfigGenericGroupDto> AddConfigGenericGroupAsync(AddConfigGenericGroupDto request)
+        public async Task<ConfigGenericGroupDto> AddConfigGenericGroupAsync([FromBody] AddConfigGenericGroupDto request)
         {
             return await _configGenericGroupService.AddNewConfigGenericGroupAsync(request, Account?.FullName);
         }
 
         [HttpPut]
-        public async Task<ConfigGenericGroupDto> UpdateConfigGenericGroupAsync(UpdateConfigGenericGroupRequestDto request)
+        public async Task<ConfigGenericGroupDto> UpdateConfigGenericGroupAsync([FromBody] UpdateConfigGenericGroupRequestDto request)
         {
             return await _configGenericGroupService.UpdateConfigGenericGroupAsync(request, Account?.FullName);
         }

@@ -4,7 +4,6 @@ using ColonyManager.Data;
 using ColonyManager.Data.Entities;
 using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models;
-using ColonyManager.Domain.Models.Config;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

@@ -1,5 +1,4 @@
 ﻿using ColonyManager.Domain.Models;
-using ColonyManager.Domain.Models.Config;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
