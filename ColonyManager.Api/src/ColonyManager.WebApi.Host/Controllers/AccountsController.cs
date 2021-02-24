@@ -62,7 +62,7 @@ namespace ColonyManager.WebApi.Host.Controllers
         public async Task<IActionResult> RegisterAsync(RegisterRequestDto request)
         {
             await _accountService.RegisterAsync(request, Request.Headers["origin"]);
-            return Ok(new { message = "Registration successful, please check your email for verification instructions" });
+            return Ok(new { message = "Registration successful" });
         }
 
         [HttpPost("verify-email")]
