@@ -1,0 +1,82 @@
+<div class="col-md-12">
+  <mat-card class="card card-container">
+    <img
+      mat-card-image
+      src="../../../assets/logo.png"
+      alt="Login"
+      class="profile-img-card"
+    />
+    <mat-card-content>
+      <form
+        *ngIf="!isLoggedIn"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate
+      >
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="authenticationRequest.email"
+            required
+            #email="ngModel"
+            ngModel
+            email
+          />
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="email.errors && f.submitted"
+          >
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.email">Email is invalid</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="authenticationRequest.password"
+            required
+            #password="ngModel"
+          />
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="password.errors && f.submitted"
+          >
+            <div *ngIf="password.errors.required">Password is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Login</button>
+        </div>
+        <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="f.submitted && isLoginFailed"
+          >
+            Login failed: {{ errorMessage }}
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="../../../assets/logo.png"
+      class="profile-img-card"
+    />
+  </div>
+</div>
