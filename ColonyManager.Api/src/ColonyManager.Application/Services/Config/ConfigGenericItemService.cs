@@ -66,6 +66,7 @@ namespace ColonyManager.Application.Services
 
             var entity = _mapper.Map<ConfigGenericItem>(request);
             entity.Id = await GetNextIdHelper.GetNextIdConfigItemAsync(request, _dbContext);
+            entity.CreatedDate = DateTime.Now;
             entity.LastUpdatedUserName = userName;
 
             _dbContext.ConfigGenericItems.Add(entity);

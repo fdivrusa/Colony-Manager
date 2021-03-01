@@ -9,8 +9,6 @@ namespace ColonyManager.Data.Configurations
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
-            builder.Property(x => x.CreatedDate).HasDefaultValue(DateTime.Now);
-
             builder.Property(x => x.Comment)
                 .HasMaxLength(512);
 
