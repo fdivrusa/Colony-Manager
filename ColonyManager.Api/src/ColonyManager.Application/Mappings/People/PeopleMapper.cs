@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using ColonyManager.Data.Entities;
 using ColonyManager.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ColonyManager.Application.Mappings
 {
