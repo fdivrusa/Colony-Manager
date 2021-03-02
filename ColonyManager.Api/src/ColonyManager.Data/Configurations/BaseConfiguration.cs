@@ -1,7 +1,6 @@
 ﻿using ColonyManager.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace ColonyManager.Data.Configurations
 {
@@ -9,8 +8,6 @@ namespace ColonyManager.Data.Configurations
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
-            builder.Property(x => x.CreatedDate).HasDefaultValue(DateTime.Now);
-
             builder.Property(x => x.Comment)
                 .HasMaxLength(512);
 

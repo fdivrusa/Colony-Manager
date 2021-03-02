@@ -7,6 +7,7 @@ namespace ColonyManager.Data
     {
 
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<People> Peoples { get; set; }
         public DbSet<ConfigGenericGroup> ConfigGenericGroups { get; set; }
         public DbSet<ConfigGenericItem> ConfigGenericItems { get; set; }
         public DbSet<ConfigGenericItemExtension> ConfigGenericItemExtensions { get; set; }

@@ -44,6 +44,7 @@ namespace ColonyManager.Application.Services
             await _addValidator.ValidateAndThrowAsync(request);
 
             var entity = _mapper.Map<SystemDataType>(request);
+            entity.CreatedDate = DateTime.Now;
             entity.LastUpdatedUserName = userName;
 
             _dbContext.SystemDataTypes.Add(entity);

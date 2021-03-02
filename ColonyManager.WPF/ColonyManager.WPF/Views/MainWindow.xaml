@@ -37,6 +37,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
+
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
             <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
@@ -45,15 +46,16 @@
             <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Grid Background= "{DynamicResource PrimaryHueLightForegroundBrush}">
+
+    <Grid Background= "White">
         <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
-        <Grid Height="60" VerticalAlignment="Top" Background="White">
+        <Grid Height="60" VerticalAlignment="Top" Background="{DynamicResource PrimaryHueDarkBrush}">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="{Binding Email, StringFormat= Connected as {0}, Mode=OneWay}" VerticalAlignment="Center" FontSize="16"/>
-                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
+                <TextBlock Foreground="White" Text="{Binding Email, StringFormat= Connected as {0}, Mode=OneWay}" VerticalAlignment="Center" FontSize="16"/>
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10" Foreground="White">
                     <StackPanel Width="250">
                         <Button Content="Settings"/>
                         <Button Content="Account"/>
@@ -64,7 +66,7 @@
                 </materialDesign:PopupBox>
             </StackPanel>
         </Grid>
-        <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="{DynamicResource PrimaryHueDarkBrush}">
+        <Grid Panel.ZIndex="99" x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="{DynamicResource PrimaryHueDarkBrush}">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
             </Grid.Effect>
@@ -86,16 +88,16 @@
                     </Button>
                 </Grid>
                 <ListView x:Name="ListViewMenu" Foreground="#FF5C99D6" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
-                    <ListViewItem x:Name="ItemPeopleManagement" Height="60">
+                    <ListViewItem x:Name="ItemPeoplesManagement" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Man" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="People Management" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="Peoples Management" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="ItemShuttleManagement" Height="60">
+                    <ListViewItem x:Name="ItemShuttlesManagement" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="SpaceStation" Height="25" Width="25" Margin="10"/>
-                            <TextBlock Text="Shuttle Management" VerticalAlignment="Center" Margin="20 10"/>
+                            <TextBlock Text="Shuttles Management" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Name="ItemLogisticManagement" Height="60">
@@ -119,5 +121,6 @@
                 </ListView>
             </StackPanel>
         </Grid>
+        <Frame Panel.ZIndex="1" x:Name="Frame" Margin="70 60 0 0"></Frame>
     </Grid>
 </Window>

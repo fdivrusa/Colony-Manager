@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Security;
+﻿using System.Security;
 using System.Text.Json.Serialization;
 
 namespace ColonyManager.Core.Models

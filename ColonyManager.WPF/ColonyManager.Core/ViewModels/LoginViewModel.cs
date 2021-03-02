@@ -134,7 +134,6 @@ namespace ColonyManager.Core.ViewModels
                 else
                 {
                     ShowErrorAndLogMessage(Global.Enums.ErrorLevel.Error, "Unknown Error", $"An unknown error occured during the login for user with email {Email}");
-                    //TODO : put in place some logging
                 }
             }
         }

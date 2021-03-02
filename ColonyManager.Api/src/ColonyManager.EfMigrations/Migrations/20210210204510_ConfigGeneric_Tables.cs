@@ -16,7 +16,7 @@ namespace ColonyManager.EfMigrations.Migrations
                     RelatedSubject = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
                     Code = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 2, 10, 21, 45, 10, 646, DateTimeKind.Local).AddTicks(5258)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
@@ -35,7 +35,7 @@ namespace ColonyManager.EfMigrations.Migrations
                     Code = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
                     IsList = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 2, 10, 21, 45, 10, 671, DateTimeKind.Local).AddTicks(131)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
@@ -53,7 +53,7 @@ namespace ColonyManager.EfMigrations.Migrations
                     GroupId = table.Column<int>(type: "int", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 2, 10, 21, 45, 10, 663, DateTimeKind.Local).AddTicks(6630)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
@@ -78,7 +78,7 @@ namespace ColonyManager.EfMigrations.Migrations
                     SystemDataTypeId = table.Column<int>(type: "int", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 2, 10, 21, 45, 10, 667, DateTimeKind.Local).AddTicks(4186)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
@@ -109,7 +109,7 @@ namespace ColonyManager.EfMigrations.Migrations
                     ItemId = table.Column<int>(type: "int", nullable: false),
                     ExtentionId = table.Column<int>(type: "int", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 2, 10, 21, 45, 10, 669, DateTimeKind.Local).AddTicks(4719)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)

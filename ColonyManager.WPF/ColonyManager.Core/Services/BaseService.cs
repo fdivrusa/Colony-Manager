@@ -1,9 +1,7 @@
 ﻿using ColonyManager.Global;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 
 namespace ColonyManager.Core.Services
 {
@@ -22,11 +20,11 @@ namespace ColonyManager.Core.Services
         {
             get
             {
-                if(_httpClient == null)
+                if (_httpClient == null)
                 {
                     lock (_locker)
                     {
-                        if(_httpClient == null)
+                        if (_httpClient == null)
                         {
                             _httpClient = GenerateHttpClient();
                         }

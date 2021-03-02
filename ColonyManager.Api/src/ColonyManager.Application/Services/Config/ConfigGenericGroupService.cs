@@ -65,6 +65,7 @@ namespace ColonyManager.Application.Services
             await _addConfigGenericGroupValidator.ValidateAndThrowAsync(request);
 
             var entity = _mapper.Map<ConfigGenericGroup>(request);
+            entity.CreatedDate = DateTime.Now;
             entity.LastUpdatedUserName = userName;
 
             var result = _dbContext.ConfigGenericGroups.Add(entity).Entity;

@@ -21,6 +21,8 @@ namespace ColonyManager.Application
 
             services.AddScoped<ISystemDataTypeService, SystemDataTypeService>();
 
+            services.AddScoped<IPeopleService, PeopleService>();
+
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IEmailService, EmailService>();
 

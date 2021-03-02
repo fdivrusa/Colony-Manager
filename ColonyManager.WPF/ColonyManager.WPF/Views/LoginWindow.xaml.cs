@@ -18,7 +18,7 @@ namespace ColonyManager.WPF.Views
         private readonly AppSettings _appSettings;
         private readonly ILogger<LoginViewModel> _logger;
 
-        public LoginWindow(IAccountService accountService, IOptions<AppSettings> appSettings, ILogger<LoginViewModel> logger) 
+        public LoginWindow(IAccountService accountService, IOptions<AppSettings> appSettings, ILogger<LoginViewModel> logger)
         {
             _appSettings = appSettings.Value;
             _accoutnService = accountService;
