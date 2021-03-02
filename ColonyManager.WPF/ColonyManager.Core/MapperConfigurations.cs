@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using ColonyManager.Global;
-using ColonyManager.Provider.Responses;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ColonyManager.Core
 {
@@ -11,7 +6,7 @@ namespace ColonyManager.Core
     {
         public MapperConfigurations()
         {
-           
+
         }
     }
 }
