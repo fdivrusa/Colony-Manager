@@ -12,6 +12,9 @@ namespace ColonyManager.Data.Entities
         public int? ConfigGenericGenderId { get; set; }
         public int? ConfigGenericProfessionGroupId { get; set; }
         public int? ConfigGenericProfessionId { get; set; }
+        public bool IsActive { get; set; }
+        public bool Deceased { get; set; }
+        public DateTime? DateOfDeath { get; set; } 
 
         public virtual ConfigGenericItem Gender { get; set; }
         public virtual ConfigGenericItem Profession { get; set; }

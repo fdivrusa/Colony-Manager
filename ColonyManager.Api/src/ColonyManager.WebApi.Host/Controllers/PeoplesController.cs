@@ -1,9 +1,7 @@
 ﻿using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ColonyManager.WebApi.Host.Controllers
@@ -23,6 +21,18 @@ namespace ColonyManager.WebApi.Host.Controllers
         public async Task<IEnumerable<PeopleDto>> GetAllPeoplesAsync()
         {
             return await _peopleService.GetAllPeoplesAsync();
+        }
+
+        [HttpPost]
+        public async Task<PeopleDto> AddPeopleAsync([FromBody] AddPeopleRequestDto request)
+        {
+            return await _peopleService.AddPeopleAsync(request, Account?.FullName);
+        }
+
+        [HttpPut]
+        public async Task<PeopleDto> UpdatePeopleAsync([FromBody] UpdatePeopleRequestDto request)
+        {
+            return await _peopleService.UpdatePeopleAsync(request, Account?.FullName);
         }
     }
 }

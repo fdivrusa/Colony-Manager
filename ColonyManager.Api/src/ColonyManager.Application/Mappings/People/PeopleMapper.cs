@@ -17,6 +17,10 @@ namespace ColonyManager.Application.Mappings
                 .ForMember(x => x.ProfessionCode, opt => opt.MapFrom(y => y.Profession.Code))
                 .ForMember(x => x.ProfessionDescription, opt => opt.MapFrom(y => y.Profession.Description))
                 .ReverseMap();
+
+            CreateMap<AddPeopleRequestDto, People>();
+
+            CreateMap<UpdatePeopleRequestDto, People>();
         }
     }
 }
