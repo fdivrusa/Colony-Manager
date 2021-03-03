@@ -121,6 +121,6 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        <Frame Panel.ZIndex="1" x:Name="Frame" Margin="70 60 0 0"></Frame>
+        <Frame NavigationUIVisibility="Hidden" Panel.ZIndex="1" x:Name="Frame" Margin="70 60 0 0"></Frame>
     </Grid>
 </Window>

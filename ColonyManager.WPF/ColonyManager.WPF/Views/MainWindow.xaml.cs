@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColonyManager.Core.ViewModels;
+using ColonyManager.WPF.Pages;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,8 +10,11 @@ namespace ColonyManager.WPF.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly PeopleListViewModel _peopleListViewModel;
+
+        public MainWindow(PeopleListViewModel peopleListViewModel)
         {
+            _peopleListViewModel = peopleListViewModel;
             InitializeComponent();
         }
 
@@ -33,7 +37,7 @@ namespace ColonyManager.WPF.Views
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "ItemPeoplesManagement":
-                    Frame.NavigationService.Navigate(new Uri("../Pages/PeoplesManagementPage.xaml", UriKind.Relative));
+                    Frame.Content = new PeoplesManagementPage(_peopleListViewModel);
                     break;
             }
         }

@@ -44,7 +44,7 @@ namespace ColonyManager.Core.Services
             }
             catch (Exception ex)
             {
-                authenticationResponse.Message = ex.Message;
+                authenticationResponse.ErrorMessage = ex.Message;
             }
             return authenticationResponse;
         }

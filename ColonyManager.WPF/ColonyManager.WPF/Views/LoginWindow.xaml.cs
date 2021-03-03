@@ -1,7 +1,4 @@
-﻿using ColonyManager.Core.Services.Interfaces;
-using ColonyManager.Core.ViewModels;
-using ColonyManager.Global;
-using Microsoft.Extensions.Logging;
+﻿using ColonyManager.Global;
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Windows;
@@ -14,15 +11,11 @@ namespace ColonyManager.WPF.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
-        private readonly IAccountService _accoutnService;
         private readonly AppSettings _appSettings;
-        private readonly ILogger<LoginViewModel> _logger;
 
-        public LoginWindow(IAccountService accountService, IOptions<AppSettings> appSettings, ILogger<LoginViewModel> logger)
+        public LoginWindow(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings.Value;
-            _accoutnService = accountService;
-            _logger = logger;
             InitializeComponent();
         }
 
