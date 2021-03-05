@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ColonyManager.Data.Entities
 {
     public class People : BaseEntity
     {
+        public People()
+        {
+            Addresses = new List<PeopleAddress>();
+        }
+
         public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -18,5 +24,7 @@ namespace ColonyManager.Data.Entities
 
         public virtual ConfigGenericItem Gender { get; set; }
         public virtual ConfigGenericItem Profession { get; set; }
+
+        public virtual ICollection<PeopleAddress> Addresses { get; set; }
     }
 }

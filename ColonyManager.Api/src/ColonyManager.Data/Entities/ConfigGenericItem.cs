@@ -18,5 +18,7 @@ namespace ColonyManager.Data.Entities
         public virtual People PeopleGender { get; set; }
         public virtual People PeopleProfession { get; set; }
         public virtual ICollection<ConfigGenericItemExtension> ConfigGenericItemExtensions { get; set; }
+        public virtual ICollection<PeopleAddress> AddressTypes { get; set; }
+        public virtual ICollection<PeopleAddress> AddressPlanets { get; set; }
     }
 }
