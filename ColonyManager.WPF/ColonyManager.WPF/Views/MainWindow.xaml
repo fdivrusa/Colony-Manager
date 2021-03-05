@@ -118,6 +118,12 @@
                             <TextBlock Text="Users Management" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
+                    <ListViewItem Name="ItemConfigsManagement" Height="60" Visibility="{Binding IsAdmin, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Tools" Height="25" Width="25" Margin="10"/>
+                            <TextBlock Text="Configs Management" VerticalAlignment="Center"  Margin="20 10"/>
+                        </StackPanel>
+                    </ListViewItem>
                 </ListView>
             </StackPanel>
         </Grid>

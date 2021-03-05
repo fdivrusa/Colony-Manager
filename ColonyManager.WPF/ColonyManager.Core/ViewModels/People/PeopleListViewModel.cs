@@ -50,12 +50,15 @@ namespace ColonyManager.Core.ViewModels
 
         private async Task LoadPeoples()
         {
-            _logger.LogDebug("Loading all peoples in list");
             var response = await _peopleService.GetPeoplesList();
 
             if (response.Success)
             {
                 Peoples = new ObservableCollection<PeopleDto>(response.Peoples);
+            }
+            else
+            {
+                ShowErrorAndLogMessage(Global.Enums.ErrorLevel.Error, "Get peoples list error", $"An error occured during the fetch of peoples \nError : {response.ErrorMessage}");
             }
         }
 

@@ -43,6 +43,26 @@ namespace ColonyManager.WPF.Views
                     case "ITEMPEOPLESMANAGEMENT":
                         Frame.Content = new PeoplesManagementPage(_peopleListViewModel);
                         break;
+
+                    case "ITEMSHUTTLESMANAGEMENT":
+                        Frame.Content = new ShuttlesManagementPage();
+                        break;
+
+                    case "ITEMLOGISTICMANAGEMENT":
+                        Frame.Content = new LogisticManagementPage();
+                        break;
+
+                    case "ITEMATTRIBUTIONSMANAGEMENT":
+                        Frame.Content = new AttributionsManagementPage();
+                        break;
+
+                    case "ITEMUSERSMANAGEMENT":
+                        Frame.Content = new UsersManagementPage();
+                        break;
+
+                    case "ITEMCONFIGSMANAGEMENT":
+                        Frame.Content = new ConfigsManagementPage();
+                        break;
                 }
             }
 

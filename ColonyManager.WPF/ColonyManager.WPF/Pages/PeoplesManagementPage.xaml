@@ -17,11 +17,20 @@
     </behaviors:Interaction.Triggers>
 
     <Grid>
-        <ListView Margin="10" Name="Peoples" ItemsSource="{Binding Peoples}">
+        <ListView Name="Peoples" ItemsSource="{Binding Peoples}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="FirstName" Width="Auto" DisplayMemberBinding="{Binding FirstName}" />
-                    <GridViewColumn Header="LastName" Width="Auto" DisplayMemberBinding="{Binding LastName}" />
+                    <GridViewColumn Header="First Name" Width="Auto" DisplayMemberBinding="{Binding FirstName}"/>
+                    <GridViewColumn Header="Last Name" Width="Auto" DisplayMemberBinding="{Binding LastName}" />
+                    <GridViewColumn Header="Birth Date" Width="Auto" DisplayMemberBinding="{Binding BirthDate, StringFormat='dd-MM-yyyy'}" />
+                    <GridViewColumn Header="Active" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsActive}" IsHitTestVisible="False" Focusable="False">
+                                </CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

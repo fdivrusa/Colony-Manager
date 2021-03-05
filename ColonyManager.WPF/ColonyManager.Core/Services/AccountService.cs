@@ -22,7 +22,7 @@ namespace ColonyManager.Core.Services
         public async Task<AuthenticationResponse> AuthenticateAsync(LoginRequest request)
         {
             HttpResponseMessage httpResponseMessage = new HttpResponseMessage();
-            AuthenticationResponse authenticationResponse = null;
+            AuthenticationResponse authenticationResponse = new AuthenticationResponse();
             try
             {
                 await SecurityHelper.DecryptSecureString(request.SecurePassword, async (password) =>

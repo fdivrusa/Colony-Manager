@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataSeeds\" />
     <Folder Include="Views\" />
   </ItemGroup>
 
