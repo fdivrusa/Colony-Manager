@@ -33,13 +33,13 @@ namespace ColonyManager.Application.Services
             _updateValidator = updateValidator;
         }
 
-        public async Task<IEnumerable<PeopleDto>> GetAllPeoplesAsync()
+        public async Task<IEnumerable<PeopleDetailedDto>> GetAllPeoplesAsync()
         {
             _logger.LogDebug("Get all people call");
-            return _mapper.Map<List<PeopleDto>>(await _dbContext.Peoples.ToListAsync());
+            return _mapper.Map<List<PeopleDetailedDto>>(await _dbContext.Peoples.ToListAsync());
         }
 
-        public async Task<PeopleDto> AddPeopleAsync(AddPeopleRequestDto request, string userName)
+        public async Task<PeopleDetailedDto> AddPeopleAsync(AddPeopleRequestDto request, string userName)
         {
             _logger.LogDebug($"Add new people. Request : {JsonConvert.SerializeObject(request)}");
 
@@ -54,10 +54,10 @@ namespace ColonyManager.Application.Services
             _dbContext.Peoples.Add(entity);
             await _dbContext.SaveChangesAsync();
 
-            return _mapper.Map<PeopleDto>(entity);
+            return _mapper.Map<PeopleDetailedDto>(entity);
         }
 
-        public async Task<PeopleDto> UpdatePeopleAsync(UpdatePeopleRequestDto request, string userName)
+        public async Task<PeopleDetailedDto> UpdatePeopleAsync(UpdatePeopleRequestDto request, string userName)
         {
             _logger.LogError($"Update existing people. Request : {JsonConvert.SerializeObject(request)}");
 
@@ -73,7 +73,7 @@ namespace ColonyManager.Application.Services
                 _dbContext.Update(entity);
                 await _dbContext.SaveChangesAsync();
 
-                return _mapper.Map<PeopleDto>(entity);
+                return _mapper.Map<PeopleDetailedDto>(entity);
             }
 
             _logger.LogError($"Cannot find people entity with Id {request.Id}");

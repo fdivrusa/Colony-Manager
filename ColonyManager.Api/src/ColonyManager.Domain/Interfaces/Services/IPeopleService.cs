@@ -10,7 +10,7 @@ namespace ColonyManager.Domain.Interfaces.Services
         /// Return all the peoples  
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<PeopleDto>> GetAllPeoplesAsync();
+        Task<IEnumerable<PeopleDetailedDto>> GetAllPeoplesAsync();
 
         /// <summary>
         /// Add new people
@@ -18,7 +18,7 @@ namespace ColonyManager.Domain.Interfaces.Services
         /// <param name="request"></param>
         /// <param name="userName"></param>
         /// <returns></returns>
-        Task<PeopleDto> AddPeopleAsync(AddPeopleRequestDto request, string userName);
+        Task<PeopleDetailedDto> AddPeopleAsync(AddPeopleRequestDto request, string userName);
 
         /// <summary>
         /// Update existing people
@@ -26,7 +26,7 @@ namespace ColonyManager.Domain.Interfaces.Services
         /// <param name="request"></param>
         /// <param name="userName"></param>
         /// <returns></returns>
-        Task<PeopleDto> UpdatePeopleAsync(UpdatePeopleRequestDto request, string userName);
+        Task<PeopleDetailedDto> UpdatePeopleAsync(UpdatePeopleRequestDto request, string userName);
     }
 
 

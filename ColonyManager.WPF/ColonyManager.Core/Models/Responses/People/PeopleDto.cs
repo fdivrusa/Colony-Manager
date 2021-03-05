@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ColonyManager.Domain.Models
+namespace ColonyManager.Core.Models.Responses
 {
-    public class PeopleDto : BaseDto
+    public class PeopleDto
     {
         public long Id { get; set; }
         public string FirstName { get; set; }
@@ -19,5 +19,8 @@ namespace ColonyManager.Domain.Models
         public bool IsActive { get; set; }
         public bool Deceased { get; set; }
         public DateTime? DateOfDeath { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime LastUpdatedDate { get; set; }
+        public string LastUpdatedUser { get; set; }
     }
 }

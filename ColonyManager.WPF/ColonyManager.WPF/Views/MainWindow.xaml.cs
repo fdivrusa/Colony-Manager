@@ -11,6 +11,7 @@ namespace ColonyManager.WPF.Views
     public partial class MainWindow : Window
     {
         private readonly PeopleListViewModel _peopleListViewModel;
+        private string oldSelectedItem = string.Empty;
 
         public MainWindow(PeopleListViewModel peopleListViewModel)
         {
@@ -32,14 +33,20 @@ namespace ColonyManager.WPF.Views
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            string selectedItem = ((ListViewItem)((ListView)sender).SelectedItem).Name;
             GridMain.Children.Clear();
 
-            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            if (oldSelectedItem != selectedItem)
             {
-                case "ItemPeoplesManagement":
-                    Frame.Content = new PeoplesManagementPage(_peopleListViewModel);
-                    break;
+                switch (selectedItem.ToUpper())
+                {
+                    case "ITEMPEOPLESMANAGEMENT":
+                        Frame.Content = new PeoplesManagementPage(_peopleListViewModel);
+                        break;
+                }
             }
+
+            oldSelectedItem = selectedItem;
         }
     }
 }
