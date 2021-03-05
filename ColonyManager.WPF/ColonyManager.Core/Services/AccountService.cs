@@ -22,10 +22,7 @@ namespace ColonyManager.Core.Services
         public async Task<AuthenticationResponse> AuthenticateAsync(LoginRequest request)
         {
             HttpResponseMessage httpResponseMessage = new HttpResponseMessage();
-            AuthenticationResponse authenticationResponse = new AuthenticationResponse
-            {
-                Success = false
-            };
+            AuthenticationResponse authenticationResponse = new AuthenticationResponse();
             try
             {
                 await SecurityHelper.DecryptSecureString(request.SecurePassword, async (password) =>
@@ -37,14 +34,12 @@ namespace ColonyManager.Core.Services
                 });
 
                 authenticationResponse = JsonConvert.DeserializeObject<AuthenticationResponse>(await httpResponseMessage.Content.ReadAsStringAsync());
-                if (httpResponseMessage.IsSuccessStatusCode)
-                {
-                    authenticationResponse.Success = true;
-                }
+                authenticationResponse.Success = httpResponseMessage.IsSuccessStatusCode;
             }
             catch (Exception ex)
             {
-                authenticationResponse.Message = ex.Message;
+                authenticationResponse.Success = false;
+                authenticationResponse.ErrorMessage = ex.Message;
             }
             return authenticationResponse;
         }

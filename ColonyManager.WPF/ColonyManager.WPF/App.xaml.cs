@@ -47,7 +47,6 @@ namespace ColonyManager.WPF
                 var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
                 var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
 
-
 #if DEBUG 
                 loginWindow.DataContext = loginVM;
                 loginVM.LoginCompleted += (sender, args) =>
@@ -88,10 +87,12 @@ namespace ColonyManager.WPF
         {
             //Services
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IPeopleService, PeopleService>();
 
-            //VIewModel
+            //ViewModel
             services.AddTransient(typeof(LoginViewModel));
             services.AddTransient(typeof(MainViewModel));
+            services.AddTransient(typeof(PeopleListViewModel));
 
             //View
             services.AddTransient(typeof(MainWindow));

@@ -39,7 +39,6 @@ namespace ColonyManager.Core.Helpers
                     }
                 }
 
-                insecureString = null;
 
                 gcHandler.Free();
                 Marshal.ZeroFreeGlobalAllocUnicode(insecureStringPointer);

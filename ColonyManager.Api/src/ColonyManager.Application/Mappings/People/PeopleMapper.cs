@@ -8,11 +8,11 @@ namespace ColonyManager.Application.Mappings
     {
         public PeopleMapper()
         {
-            CreateMap<People, PeopleDto>()
-                .ForMember(x => x.GenderCode, opt => opt.MapFrom(y => y.Gender.Code))
-                .ForMember(x => x.GenderDescription, opt => opt.MapFrom(y => y.Gender.Description))
-                .ForMember(x => x.ProfessionCode, opt => opt.MapFrom(y => y.Profession.Code))
-                .ForMember(x => x.ProfessionDescription, opt => opt.MapFrom(y => y.Profession.Description))
+            CreateMap<People, PeopleDetailedDto>()
+                .ForMember(x => x.GenderCode, opt => opt.MapFrom(y => y.Gender == null ? string.Empty : y.Gender.Code))
+                .ForMember(x => x.GenderDescription, opt => opt.MapFrom(y => y.Gender == null ? string.Empty : y.Gender.Description))
+                .ForMember(x => x.ProfessionCode, opt => opt.MapFrom(y => y.Profession == null ? string.Empty : y.Profession.Code))
+                .ForMember(x => x.ProfessionDescription, opt => opt.MapFrom(y => y.Profession == null ? string.Empty : y.Profession.Description))
                 .ReverseMap();
 
             CreateMap<AddPeopleRequestDto, People>();

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using ColonyManager.Core.ViewModels;
+using System.Windows.Controls;
 
 namespace ColonyManager.WPF.Pages
 {
@@ -7,9 +8,10 @@ namespace ColonyManager.WPF.Pages
     /// </summary>
     public partial class PeoplesManagementPage : Page
     {
-        public PeoplesManagementPage()
+        public PeoplesManagementPage(PeopleListViewModel peopleListViewModel)
         {
             InitializeComponent();
+            DataContext = peopleListViewModel;
         }
     }
 }

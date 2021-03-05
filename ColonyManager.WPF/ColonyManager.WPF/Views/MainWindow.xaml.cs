@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColonyManager.Core.ViewModels;
+using ColonyManager.WPF.Pages;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,8 +10,12 @@ namespace ColonyManager.WPF.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly PeopleListViewModel _peopleListViewModel;
+        private string oldSelectedItem = string.Empty;
+
+        public MainWindow(PeopleListViewModel peopleListViewModel)
         {
+            _peopleListViewModel = peopleListViewModel;
             InitializeComponent();
         }
 
@@ -28,14 +33,40 @@ namespace ColonyManager.WPF.Views
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            string selectedItem = ((ListViewItem)((ListView)sender).SelectedItem).Name;
             GridMain.Children.Clear();
 
-            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            if (oldSelectedItem != selectedItem)
             {
-                case "ItemPeoplesManagement":
-                    Frame.NavigationService.Navigate(new Uri("../Pages/PeoplesManagementPage.xaml", UriKind.Relative));
-                    break;
+                switch (selectedItem.ToUpper())
+                {
+                    case "ITEMPEOPLESMANAGEMENT":
+                        Frame.Content = new PeoplesManagementPage(_peopleListViewModel);
+                        break;
+
+                    case "ITEMSHUTTLESMANAGEMENT":
+                        Frame.Content = new ShuttlesManagementPage();
+                        break;
+
+                    case "ITEMLOGISTICMANAGEMENT":
+                        Frame.Content = new LogisticManagementPage();
+                        break;
+
+                    case "ITEMATTRIBUTIONSMANAGEMENT":
+                        Frame.Content = new AttributionsManagementPage();
+                        break;
+
+                    case "ITEMUSERSMANAGEMENT":
+                        Frame.Content = new UsersManagementPage();
+                        break;
+
+                    case "ITEMCONFIGSMANAGEMENT":
+                        Frame.Content = new ConfigsManagementPage();
+                        break;
+                }
             }
+
+            oldSelectedItem = selectedItem;
         }
     }
 }

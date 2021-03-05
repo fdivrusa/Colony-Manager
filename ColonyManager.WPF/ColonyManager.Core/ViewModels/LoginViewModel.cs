@@ -128,7 +128,7 @@ namespace ColonyManager.Core.ViewModels
                     }
                     else
                     {
-                        ShowErrorAndLogMessage(Global.Enums.ErrorLevel.Error, "Login response error", $"An error occured during the login for user with email {Email}. \nError : {response.Message}");
+                        ShowErrorAndLogMessage(Global.Enums.ErrorLevel.Error, "Login response error", $"An error occured during the login for user with email {Email}. \nError : {response.ErrorMessage}");
                     }
                 }
                 else
