@@ -6,9 +6,21 @@
       xmlns:local="clr-namespace:ColonyManager.WPF.Pages"
       xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1000" d:DesignWidth="1500"
       Title="PeoplesManagementPage"
       Background="White">
+
+    <Page.Resources>
+        <DataTemplate x:Key="HeaderTemplateArrowUp">
+            <DockPanel>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding}"/>
+                <Path x:Name="arrow"
+       StrokeThickness = "1"                                     
+       Fill            = "gray"
+       Data            = "M 5,10 L 15,10 L 10,5 L 5,10"/>
+            </DockPanel>
+        </DataTemplate>
+    </Page.Resources>
 
     <behaviors:Interaction.Triggers>
         <behaviors:EventTrigger EventName="Loaded">
@@ -17,16 +29,32 @@
     </behaviors:Interaction.Triggers>
 
     <Grid>
-        <ListView Name="Peoples" ItemsSource="{Binding Peoples}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Name="lvPeoples" ItemsSource="{Binding Peoples}" 
+                  IsSynchronizedWithCurrentItem="True"
+                  Grid.Column="0"
+                  GridViewColumnHeader.Click="Peoples_Click">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="First Name" Width="Auto" DisplayMemberBinding="{Binding FirstName}"/>
                     <GridViewColumn Header="Last Name" Width="Auto" DisplayMemberBinding="{Binding LastName}" />
-                    <GridViewColumn Header="Birth Date" Width="Auto" DisplayMemberBinding="{Binding BirthDate, StringFormat='dd-MM-yyyy'}" />
+                    <GridViewColumn Header="Gender" Width="Auto" DisplayMemberBinding="{Binding GenderDescription}" />
+                    <GridViewColumn Header="Birth Date" Width="Auto" DisplayMemberBinding="{Binding BirthDate, StringFormat='dd MMMM yyyy'}" />
                     <GridViewColumn Header="Active" Width="Auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding IsActive}" IsHitTestVisible="False" Focusable="False">
+                                </CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Deceased" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Deceased}" IsHitTestVisible="False" Focusable="False">
                                 </CheckBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
