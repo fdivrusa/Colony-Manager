@@ -32,7 +32,7 @@ also ! Why not...). These projects are only developped for me to be able to
 learn about new technologies and try to give useful tool to manage future trips
 to other planets. Don't call me crazy, it will happen sooner then we think ! For
 [example](https://www.businessinsider.fr/us/elon-musk-plans-1-million-people-to-mars-by-2050-2020-1#:~:text=Elon%20Musk%20says%20he%20plans,jobs%27%20on%20the%20red%20planet&text=Elon%20Musk%20recently%20shared%20details,people%20to%20Mars%20by%202050.).
-Main objective of these different applications is to learn new technologies but also to help other developpers to check how works for exemple a .NET Core application, Angular webApp, WPF, ...
+</br></br>Main objective of these different applications is to learn new technologies but also to help other developpers to check how works for exemple a .NET Core application, Angular webApp, WPF, ...
 
 ## .NET Core API
 
