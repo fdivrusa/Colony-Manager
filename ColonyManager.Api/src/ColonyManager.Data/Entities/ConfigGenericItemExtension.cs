@@ -4,7 +4,6 @@ namespace ColonyManager.Data.Entities
 {
     public class ConfigGenericItemExtension : BaseEntity
     {
-        public int Id { get; set; }
         public int ItemId { get; set; }
         public int GroupId { get; set; }
         public int SystemDataTypeId { get; set; }

@@ -9,7 +9,6 @@ namespace ColonyManager.Data.Entities
             ConfigGenericItemExtensions = new List<ConfigGenericItemExtension>();
         }
 
-        public int Id { get; set; }
         public int GroupId { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
@@ -19,6 +18,5 @@ namespace ColonyManager.Data.Entities
         public virtual People PeopleProfession { get; set; }
         public virtual ICollection<ConfigGenericItemExtension> ConfigGenericItemExtensions { get; set; }
         public virtual ICollection<PeopleAddress> AddressTypes { get; set; }
-        public virtual ICollection<PeopleAddress> AddressPlanets { get; set; }
     }
 }

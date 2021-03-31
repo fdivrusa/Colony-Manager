@@ -8,9 +8,9 @@ namespace ColonyManager.Data.Entities
         public People()
         {
             Addresses = new List<PeopleAddress>();
+            PhoneInformations = new List<PeoplePhoneInformation>();
         }
 
-        public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
@@ -26,5 +26,7 @@ namespace ColonyManager.Data.Entities
         public virtual ConfigGenericItem Profession { get; set; }
 
         public virtual ICollection<PeopleAddress> Addresses { get; set; }
+        public virtual ICollection<PeoplePhoneInformation> PhoneInformations { get; set; }
+        public virtual ICollection<PeopleInternetInformation> InternetInformations { get; set; }
     }
 }

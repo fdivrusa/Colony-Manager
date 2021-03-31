@@ -3,10 +3,55 @@ using System;
 
 namespace ColonyManager.EfMigrations.Migrations
 {
-    public partial class Add_People_address_country_tables : Migration
+    public partial class Initial_Creation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Accounts",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AcceptTerms = table.Column<bool>(type: "bit", nullable: false),
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    VerificationToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Verified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ResetToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResetTokenExpires = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PasswordReset = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ConfigGenericGroups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RelatedSubject = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    Code = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConfigGenericGroups", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Countries",
                 columns: table => new
@@ -24,23 +69,185 @@ namespace ColonyManager.EfMigrations.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PeopleAddresses",
+                name: "SystemDataTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    IsList = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SystemDataTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RefreshToken",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PeopleId = table.Column<long>(type: "bigint", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedByIpv4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedByIpv6 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Revoked = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RevokedByIpv4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RevokedByIpv6 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReplacedByToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccountId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshToken", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshToken_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ConfigGenericItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConfigGenericItems", x => new { x.GroupId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_ConfigGenericItems_ConfigGenericGroups",
+                        column: x => x.GroupId,
+                        principalTable: "ConfigGenericGroups",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ConfigGenericItemExtentions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    ItemId = table.Column<int>(type: "int", nullable: false),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    SystemDataTypeId = table.Column<int>(type: "int", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConfigGenericItemExtentions", x => new { x.GroupId, x.ItemId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_ConfigGenericItemExtentions_ConfigGenericItems",
+                        columns: x => new { x.GroupId, x.ItemId },
+                        principalTable: "ConfigGenericItems",
+                        principalColumns: new[] { "GroupId", "Id" },
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ConfigGenericItemExtentions_SystemDataTypes",
+                        column: x => x.SystemDataTypeId,
+                        principalTable: "SystemDataTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Peoples",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ConfigGenericGenderGroupId = table.Column<int>(type: "int", nullable: true),
+                    ConfigGenericGenderId = table.Column<int>(type: "int", nullable: true),
+                    ConfigGenericProfessionGroupId = table.Column<int>(type: "int", nullable: true),
+                    ConfigGenericProfessionId = table.Column<int>(type: "int", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Deceased = table.Column<bool>(type: "bit", nullable: false),
+                    DateOfDeath = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Peoples", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_People_ConfigGenericItem_Gender",
+                        columns: x => new { x.ConfigGenericGenderGroupId, x.ConfigGenericGenderId },
+                        principalTable: "ConfigGenericItems",
+                        principalColumns: new[] { "GroupId", "Id" },
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_People_ConfigGenericItem_Profession",
+                        columns: x => new { x.ConfigGenericProfessionGroupId, x.ConfigGenericProfessionId },
+                        principalTable: "ConfigGenericItems",
+                        principalColumns: new[] { "GroupId", "Id" },
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ConfigGenericItemExtentionValues",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    ItemId = table.Column<int>(type: "int", nullable: false),
+                    ExtentionId = table.Column<int>(type: "int", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConfigGenericItemExtentionValues", x => new { x.ItemId, x.GroupId, x.ExtentionId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_ConfigGenericItemExtentionValues_ConfigGenericItemExtentions",
+                        columns: x => new { x.ExtentionId, x.GroupId, x.ItemId },
+                        principalTable: "ConfigGenericItemExtentions",
+                        principalColumns: new[] { "GroupId", "ItemId", "Id" },
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PeopleAddresses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PeopleId = table.Column<int>(type: "int", nullable: false),
                     ConfigGenericTypeGroupId = table.Column<int>(type: "int", nullable: false),
                     ConfigGenericTypeId = table.Column<int>(type: "int", nullable: false),
-                    ConfigGenericPlanetGroupId = table.Column<int>(type: "int", nullable: true),
-                    ConfigGenericPlanetId = table.Column<int>(type: "int", nullable: true),
                     StreetName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
                     City = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
                     Area = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
                     Box = table.Column<int>(type: "int", nullable: true),
                     Number = table.Column<int>(type: "int", nullable: false),
                     CountryId = table.Column<int>(type: "int", nullable: false),
-                    FK_PeopleAddress_Country = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
@@ -50,11 +257,11 @@ namespace ColonyManager.EfMigrations.Migrations
                 {
                     table.PrimaryKey("PK_PeopleAddresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PeopleAddress_Planet",
-                        columns: x => new { x.ConfigGenericPlanetGroupId, x.ConfigGenericPlanetId },
-                        principalTable: "ConfigGenericItems",
-                        principalColumns: new[] { "GroupId", "Id" },
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_PeopleAddress_Country",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PeopleAddress_Type",
                         columns: x => new { x.ConfigGenericTypeGroupId, x.ConfigGenericTypeId },
@@ -62,13 +269,61 @@ namespace ColonyManager.EfMigrations.Migrations
                         principalColumns: new[] { "GroupId", "Id" },
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PeopleAddresses_Countries_FK_PeopleAddress_Country",
-                        column: x => x.FK_PeopleAddress_Country,
-                        principalTable: "Countries",
+                        name: "FK_PeopleAddresses_Peoples_PeopleId",
+                        column: x => x.PeopleId,
+                        principalTable: "Peoples",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PeoplesInternetInformations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PeopleId = table.Column<int>(type: "int", nullable: false),
+                    ConfigGenericTypeGroupId = table.Column<int>(type: "int", nullable: false),
+                    ConfigGenericTypeId = table.Column<int>(type: "int", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    IsObsolete = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PeoplesInternetInformations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PeopleAddresses_Peoples_PeopleId",
+                        name: "FK_PeopleInternetInformation_People",
+                        column: x => x.PeopleId,
+                        principalTable: "Peoples",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PeoplesPhoneInformations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PeopleId = table.Column<int>(type: "int", nullable: false),
+                    ConfigGenericTypeGroupId = table.Column<int>(type: "int", nullable: false),
+                    ConfigGenericTypeId = table.Column<int>(type: "int", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    IsObsolete = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastUpdatedUserName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PeoplesPhoneInformations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PeoplePhoneInformation_People",
                         column: x => x.PeopleId,
                         principalTable: "Peoples",
                         principalColumn: "Id",
@@ -367,9 +622,14 @@ namespace ColonyManager.EfMigrations.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PeopleAddresses_ConfigGenericPlanetGroupId_ConfigGenericPlanetId",
-                table: "PeopleAddresses",
-                columns: new[] { "ConfigGenericPlanetGroupId", "ConfigGenericPlanetId" });
+                name: "IX_ConfigGenericItemExtentions_SystemDataTypeId",
+                table: "ConfigGenericItemExtentions",
+                column: "SystemDataTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ConfigGenericItemExtentionValues_ExtentionId_GroupId_ItemId",
+                table: "ConfigGenericItemExtentionValues",
+                columns: new[] { "ExtentionId", "GroupId", "ItemId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PeopleAddresses_ConfigGenericTypeGroupId_ConfigGenericTypeId",
@@ -377,23 +637,82 @@ namespace ColonyManager.EfMigrations.Migrations
                 columns: new[] { "ConfigGenericTypeGroupId", "ConfigGenericTypeId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PeopleAddresses_FK_PeopleAddress_Country",
+                name: "IX_PeopleAddresses_CountryId",
                 table: "PeopleAddresses",
-                column: "FK_PeopleAddress_Country");
+                column: "CountryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PeopleAddresses_PeopleId",
                 table: "PeopleAddresses",
                 column: "PeopleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Peoples_ConfigGenericGenderGroupId_ConfigGenericGenderId",
+                table: "Peoples",
+                columns: new[] { "ConfigGenericGenderGroupId", "ConfigGenericGenderId" },
+                unique: true,
+                filter: "[ConfigGenericGenderGroupId] IS NOT NULL AND [ConfigGenericGenderId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Peoples_ConfigGenericProfessionGroupId_ConfigGenericProfessionId",
+                table: "Peoples",
+                columns: new[] { "ConfigGenericProfessionGroupId", "ConfigGenericProfessionId" },
+                unique: true,
+                filter: "[ConfigGenericProfessionGroupId] IS NOT NULL AND [ConfigGenericProfessionId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PeoplesInternetInformations_PeopleId",
+                table: "PeoplesInternetInformations",
+                column: "PeopleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PeoplesPhoneInformations_PeopleId",
+                table: "PeoplesPhoneInformations",
+                column: "PeopleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshToken_AccountId",
+                table: "RefreshToken",
+                column: "AccountId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ConfigGenericItemExtentionValues");
+
+            migrationBuilder.DropTable(
                 name: "PeopleAddresses");
 
             migrationBuilder.DropTable(
+                name: "PeoplesInternetInformations");
+
+            migrationBuilder.DropTable(
+                name: "PeoplesPhoneInformations");
+
+            migrationBuilder.DropTable(
+                name: "RefreshToken");
+
+            migrationBuilder.DropTable(
+                name: "ConfigGenericItemExtentions");
+
+            migrationBuilder.DropTable(
                 name: "Countries");
+
+            migrationBuilder.DropTable(
+                name: "Peoples");
+
+            migrationBuilder.DropTable(
+                name: "Accounts");
+
+            migrationBuilder.DropTable(
+                name: "SystemDataTypes");
+
+            migrationBuilder.DropTable(
+                name: "ConfigGenericItems");
+
+            migrationBuilder.DropTable(
+                name: "ConfigGenericGroups");
         }
     }
 }

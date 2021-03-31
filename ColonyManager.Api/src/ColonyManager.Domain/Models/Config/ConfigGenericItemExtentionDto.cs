@@ -4,7 +4,6 @@ namespace ColonyManager.Domain.Models
 {
     public class ConfigGenericItemExtentionDto : BaseDto
     {
-        public int Id { get; set; }
         public int ItemId { get; set; }
         public int GroupId { get; set; }
         public int SystemDataTypeId { get; set; }
