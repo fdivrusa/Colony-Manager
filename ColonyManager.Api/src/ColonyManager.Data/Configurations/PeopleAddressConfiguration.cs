@@ -18,17 +18,12 @@ namespace ColonyManager.Data.Configurations
             builder.HasOne(x => x.Country)
                 .WithMany(x => x.Addresses)
                 .HasForeignKey(x => x.CountryId)
-                .HasForeignKey("FK_PeopleAddress_Country");
+                .HasConstraintName("FK_PeopleAddress_Country");
 
             builder.HasOne(x => x.Type)
                 .WithMany(x => x.AddressTypes)
                 .HasForeignKey(x => new { x.ConfigGenericTypeGroupId, x.ConfigGenericTypeId })
                 .HasConstraintName("FK_PeopleAddress_Type");
-
-            builder.HasOne(x => x.Planet)
-                .WithMany(x => x.AddressPlanets)
-                .HasForeignKey(x => new { x.ConfigGenericPlanetGroupId, x.ConfigGenericPlanetId })
-                .HasConstraintName("FK_PeopleAddress_Planet");
 
             base.Configure(builder);
         }

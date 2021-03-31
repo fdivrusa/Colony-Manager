@@ -13,6 +13,8 @@ namespace ColonyManager.Data
         public DbSet<ConfigGenericItemExtension> ConfigGenericItemExtensions { get; set; }
         public DbSet<ConfigGenericItemExtensionValue> ConfigGenericItemExtensionValues { get; set; }
         public DbSet<SystemDataType> SystemDataTypes { get; set; }
+        public DbSet<PeoplePhoneInformation> PeoplePhoneInformations { get; set; }
+        public DbSet<PeopleInternetInformation> PeopleInternetInformations { get; set; }
 
         public ColonyManagerDbContext(DbContextOptions<ColonyManagerDbContext> options) : base(options)
         {

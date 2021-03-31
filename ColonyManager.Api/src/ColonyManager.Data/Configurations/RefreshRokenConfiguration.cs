@@ -12,7 +12,6 @@ namespace ColonyManager.Data.Configurations
             builder.ToTable("RefreshToken");
 
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-
         }
     }
 }

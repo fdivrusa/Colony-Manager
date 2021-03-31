@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ColonyManager.EfMigrations.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    [Migration("20210305212351_Add_People_address_country_tables")]
-    partial class Add_People_address_country_tables
+    [Migration("20210331190735_Initial_Creation")]
+    partial class Initial_Creation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -2254,9 +2254,9 @@ namespace ColonyManager.EfMigrations.Migrations
 
             modelBuilder.Entity("ColonyManager.Data.Entities.People", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .UseIdentityColumn();
 
                     b.Property<DateTime>("BirthDate")
@@ -2320,9 +2320,9 @@ namespace ColonyManager.EfMigrations.Migrations
 
             modelBuilder.Entity("ColonyManager.Data.Entities.PeopleAddress", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .UseIdentityColumn();
 
                     b.Property<string>("Area")
@@ -2340,12 +2340,6 @@ namespace ColonyManager.EfMigrations.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
-                    b.Property<int?>("ConfigGenericPlanetGroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ConfigGenericPlanetId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ConfigGenericTypeGroupId")
                         .HasColumnType("int");
 
@@ -2358,9 +2352,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FK_PeopleAddress_Country")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -2371,8 +2362,8 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<long>("PeopleId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("PeopleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("StreetName")
                         .HasMaxLength(64)
@@ -2380,15 +2371,101 @@ namespace ColonyManager.EfMigrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FK_PeopleAddress_Country");
+                    b.HasIndex("CountryId");
 
                     b.HasIndex("PeopleId");
-
-                    b.HasIndex("ConfigGenericPlanetGroupId", "ConfigGenericPlanetId");
 
                     b.HasIndex("ConfigGenericTypeGroupId", "ConfigGenericTypeId");
 
                     b.ToTable("PeopleAddresses");
+                });
+
+            modelBuilder.Entity("ColonyManager.Data.Entities.PeopleInternetInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<int>("ConfigGenericTypeGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ConfigGenericTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsObsolete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastUpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastUpdatedUserName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<int>("PeopleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PeopleId");
+
+                    b.ToTable("PeoplesInternetInformations");
+                });
+
+            modelBuilder.Entity("ColonyManager.Data.Entities.PeoplePhoneInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<int>("ConfigGenericTypeGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ConfigGenericTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsObsolete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastUpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastUpdatedUserName")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<int>("PeopleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PeopleId");
+
+                    b.ToTable("PeoplesPhoneInformations");
                 });
 
             modelBuilder.Entity("ColonyManager.Data.Entities.RefreshToken", b =>
@@ -2535,7 +2612,8 @@ namespace ColonyManager.EfMigrations.Migrations
                 {
                     b.HasOne("ColonyManager.Data.Entities.Country", "Country")
                         .WithMany("Addresses")
-                        .HasForeignKey("FK_PeopleAddress_Country")
+                        .HasForeignKey("CountryId")
+                        .HasConstraintName("FK_PeopleAddress_Country")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2544,11 +2622,6 @@ namespace ColonyManager.EfMigrations.Migrations
                         .HasForeignKey("PeopleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("ColonyManager.Data.Entities.ConfigGenericItem", "Planet")
-                        .WithMany("AddressPlanets")
-                        .HasForeignKey("ConfigGenericPlanetGroupId", "ConfigGenericPlanetId")
-                        .HasConstraintName("FK_PeopleAddress_Planet");
 
                     b.HasOne("ColonyManager.Data.Entities.ConfigGenericItem", "Type")
                         .WithMany("AddressTypes")
@@ -2561,9 +2634,31 @@ namespace ColonyManager.EfMigrations.Migrations
 
                     b.Navigation("People");
 
-                    b.Navigation("Planet");
-
                     b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("ColonyManager.Data.Entities.PeopleInternetInformation", b =>
+                {
+                    b.HasOne("ColonyManager.Data.Entities.People", "People")
+                        .WithMany("InternetInformations")
+                        .HasForeignKey("PeopleId")
+                        .HasConstraintName("FK_PeopleInternetInformation_People")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("People");
+                });
+
+            modelBuilder.Entity("ColonyManager.Data.Entities.PeoplePhoneInformation", b =>
+                {
+                    b.HasOne("ColonyManager.Data.Entities.People", "People")
+                        .WithMany("PhoneInformations")
+                        .HasForeignKey("PeopleId")
+                        .HasConstraintName("FK_PeoplePhoneInformation_People")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("People");
                 });
 
             modelBuilder.Entity("ColonyManager.Data.Entities.RefreshToken", b =>
@@ -2587,8 +2682,6 @@ namespace ColonyManager.EfMigrations.Migrations
 
             modelBuilder.Entity("ColonyManager.Data.Entities.ConfigGenericItem", b =>
                 {
-                    b.Navigation("AddressPlanets");
-
                     b.Navigation("AddressTypes");
 
                     b.Navigation("ConfigGenericItemExtensions");
@@ -2611,6 +2704,10 @@ namespace ColonyManager.EfMigrations.Migrations
             modelBuilder.Entity("ColonyManager.Data.Entities.People", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("InternetInformations");
+
+                    b.Navigation("PhoneInformations");
                 });
 
             modelBuilder.Entity("ColonyManager.Data.Entities.SystemDataType", b =>

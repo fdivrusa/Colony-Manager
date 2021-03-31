@@ -2,7 +2,6 @@
 {
     public class ConfigGenericItemExtensionValue : BaseEntity
     {
-        public int Id { get; set; }
         public int GroupId { get; set; }
         public int ItemId { get; set; }
         public int ExtentionId { get; set; }
