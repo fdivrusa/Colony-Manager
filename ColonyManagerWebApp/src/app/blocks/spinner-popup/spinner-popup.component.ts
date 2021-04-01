@@ -13,7 +13,6 @@ export class SpinnerPopupComponent implements AfterViewInit {
   isLoading: boolean = false;
 
   constructor(private loaderService: LoaderService) {
-    console.log('GNEEEEE');
   }
 
   ngAfterViewInit() {

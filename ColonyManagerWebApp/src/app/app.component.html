@@ -1,11 +1,10 @@
-<div class="Header"></div>
-<div class="Page_display">
-  <app-spinner-popup></app-spinner-popup>
-  <div class="routerOutletDiv">
-    <router-outlet></router-outlet>
+<div>
+  <div *ngIf="loggedUser">
+    <app-header></app-header>
   </div>
+  <app-spinner-popup></app-spinner-popup>
+  <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
 <div class="Footer">
   <app-footer></app-footer>
 </div>

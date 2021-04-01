@@ -9,5 +9,7 @@
         public bool IsObsolete { get; set; }
 
         public virtual People People { get; set; }
+
+        public virtual ConfigGenericItem Type { get; set; }
     }
 }

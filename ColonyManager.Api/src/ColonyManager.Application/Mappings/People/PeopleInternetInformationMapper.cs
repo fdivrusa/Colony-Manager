@@ -4,11 +4,11 @@ using ColonyManager.Domain.Models;
 
 namespace ColonyManager.Application.Mappings
 {
-    public class PeoplePhoneInformationMapper : Profile
+    public class PeopleInternetInformationMapper : Profile
     {
-        public PeoplePhoneInformationMapper()
+        public PeopleInternetInformationMapper()
         {
-            CreateMap<PeoplePhoneInformation, PeoplePhoneInformationDto>()
+            CreateMap<PeopleInternetInformation, PeopleInternetInformationDto>()
                 .ForMember(x => x.TypeCode, opt => opt.MapFrom(y => y.Type.Code))
                 .ForMember(x => x.TypeDescription, opt => opt.MapFrom(y => y.Type.Description))
                 .ReverseMap();
