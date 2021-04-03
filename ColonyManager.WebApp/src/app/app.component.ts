@@ -9,11 +9,8 @@ import { TokenStorageService } from './services/token-storage.service';
 })
 export class AppComponent implements OnInit {
   title = 'Colony Manager';
-  loggedUser!: User;
 
-  constructor(private tokenStorageService: TokenStorageService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.loggedUser = this.tokenStorageService.getUser();
-  }
+  ngOnInit(): void {}
 }

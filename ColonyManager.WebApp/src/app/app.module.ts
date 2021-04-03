@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { loaderInterceptorProviders } from './interceptors/loader.interceptor';
 import { LoaderService } from './services/loader.service';
 import { SharedModule } from './blocks/shared.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SharedModule } from './blocks/shared.module';
     HttpClientModule,
     FormsModule,
     SharedModule,
+    StoreModule.forRoot({}),
   ],
   providers: [
     LoaderService,
