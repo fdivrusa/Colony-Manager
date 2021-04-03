@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { User } from './models/Account/User';
+import { TokenStorageService } from './services/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,9 @@ export class AppComponent implements OnInit {
   title = 'Colony Manager';
   loggedUser!: User;
 
-  ngOnInit(): void {
+  constructor(private tokenStorageService: TokenStorageService) {}
 
+  ngOnInit(): void {
+    this.loggedUser = this.tokenStorageService.getUser();
   }
 }
