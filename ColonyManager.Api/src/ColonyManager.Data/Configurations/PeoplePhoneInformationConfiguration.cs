@@ -18,6 +18,11 @@ namespace ColonyManager.Data.Configurations
                 .HasForeignKey(x => x.PeopleId)
                 .HasConstraintName("FK_PeoplePhoneInformation_People");
 
+            builder.HasOne(x => x.Type)
+                .WithMany(x => x.PeoplePhoneInformations)
+                .HasForeignKey(x => new { x.ConfigGenericTypeGroupId, x.ConfigGenericTypeId })
+                .HasConstraintName("FK_PeoplePhoneInformation_ConfigGenericType");
+
             base.Configure(builder);
         }
     }

@@ -1,6 +1,6 @@
-<div class="col-md-12">
+<div class="col-md-12" *ngIf="loggedUser$ | async as loggedUser">
   <form
-    *ngIf="!isLoggedIn"
+    *ngIf="!loggedUser.jwtToken"
     (ngSubmit)="f.form.valid && onSubmit()"
     #f="ngForm"
     novalidate

@@ -26,6 +26,7 @@ namespace ColonyManager.Application.Services
 
         public async Task<IEnumerable<PeoplePhoneInformationDto>> GetPeoplePhoneInformationsAsync(int peopleId)
         {
+            _logger.LogDebug($"Getting phone informations for people with people id {peopleId}");
             return _mapper.Map<IEnumerable<PeoplePhoneInformationDto>>(await _dbContext.PeoplePhoneInformations.Where(x => x.PeopleId == peopleId).ToListAsync());
         }
     }
