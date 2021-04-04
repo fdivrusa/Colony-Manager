@@ -1,13 +1,13 @@
-import { initialUserState, IUserState } from './user.state';
+import { initialAppState, IAppState } from './app.state';
 
 export interface IStoreState {
-  user: IUserState;
+  app: IAppState;
 }
 
 export const initialStoreState: IStoreState = {
-  user: initialUserState,
+  app: initialAppState,
 };
 
-export function getInitialStoretate(): IStoreState {
+export function getInitialStoreState(): IStoreState {
   return initialStoreState;
 }

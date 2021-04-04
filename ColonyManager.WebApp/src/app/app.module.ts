@@ -3,16 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './blocks/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './blocks/footer/footer.component';
+import { HeaderComponent } from './blocks/header/header.component';
 import { loaderInterceptorProviders } from './interceptors/loader.interceptor';
 import { LoaderService } from './services/loader.service';
 import { SharedModule } from './blocks/shared.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/effects/app.effect';
+import { AllReducersModule } from './store/reducers/store.reducers.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,12 @@ import { StoreModule } from '@ngrx/store';
     FormsModule,
     SharedModule,
     StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    AllReducersModule,
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [
     LoaderService,

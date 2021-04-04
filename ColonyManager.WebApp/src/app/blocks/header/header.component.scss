@@ -4,3 +4,10 @@ mat-toolbar {
   background-color: $primary-dark;
   color: $typo-light-grey;
 }
+
+.UserInfo {
+  flex: auto;
+  button {
+    float: right;
+  }
+}

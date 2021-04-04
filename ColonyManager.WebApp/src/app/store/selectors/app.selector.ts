@@ -1,10 +1,10 @@
 import { IStoreState } from '../state/store.state';
 import { createSelector, select } from '@ngrx/store';
-import { IUserState } from './../state/user.state';
+import { IAppState } from '../state/app.state';
 
-const selectApp = (state: IStoreState) => state.user;
+const selectApp = (state: IStoreState) => state.app;
 
 export const loggedUserSelector = createSelector(
   selectApp,
-  (state: IUserState) => state.loggedUser
+  (state: IAppState) => state.loggedUser
 );
