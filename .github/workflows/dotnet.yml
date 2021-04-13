@@ -16,15 +16,15 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 5.0.X
     - name: Restore dependencies
       working-directory: ./ColonyManager.Api
-      run: dotnet restore *.sln
+      run: dotnet restore ColonyManager.sln
 
     - name: Build
       working-directory: ./ColonyManager.Api
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore ColonyManager.sln
       
     - name: Test
       working-directory: ./ColonyManager.Api
-      run: dotnet test --verbosity normal
+      run: dotnet test --verbosity normal ColonyManager.sln
