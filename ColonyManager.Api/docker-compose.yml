@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  colonymanager.webapi.host:
+    image: ${DOCKER_REGISTRY-}colonymanagerwebapihost
+    build:
+      context: .
+      dockerfile: src/ColonyManager.WebApi.Host/Dockerfile
+    depends_on:
+       - sql-server
+       - seq-server
+
+  seq-server:
+    image: datalust/seq:latest
+    hostname: seq-server
+    container_name: seq-server
+    ports:
+        - "5341:5341"
+        - "8081:80"
+    environment:
+        - ACCEPT_EULA=Y
+    restart: unless-stopped
+    volumes:
+        - ./logs/seq-data:/data 
+
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    hostname: sql-server
+    container_name: sql-server
+    ports:
+        - "1433:1433"
+    environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=Test123Test123
+        - MSSQL_PID=Enterprise
+
