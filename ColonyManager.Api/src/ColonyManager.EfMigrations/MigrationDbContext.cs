@@ -1,4 +1,4 @@
-﻿using ColonyManager.Data;
+﻿using ColonyManager.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ColonyManager.EfMigrations
@@ -13,7 +13,7 @@ namespace ColonyManager.EfMigrations
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ColonyManagerDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BaseEntity).Assembly);
         }
     }
 }
