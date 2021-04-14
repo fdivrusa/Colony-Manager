@@ -64,20 +64,20 @@ namespace ColonyManager.Application.Services
             await _updateValidator.ValidateAndThrowAsync(request);
 
             var entity = await _dbContext.Peoples.SingleOrDefaultAsync(x => x.Id == request.Id);
-            if (entity != null)
+            if (entity == null)
             {
-                _mapper.Map(request, entity);
-                entity.LastUpdatedDate = DateTime.Now;
-                entity.LastUpdatedUserName = userName;
-
-                _dbContext.Update(entity);
-                await _dbContext.SaveChangesAsync();
-
-                return _mapper.Map<PeopleDetailedDto>(entity);
+                _logger.LogError($"Cannot find people entity with Id {request.Id}");
+                return null;
             }
 
-            _logger.LogError($"Cannot find people entity with Id {request.Id}");
-            return null;
+            _mapper.Map(request, entity);
+            entity.LastUpdatedDate = DateTime.Now;
+            entity.LastUpdatedUserName = userName;
+
+            _dbContext.Update(entity);
+            await _dbContext.SaveChangesAsync();
+
+            return _mapper.Map<PeopleDetailedDto>(entity);
         }
     }
 }

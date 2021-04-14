@@ -12,5 +12,21 @@ namespace ColonyManager.Domain.Interfaces.Services
         /// <param name="peopleId"></param>
         /// <returns></returns>
         Task<IEnumerable<PeopleInternetInformationDto>> GetPeopleInternetInformationsAsync(int peopleId);
+
+        /// <summary>
+        /// Add new people internet information
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        Task<PeopleInternetInformationDto> AddPeopleInternetInformationAsync(AddPeopleInternetInformationRequestDto request, string userName);
+
+        /// <summary>
+        /// Update existing people internet information
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        Task<PeopleInternetInformationDto> UpdatePeopleInternetInformationAsync(UpdatePeopleInternetInformationRequestDto request, string userName);
     }
 }
