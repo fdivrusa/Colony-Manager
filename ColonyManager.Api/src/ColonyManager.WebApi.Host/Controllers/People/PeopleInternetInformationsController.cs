@@ -24,5 +24,17 @@ namespace ColonyManager.WebApi.Host.Controllers.People
         {
             return await _peopleInternetInformationService.GetPeopleInternetInformationsAsync(peopleId);
         }
+
+        [HttpPost]
+        public async Task<PeopleInternetInformationDto> AddPeopleInternetInformationAsync(AddPeopleInternetInformationRequestDto request)
+        {
+            return await _peopleInternetInformationService.AddPeopleInternetInformationAsync(request, Account?.FullName);
+        }
+
+        [HttpPut]
+        public async Task<PeopleInternetInformationDto> UpdatePeoppleInternetInformationAsync(UpdatePeopleInternetInformationRequestDto request)
+        {
+            return await _peopleInternetInformationService.UpdatePeopleInternetInformationAsync(request, Account?.FullName);
+        }
     }
 }
