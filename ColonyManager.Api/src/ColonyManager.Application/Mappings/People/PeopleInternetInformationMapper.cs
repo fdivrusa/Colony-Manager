@@ -14,6 +14,8 @@ namespace ColonyManager.Application.Mappings
                 .ReverseMap();
 
             CreateMap<AddPeopleInternetInformationRequestDto, People>();
+
+            CreateMap<UpdatePeopleInternetInformationRequestDto, People>();
         }
     }
 }
