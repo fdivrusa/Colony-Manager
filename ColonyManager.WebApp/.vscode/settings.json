@@ -1,0 +1,19 @@
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 1433,
+            "driver": "MSSQL",
+            "name": "ColoNyManager DEV",
+            "database": "COLONY_MANAGER",
+            "username": "SA",
+            "password": "Test123Test123"
+        }
+    ]
+}

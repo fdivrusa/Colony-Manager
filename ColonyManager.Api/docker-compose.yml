@@ -6,6 +6,9 @@ services:
     build:
       context: .
       dockerfile: src/ColonyManager.WebApi.Host/Dockerfile
+    ports:
+        - "8088:80" 
+        - "8089:443"
     depends_on:
        - sql-server
        - seq-server
