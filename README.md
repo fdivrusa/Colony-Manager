@@ -2,11 +2,13 @@
 
 <p align="center">
 
-<a href="https://lbesson.mit-license.org">
+<a href="https://www.gnu.org/licenses/gpl-3.0.en.html">
   <img 
-    src="https://img.shields.io/badge/License-MIT-blue.svg"
+    src="https://img.shields.io/badge/License-GPLv3-blue.svg"
     alt="Licence"/>
 </a>
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
   <a href="#">
     <img
