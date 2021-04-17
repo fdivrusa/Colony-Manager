@@ -16,16 +16,4 @@ export class LoaderService {
   hide() {
     this.isLoading.next(false);
   }
-
-  notifyAnError(err: HttpErrorResponse) {
-    this.error.next(err);
-  }
-
-  notifyMessage(message: Notification) {
-    this.notification.next(message);
-  }
-
-  cleanCurrentError() {
-    this.error.next();
-  }
 }

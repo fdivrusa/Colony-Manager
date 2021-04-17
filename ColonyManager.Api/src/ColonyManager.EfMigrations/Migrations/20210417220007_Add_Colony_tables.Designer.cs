@@ -4,14 +4,16 @@ using ColonyManager.EfMigrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ColonyManager.EfMigrations.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    partial class MigrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210417220007_Add_Colony_tables")]
+    partial class Add_Colony_tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,6 +154,9 @@ namespace ColonyManager.EfMigrations.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
+                    b.Property<int>("FK_Colony_ColonyBuilding")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -161,7 +166,7 @@ namespace ColonyManager.EfMigrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ColonyId");
+                    b.HasIndex("FK_Colony_ColonyBuilding");
 
                     b.HasIndex("ConfigGenericTypeGroupId", "ConfigGenericTypeId");
 
@@ -2756,8 +2761,8 @@ namespace ColonyManager.EfMigrations.Migrations
                 {
                     b.HasOne("ColonyManager.Data.Entities.Colony", "Colony")
                         .WithMany("ColonyBuildings")
-                        .HasForeignKey("ColonyId")
-                        .HasConstraintName("FK_Colony_ColonyBuilding")
+                        .HasForeignKey("FK_Colony_ColonyBuilding")
+                        .HasConstraintName("FK_ColonyBuilding_Colony")
                         .IsRequired();
 
                     b.HasOne("ColonyManager.Data.Entities.ConfigGenericItem", "ColonyBuidingType")
