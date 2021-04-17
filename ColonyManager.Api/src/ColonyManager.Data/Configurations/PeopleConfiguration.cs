@@ -16,15 +16,15 @@ namespace ColonyManager.Data.Configurations
             builder.Property(x => x.FirstName).HasMaxLength(64);
 
             builder.HasOne(x => x.Gender)
-                .WithOne(x => x.PeopleGender)
-                .HasForeignKey<People>(x => new { x.ConfigGenericGenderGroupId, x.ConfigGenericGenderId })
-                .HasConstraintName("FK_People_ConfigGenericItem_Gender")
+                .WithMany(x => x.PeopleGenders)
+                .HasForeignKey(x => new { x.ConfigGenericGenderGroupId, x.ConfigGenericGenderId })
+                .HasConstraintName("FK_People_ConfigGenericItem_Genders")
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.HasOne(x => x.Profession)
-                .WithOne(x => x.PeopleProfession)
-                .HasForeignKey<People>(x => new { x.ConfigGenericProfessionGroupId, x.ConfigGenericProfessionId })
-                .HasConstraintName("FK_People_ConfigGenericItem_Profession")
+                .WithMany(x => x.PeopleProfessions)
+                .HasForeignKey(x => new { x.ConfigGenericProfessionGroupId, x.ConfigGenericProfessionId })
+                .HasConstraintName("FK_People_ConfigGenericItem_Professions")
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             base.Configure(builder);

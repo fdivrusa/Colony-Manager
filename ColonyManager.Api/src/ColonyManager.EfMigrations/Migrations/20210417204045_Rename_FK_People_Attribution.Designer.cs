@@ -4,14 +4,16 @@ using ColonyManager.EfMigrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ColonyManager.EfMigrations.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    partial class MigrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210417204045_Rename_FK_People_Attribution")]
+    partial class Rename_FK_People_Attribution
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,151 +73,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Accounts");
-                });
-
-            modelBuilder.Entity("ColonyManager.Data.Entities.Colony", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("ActualPopulation")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Code")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Comment")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
-                    b.Property<int>("ConfigGenericTypeGroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ConfigGenericTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
-                    b.Property<DateTime?>("LastUpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastUpdatedUserName")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<int>("MaxPopulation")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ConfigGenericTypeGroupId", "ConfigGenericTypeId");
-
-                    b.ToTable("Colonies");
-                });
-
-            modelBuilder.Entity("ColonyManager.Data.Entities.ColonyBuilding", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Code")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<int>("ColonyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comment")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
-                    b.Property<int>("ConfigGenericTypeGroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ConfigGenericTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
-                    b.Property<DateTime?>("LastUpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastUpdatedUserName")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ColonyId");
-
-                    b.HasIndex("ConfigGenericTypeGroupId", "ConfigGenericTypeId");
-
-                    b.ToTable("ColonyBuildings");
-                });
-
-            modelBuilder.Entity("ColonyManager.Data.Entities.ColonyBuildingRoom", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Code")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<int>("ColonyBuildingId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comment")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
-                    b.Property<int>("ConfigGenericGroupTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ConfigGenericTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
-                    b.Property<int>("Floor")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("LastUpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastUpdatedUserName")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ColonyBuildingId");
-
-                    b.HasIndex("ConfigGenericGroupTypeId", "ConfigGenericTypeId");
-
-                    b.ToTable("ColonyBuildingRooms");
                 });
 
             modelBuilder.Entity("ColonyManager.Data.Entities.ConfigGenericGroup", b =>
@@ -2741,57 +2598,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.ToTable("SystemDataTypes");
                 });
 
-            modelBuilder.Entity("ColonyManager.Data.Entities.Colony", b =>
-                {
-                    b.HasOne("ColonyManager.Data.Entities.ConfigGenericItem", "ColonyType")
-                        .WithMany("Colonies")
-                        .HasForeignKey("ConfigGenericTypeGroupId", "ConfigGenericTypeId")
-                        .HasConstraintName("FK_Colony_ConfigGenericItem")
-                        .IsRequired();
-
-                    b.Navigation("ColonyType");
-                });
-
-            modelBuilder.Entity("ColonyManager.Data.Entities.ColonyBuilding", b =>
-                {
-                    b.HasOne("ColonyManager.Data.Entities.Colony", "Colony")
-                        .WithMany("ColonyBuildings")
-                        .HasForeignKey("ColonyId")
-                        .HasConstraintName("FK_Colony_ColonyBuilding")
-                        .IsRequired();
-
-                    b.HasOne("ColonyManager.Data.Entities.ConfigGenericItem", "ColonyBuidingType")
-                        .WithMany("ColonyBuildings")
-                        .HasForeignKey("ConfigGenericTypeGroupId", "ConfigGenericTypeId")
-                        .HasConstraintName("FK_ColonyBuilding_ConfigGenericItem")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Colony");
-
-                    b.Navigation("ColonyBuidingType");
-                });
-
-            modelBuilder.Entity("ColonyManager.Data.Entities.ColonyBuildingRoom", b =>
-                {
-                    b.HasOne("ColonyManager.Data.Entities.ColonyBuilding", "ColonyBuilding")
-                        .WithMany("ColonyBuildingRooms")
-                        .HasForeignKey("ColonyBuildingId")
-                        .HasConstraintName("FK_ColonyBuildingRoom_ColonyBuilding")
-                        .IsRequired();
-
-                    b.HasOne("ColonyManager.Data.Entities.ConfigGenericItem", "ColonyBuildingRoomType")
-                        .WithMany("ColonyBuildingRooms")
-                        .HasForeignKey("ConfigGenericGroupTypeId", "ConfigGenericTypeId")
-                        .HasConstraintName("FK_ColonyBuildingRoom_ConfigGenericItem")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ColonyBuilding");
-
-                    b.Navigation("ColonyBuildingRoomType");
-                });
-
             modelBuilder.Entity("ColonyManager.Data.Entities.ConfigGenericItem", b =>
                 {
                     b.HasOne("ColonyManager.Data.Entities.ConfigGenericGroup", "ConfigGenericGroup")
@@ -2955,16 +2761,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Navigation("RefreshTokens");
                 });
 
-            modelBuilder.Entity("ColonyManager.Data.Entities.Colony", b =>
-                {
-                    b.Navigation("ColonyBuildings");
-                });
-
-            modelBuilder.Entity("ColonyManager.Data.Entities.ColonyBuilding", b =>
-                {
-                    b.Navigation("ColonyBuildingRooms");
-                });
-
             modelBuilder.Entity("ColonyManager.Data.Entities.ConfigGenericGroup", b =>
                 {
                     b.Navigation("ConfigGenericItems");
@@ -2973,12 +2769,6 @@ namespace ColonyManager.EfMigrations.Migrations
             modelBuilder.Entity("ColonyManager.Data.Entities.ConfigGenericItem", b =>
                 {
                     b.Navigation("Addresses");
-
-                    b.Navigation("Colonies");
-
-                    b.Navigation("ColonyBuildingRooms");
-
-                    b.Navigation("ColonyBuildings");
 
                     b.Navigation("ConfigGenericItemExtensions");
 
