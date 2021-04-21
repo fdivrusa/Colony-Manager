@@ -9,7 +9,8 @@ namespace ColonyManager.Data
         {
             services.AddDbContext<ColonyManagerDbContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(connectionString,
+                    x => x.UseNetTopologySuite());
             });
             return services;
         }

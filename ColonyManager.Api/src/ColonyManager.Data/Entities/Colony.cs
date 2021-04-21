@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NetTopologySuite.Geometries;
+using System.Collections.Generic;
 
 namespace ColonyManager.Data.Entities
 {
@@ -15,6 +16,7 @@ namespace ColonyManager.Data.Entities
         public int ConfigGenericTypeId { get; set; }
         public int MaxPopulation { get; set; }
         public int ActualPopulation { get; set; }
+        public Geometry Border { get; set; }
 
         public virtual ConfigGenericItem ColonyType { get; set; }
         public virtual ICollection<ColonyBuilding> ColonyBuildings { get; set; }

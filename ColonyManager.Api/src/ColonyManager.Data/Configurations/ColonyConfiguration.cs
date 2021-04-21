@@ -12,7 +12,7 @@ namespace ColonyManager.Data.Configurations
             builder.ToTable("Colonies");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Code).HasMaxLength(64);
+            builder.Property(x => x.Code).HasMaxLength(64).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(512);
 
             builder.HasMany(x => x.ColonyBuildings)

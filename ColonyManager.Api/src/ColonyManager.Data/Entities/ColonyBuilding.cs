@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NetTopologySuite.Geometries;
+using System.Collections.Generic;
 
 namespace ColonyManager.Data.Entities
 {
@@ -14,6 +15,7 @@ namespace ColonyManager.Data.Entities
         public string Description { get; set; }
         public int ConfigGenericTypeGroupId { get; set; }
         public int ConfigGenericTypeId { get; set; }
+        public Point Location { get; set; }
 
         public virtual Colony Colony { get; set; }
         public virtual ConfigGenericItem ColonyBuidingType { get; set; }

@@ -42,6 +42,7 @@ namespace ColonyManager.EfMigrations
             builder.UseSqlServer(connectionString,
                 sqlServerOptionsAction: sqlOptions =>
                 {
+                    sqlOptions.UseNetTopologySuite();
                     sqlOptions.EnableRetryOnFailure(
                     maxRetryCount: 5,
                     maxRetryDelay: TimeSpan.FromSeconds(30),
