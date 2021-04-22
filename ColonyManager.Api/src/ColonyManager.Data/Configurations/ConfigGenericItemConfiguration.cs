@@ -1,4 +1,5 @@
-﻿using ColonyManager.Data.Entities;
+﻿using ColonyManager.Data.DataSeeds;
+using ColonyManager.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -23,8 +24,10 @@ namespace ColonyManager.Data.Configurations
             builder.HasOne(x => x.ConfigGenericGroup)
                 .WithMany(x => x.ConfigGenericItems)
                 .HasForeignKey(x => x.GroupId)
-                .OnDelete(DeleteBehavior.NoAction)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ConfigGenericItems_ConfigGenericGroups");
+
+            builder.HasData(ConfigGenericItemDataSeeding.GetData());
 
             base.Configure(builder);
         }

@@ -13,6 +13,7 @@ namespace ColonyManager.Data.Entities
             PeoplePhoneInformations = new List<PeoplePhoneInformation>();
             PeopleGenders = new List<People>();
             PeopleProfessions = new List<People>();
+            PeopleNationalities = new List<People>();
             Colonies = new List<Colony>();
             ColonyBuildings = new List<ColonyBuilding>();
             ColonyBuildingRooms = new List<ColonyBuildingRoom>();
@@ -26,6 +27,7 @@ namespace ColonyManager.Data.Entities
 
         public virtual ICollection<People> PeopleGenders { get; set; }
         public virtual ICollection<People> PeopleProfessions { get; set; }
+        public virtual ICollection<People> PeopleNationalities { get; set; }
         public virtual ICollection<ConfigGenericItemExtension> ConfigGenericItemExtensions { get; set; }
         public virtual ICollection<PeopleAddress> Addresses { get; set; }
         public virtual ICollection<PeopleInternetInformation> PeopleInternetInformations { get; set; }
