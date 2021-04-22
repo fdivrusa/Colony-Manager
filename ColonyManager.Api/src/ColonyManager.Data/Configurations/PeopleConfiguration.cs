@@ -27,6 +27,12 @@ namespace ColonyManager.Data.Configurations
                 .HasConstraintName("FK_People_ConfigGenericItem_Professions")
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
+            builder.HasOne(x => x.Nationality)
+                .WithMany(x => x.PeopleNationalities)
+                .HasForeignKey(x => new { x.ConfigGenericNationalityGroupId, x.ConfigGenericNationalityId })
+                .HasConstraintName("FK_People_ConfigGenericItem_Nationalities")
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
             base.Configure(builder);
         }
     }

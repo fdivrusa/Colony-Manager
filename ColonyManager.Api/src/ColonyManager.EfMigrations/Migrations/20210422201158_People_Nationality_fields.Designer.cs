@@ -4,15 +4,17 @@ using ColonyManager.EfMigrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 
 namespace ColonyManager.EfMigrations.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    partial class MigrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210422201158_People_Nationality_fields")]
+    partial class People_Nationality_fields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2885,7 +2887,7 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.HasOne("ColonyManager.Data.Entities.ConfigGenericItem", "Nationality")
                         .WithMany("PeopleNationalities")
                         .HasForeignKey("ConfigGenericNationalityGroupId", "ConfigGenericNationalityId")
-                        .HasConstraintName("FK_People_ConfigGenericItem_Nationalities");
+                        .HasConstraintName("FK_People_ConfigGenericItem_Nationality");
 
                     b.HasOne("ColonyManager.Data.Entities.ConfigGenericItem", "Profession")
                         .WithMany("PeopleProfessions")

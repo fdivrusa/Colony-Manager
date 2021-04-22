@@ -1,4 +1,5 @@
-﻿using ColonyManager.Data.Entities;
+﻿using ColonyManager.Data.DataSeeds;
+using ColonyManager.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -22,6 +23,8 @@ namespace ColonyManager.Data.Configurations
 
             builder.Property(x => x.Description)
                 .HasMaxLength(512);
+
+            builder.HasData(ConfigGenericGroupDataSeeding.GetData());
 
             base.Configure(builder);
         }
