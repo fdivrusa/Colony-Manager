@@ -12,6 +12,9 @@ namespace ColonyManager.Application.Mappings
                 .ForMember(x => x.TypeCode, opt => opt.MapFrom(x => x.Code))
                 .ForMember(x => x.TypeDescription, opt => opt.MapFrom(x => x.Description))
                 .ReverseMap();
+
+            CreateMap<Colony, AddColonyRequestDto>()
+                .ReverseMap();
         }
     }
 }

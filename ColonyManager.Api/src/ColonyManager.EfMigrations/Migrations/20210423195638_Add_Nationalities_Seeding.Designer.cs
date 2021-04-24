@@ -4,15 +4,17 @@ using ColonyManager.EfMigrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 
 namespace ColonyManager.EfMigrations.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    partial class MigrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210423195638_Add_Nationalities_Seeding")]
+    partial class Add_Nationalities_Seeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,11 +111,6 @@ namespace ColonyManager.EfMigrations.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -162,11 +159,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
@@ -222,11 +214,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Property<int>("Floor")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -265,11 +252,6 @@ namespace ColonyManager.EfMigrations.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -293,7 +275,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Group that contains all the known nationalities",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM",
                             RelatedSubject = "PEOPLES"
                         });
@@ -322,11 +303,6 @@ namespace ColonyManager.EfMigrations.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -347,7 +323,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Unknown",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -358,7 +333,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Afghan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -369,7 +343,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Albanian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -380,7 +353,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Algerian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -391,7 +363,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "American",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -402,7 +373,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Andorran",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -413,7 +383,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Angolan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -424,7 +393,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Antiguans",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -435,7 +403,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Argentinean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -446,7 +413,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Armenian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -457,7 +423,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Australian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -468,7 +433,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Austrian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -479,7 +443,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Azerbaijani",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -490,7 +453,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bahamian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -501,7 +463,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bahraini",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -512,7 +473,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bangladeshi",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -523,7 +483,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Barbadian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -534,7 +493,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Barbudans",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -545,7 +503,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Batswana",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -556,7 +513,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Belarusian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -567,7 +523,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Belgian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -578,7 +533,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Belizean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -589,7 +543,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Beninese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -600,7 +553,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bhutanese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -611,7 +563,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bolivian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -622,7 +573,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bosnian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -633,7 +583,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Brazilian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -644,7 +593,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "British",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -655,7 +603,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bruneian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -666,7 +613,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bulgarian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -677,7 +623,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Burkinabe",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -688,7 +633,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Burmese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -699,7 +643,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Burundian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -710,7 +653,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cambodian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -721,7 +663,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cameroonian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -732,7 +673,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Canadian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -743,7 +683,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cape Verdean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -754,7 +693,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Central African",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -765,7 +703,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Chadian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -776,7 +713,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Chilean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -787,7 +723,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Chinese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -798,7 +733,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Colombian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -809,7 +743,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Comoran",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -820,7 +753,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Congolese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -831,7 +763,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Costa Rican",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -842,7 +773,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Croatian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -853,7 +783,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cuban",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -864,7 +793,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cypriot",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -875,7 +803,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Czech",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -886,7 +813,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Danish",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -897,7 +823,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Djibouti",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -908,7 +833,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Dominican",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -919,7 +843,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Dutch",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -930,7 +853,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "East Timorese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -941,7 +863,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ecuadorean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -952,7 +873,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Egyptian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -963,7 +883,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Emirian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -974,7 +893,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Equatorial Guinean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -985,7 +903,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Eritrean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -996,7 +913,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Estonian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1007,7 +923,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ethiopian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1018,7 +933,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Fijian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1029,7 +943,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Filipino",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1040,7 +953,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Finnish",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1051,7 +963,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "French",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1062,7 +973,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Gabonese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1073,7 +983,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Gambian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1084,7 +993,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Georgian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1095,7 +1003,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "German",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1106,7 +1013,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ghanaian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1117,7 +1023,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Greek",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1128,7 +1033,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Grenadian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1139,7 +1043,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Guatemalan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1150,7 +1053,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Guinea-Bissauan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1161,7 +1063,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Guinean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1172,7 +1073,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Guyanese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1183,7 +1083,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Haitian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1194,7 +1093,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Herzegovinian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1205,7 +1103,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Honduran",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1216,7 +1113,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Hungarian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1227,7 +1123,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "I-Kiribati",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1238,7 +1133,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Icelander",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1249,7 +1143,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Indian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1260,7 +1153,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Indonesian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1271,7 +1163,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Iranian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1282,7 +1173,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Iraqi",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1293,7 +1183,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Irish",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1304,7 +1193,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Israeli",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1315,7 +1203,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Italian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1326,7 +1213,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ivorian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1337,7 +1223,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Jamaican",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1348,7 +1233,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Japanese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1359,7 +1243,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Jordanian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1370,7 +1253,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kazakhstani",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1381,7 +1263,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kenyan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1392,7 +1273,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kittian and Nevisian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1403,7 +1283,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kuwaiti",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1414,7 +1293,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kyrgyz",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1425,7 +1303,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Laotian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1436,7 +1313,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Latvian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1447,7 +1323,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lebanese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1458,7 +1333,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Liberian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1469,7 +1343,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Libyan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1480,7 +1353,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Liechtensteiner",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1491,7 +1363,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lithuanian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1502,7 +1373,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Luxembourger",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1513,7 +1383,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Macedonian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1524,18 +1393,16 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Malagasy",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
                         {
                             GroupId = 1,
                             Id = 108,
-                            Code = "MALAW",
+                            Code = "MALA",
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Malawian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1546,7 +1413,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Malaysian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1557,7 +1423,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Maldivian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1568,7 +1433,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Malian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1579,7 +1443,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Maltese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1590,7 +1453,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Marshallese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1601,7 +1463,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mauritanian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1612,7 +1473,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mauritian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1623,7 +1483,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mexican",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1634,7 +1493,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Micronesian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1645,7 +1503,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Moldovan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1656,7 +1513,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Monacan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1667,7 +1523,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mongolian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1678,7 +1533,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Moroccan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1689,7 +1543,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mosotho",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1700,7 +1553,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Motswana",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1711,7 +1563,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mozambican",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1722,7 +1573,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Namibian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1733,7 +1583,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nauruan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1744,7 +1593,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nepalese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1755,7 +1603,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "New Zealander",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1766,7 +1613,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ni-Vanuatu",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1777,7 +1623,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nicaraguan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1788,7 +1633,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nigerian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1799,7 +1643,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nigerien",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1810,7 +1653,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "North Korean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1821,7 +1663,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Northern Irish",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1832,7 +1673,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Norwegian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1843,7 +1683,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Omani",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1854,7 +1693,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Pakistani",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1865,7 +1703,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Palauan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1876,7 +1713,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Panamanian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1887,7 +1723,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Papua New Guinean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1898,7 +1733,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Paraguayan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1909,7 +1743,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Peruvian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1920,7 +1753,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Polish",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1931,7 +1763,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Portuguese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1942,7 +1773,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Qatari",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1953,7 +1783,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Romanian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1964,7 +1793,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Russian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1975,7 +1803,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Rwandan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1986,7 +1813,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Saint Lucian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -1997,7 +1823,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Salvadoran",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2008,7 +1833,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Samoan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2019,7 +1843,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "San Marinese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2030,7 +1853,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Sao Tomean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2041,7 +1863,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Saudi",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2052,7 +1873,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Scottish",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2063,7 +1883,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Senegalese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2074,7 +1893,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Serbian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2085,7 +1903,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Seychellois",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2096,7 +1913,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Sierra Leonean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2107,7 +1923,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Singaporean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2118,7 +1933,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Slovakian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2129,7 +1943,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Slovenian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2140,7 +1953,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Solomon Islander",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2151,7 +1963,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Somali",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2162,7 +1973,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "South African",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2173,7 +1983,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "South Korean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2184,7 +1993,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Spanish",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2195,7 +2003,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Sri Lankan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2206,7 +2013,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Sudanese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2217,7 +2023,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Surinamer",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2228,7 +2033,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Swazi",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2239,7 +2043,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Swedish",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2250,7 +2053,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Swiss",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2261,7 +2063,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Syrian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2272,7 +2073,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Taiwanese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2283,7 +2083,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Tajik",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2294,7 +2093,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Tanzanian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2305,7 +2103,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Thai",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2316,7 +2113,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Togolese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2327,7 +2123,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Tongan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2338,7 +2133,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Trinidadian or Tobagonian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2349,7 +2143,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Tunisian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2360,7 +2153,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Turkish",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2371,7 +2163,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Tuvaluan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2382,7 +2173,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ugandan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2393,7 +2183,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ukrainian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2404,7 +2193,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Uruguayan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2415,7 +2203,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Uzbekistani",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2426,7 +2213,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Venezuelan",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2437,7 +2223,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Vietnamese",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2448,7 +2233,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Welsh",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2459,7 +2243,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Yemenite",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2470,7 +2253,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Zambian",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         },
                         new
@@ -2481,7 +2263,6 @@ namespace ColonyManager.EfMigrations.Migrations
                             Comment = "Initial seed",
                             CreatedDate = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Zimbabwean",
-                            IsDeleted = false,
                             LastUpdatedUserName = "SYSTEM"
                         });
                 });
@@ -2511,11 +2292,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
@@ -2554,11 +2330,6 @@ namespace ColonyManager.EfMigrations.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
@@ -4648,11 +4419,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("LastName")
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
@@ -4709,11 +4475,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -4768,11 +4529,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<DateTime?>("LastUpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -4815,11 +4571,6 @@ namespace ColonyManager.EfMigrations.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsObsolete")
                         .HasColumnType("bit");
@@ -4866,11 +4617,6 @@ namespace ColonyManager.EfMigrations.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsObsolete")
                         .HasColumnType("bit");
@@ -4963,11 +4709,6 @@ namespace ColonyManager.EfMigrations.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsList")
                         .HasColumnType("bit");
