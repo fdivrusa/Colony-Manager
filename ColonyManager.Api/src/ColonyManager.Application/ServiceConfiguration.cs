@@ -25,6 +25,8 @@ namespace ColonyManager.Application
             services.AddScoped<IPeopleInternetInformationService, PeopleInternetInformationService>();
             services.AddScoped<IPeoplePhoneInformationService, PeoplePhoneInformationService>();
 
+            services.AddScoped<IColonyService, ColonyService>();
+
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IEmailService, EmailService>();
 

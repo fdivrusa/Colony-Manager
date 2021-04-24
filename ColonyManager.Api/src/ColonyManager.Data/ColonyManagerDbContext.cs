@@ -15,6 +15,10 @@ namespace ColonyManager.Data
         public DbSet<SystemDataType> SystemDataTypes { get; set; }
         public DbSet<PeoplePhoneInformation> PeoplePhoneInformations { get; set; }
         public DbSet<PeopleInternetInformation> PeopleInternetInformations { get; set; }
+        public DbSet<Colony> Colonies { get; set; }
+        public DbSet<ColonyBuilding> ColonyBuildings { get; set; }
+        public DbSet<ColonyBuildingRoom> ColonyBuildingRooms { get; set; }
+
 
         public ColonyManagerDbContext(DbContextOptions<ColonyManagerDbContext> options) : base(options)
         {
