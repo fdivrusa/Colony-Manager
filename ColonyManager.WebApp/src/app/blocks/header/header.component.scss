@@ -5,9 +5,18 @@ mat-toolbar {
   color: $typo-light-grey;
 }
 
-.UserInfo {
-  flex: auto;
-  button {
-    float: right;
+.userInfo {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  p {
+    margin: 0;
+    margin-right: 5px;
+    font-size: medium;
   }
+}
+
+mat-sidenav-container {
+  background: url("../../../assets/Images/background.png") no-repeat;
+  background-size: cover;
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { faPowerOff, faTools } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/Account/User';
@@ -14,11 +16,15 @@ import { IStoreState } from 'src/app/store/state/store.state';
 })
 export class HeaderComponent implements OnInit {
   loggedUser$!: Observable<User>;
+  faLogout = faPowerOff;
+  faParam = faTools;
 
   constructor(
     private store: Store<IStoreState>,
     private tokenStorageService: TokenStorageService
   ) {}
+
+  @ViewChild('sidenav') sidenav!: MatSidenav;
 
   ngOnInit(): void {
     this.loggedUser$ = this.store.select(loggedUserSelector);
@@ -31,5 +37,9 @@ export class HeaderComponent implements OnInit {
         payload: new User(),
       })
     );
+  }
+
+  toggle() {
+    this.sidenav.toggle();
   }
 }
