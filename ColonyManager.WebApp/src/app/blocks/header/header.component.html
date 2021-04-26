@@ -7,32 +7,38 @@
         </button>
         <h1>Colony Manager</h1>
         <div>
-          <a
-            *ngIf="loggedUser.role === 'Admin'"
-            mat-button
-            [routerLink]="'/accounts'"
-          >
-            Accounts management
-          </a>
-          <a mat-button [routerLink]="'/peoples'"> Peoples management </a>
-          <a mat-button [routerLink]="'/shuttles'"> Shuttles management </a>
-          <a
-            *ngIf="loggedUser.role === 'Admin'"
-            mat-button
-            [routerLink]="'/configs'"
-          >
-            Configurations management
-          </a>
-          <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>
-        </div>
-        <div class="UserInfo">
-          <button mat-button [matMenuTriggerFor]="menu">
-            {{ loggedUser.email }}
+          <button mat-button [routerLink]="['/peoples']">
+            Peoples management
           </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>Parameters</button>
-            <button mat-menu-item (click)="logout()">Logout</button>
-          </mat-menu>
+          <button mat-button [routerLink]="['/shuttles']">
+            Shuttles management
+          </button>
+          <button mat-button [routerLink]="['/colonies']">
+            Colonies management
+          </button>
+          <button
+            *ngIf="loggedUser.role === 'Admin'"
+            mat-button
+            [routerLink]="['/configurations']"
+          >
+            Configurations
+          </button>
+          <button
+            *ngIf="loggedUser.role === 'Admin'"
+            mat-button
+            [routerLink]="['/accounts']"
+          >
+            Accounts
+          </button>
+        </div>
+        <div class="userInfo">
+          <p>Connected as {{ loggedUser.email }}</p>
+          <button mat-button (click)="logout()" matTooltip="Logout">
+            <fa-icon [icon]="faLogout" size="lg"></fa-icon>
+          </button>
+          <button mat-button matTooltip="Parameters">
+            <fa-icon [icon]="faParam" size="lg"></fa-icon>
+          </button>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>
@@ -48,9 +54,6 @@
           <a mat-list-item [routerLink]="'/create-activity'">
             Create Activity
           </a>
-          <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item
-            >Close</a
-          >
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>

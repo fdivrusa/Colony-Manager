@@ -18,6 +18,9 @@ import { UserEffects } from './store/effects/app.effect';
 import { AllReducersModule } from './store/reducers/store.reducers.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,15 @@ import { environment } from 'src/environments/environment';
     HeaderComponent,
   ],
   imports: [
+    SharedModule,
     BrowserModule,
+    FontAwesomeModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    SharedModule,
+    RouterModule,
+    ComponentsModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
