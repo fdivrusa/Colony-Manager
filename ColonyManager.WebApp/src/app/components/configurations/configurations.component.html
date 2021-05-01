@@ -1,1 +1,47 @@
-<p>configurations works!</p>
+<div *ngIf="configurationGroups" class="dataTableContainer">
+  <table mat-table [dataSource]="configurationGroups">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>Code</th>
+      <td mat-cell *matCellDef="let element">{{ element.code }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="relatedSubject">
+      <th mat-header-cell *matHeaderCellDef>Related Subject</th>
+      <td mat-cell *matCellDef="let element">{{ element.relatedSubject }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastUpdatedDate">
+      <th mat-header-cell *matHeaderCellDef>Last Updated</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.lastUpdatedDate | date: "dd/MM/yyyy HH:mm:ss" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastUpdatedUserName">
+      <th mat-header-cell *matHeaderCellDef>Last Updated By</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.lastUpdatedUserName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="comment">
+      <th mat-header-cell *matHeaderCellDef>Comment</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.comment }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

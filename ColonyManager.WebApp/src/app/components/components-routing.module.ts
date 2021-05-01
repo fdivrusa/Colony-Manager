@@ -9,9 +9,16 @@ const routes: Routes = [
         (m) => m.ConfigurationsModule
       ),
   },
+
+  {
+    path: 'peoples',
+    loadChildren: () =>
+      import('./peoples/peoples.module').then((m) => m.PeoplesModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class ComponentsRoutingModule {}

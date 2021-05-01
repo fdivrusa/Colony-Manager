@@ -19,32 +19,32 @@ import { AllReducersModule } from './store/reducers/store.reducers.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RouterModule } from '@angular/router';
 import { ComponentsModule } from './components/components.module';
+import { MainComponent } from './blocks/main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     FooterComponent,
+    MainComponent,
     HeaderComponent,
   ],
   imports: [
-    SharedModule,
     BrowserModule,
+    SharedModule,
     FontAwesomeModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    RouterModule,
     ComponentsModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production,
+      logOnly: !environment.production,
     }),
     AllReducersModule,
+    AppRoutingModule,
     EffectsModule.forRoot([UserEffects]),
   ],
   providers: [

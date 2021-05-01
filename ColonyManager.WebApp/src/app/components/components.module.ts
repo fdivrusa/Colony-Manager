@@ -4,5 +4,6 @@ import { ComponentsRoutingModule } from './components-routing.module';
 
 @NgModule({
   imports: [SharedModule, ComponentsRoutingModule],
+  declarations: [],
 })
 export class ComponentsModule {}
