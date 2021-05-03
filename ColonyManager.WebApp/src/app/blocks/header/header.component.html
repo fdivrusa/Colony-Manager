@@ -45,7 +45,7 @@
         <div class="userInfo">
           <p>Connected as {{ loggedUser.email }}</p>
           <button mat-button (click)="logout()" matTooltip="Logout">
-            <fa-icon [icon]="faLogout" size="lg"></fa-icon>
+            <fa-icon [icon]="faLogout" size="lg" style="color: red"></fa-icon>
           </button>
           <button mat-button matTooltip="Parameters">
             <fa-icon [icon]="faParam" size="lg"></fa-icon>
@@ -66,7 +66,7 @@
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <div style="height: 90vh">
+        <div style="height: 85vh">
           <router-outlet></router-outlet>
         </div>
       </mat-sidenav-content>

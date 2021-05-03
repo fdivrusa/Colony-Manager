@@ -33,7 +33,6 @@ import { MainComponent } from './blocks/main/main.component';
   imports: [
     BrowserModule,
     SharedModule,
-    FontAwesomeModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,

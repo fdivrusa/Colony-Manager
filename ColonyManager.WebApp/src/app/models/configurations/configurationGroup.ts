@@ -6,6 +6,7 @@ export class ConfigurationGroup {
   comment: string;
   lastUpdatedDate: Date;
   lastUpdatedUserName: string;
+  isDeleted: boolean;
 
   constructor() {
     this.id = 0;
@@ -15,5 +16,6 @@ export class ConfigurationGroup {
     this.comment = '';
     this.lastUpdatedDate = new Date();
     this.lastUpdatedUserName = '';
+    this.isDeleted = false;
   }
 }
