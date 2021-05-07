@@ -7,14 +7,14 @@
     src="https://img.shields.io/badge/License-GPLv3-blue.svg"
     alt="Licence"/>
 </a>
-
-  <a href="#">
-    <img
-      src="https://github.com/fdivrusa/ColonyManager/workflows/API%20status/badge.svg"
-      alt="Build Status"
-    />
-  </a>
-
+  
+<a href="#">
+  <img
+    src="https://dev.azure.com/FDVApps/Colony-Manager/_apis/build/status/ColonyManager_CI?branchName=developp"
+    alt="Build Status"
+  />
+</a>
+  
   <a href="#">
     <img
       src="https://api.codacy.com/project/badge/Grade/ba60f1b39049426399156c5fd78bf890"
