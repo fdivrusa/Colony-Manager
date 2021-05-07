@@ -36,6 +36,7 @@ steps:
       **\*tests*.dll
       !**\*TestAdapter.dll
       !**\obj\**
+      !**\bin\**\ref\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     codeCoverageEnabled: true
     platform: '$(buildPlatform)'
