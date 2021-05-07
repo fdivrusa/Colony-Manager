@@ -38,6 +38,5 @@ steps:
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     codeCoverageEnabled: true
-    testRunTitle: 'Tests'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
