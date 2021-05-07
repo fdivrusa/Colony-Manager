@@ -6,7 +6,7 @@ namespace ColonyManager.Data.Entities
     public class Colony : BaseEntity
     {
         public Colony()
-        {   
+        {
             ColonyBuildings = new List<ColonyBuilding>();
         }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { delay } from 'rxjs/operators';
 import { LoaderService } from 'src/app/services/loader.service';
 
@@ -12,8 +12,7 @@ export class SpinnerPopupComponent implements AfterViewInit {
   value = 50;
   isLoading: boolean = false;
 
-  constructor(private loaderService: LoaderService) {
-  }
+  constructor(private loaderService: LoaderService) {}
 
   ngAfterViewInit() {
     setTimeout(() => {

@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
                 isVerified: data.isVerified,
                 jwtToken: data.jwtToken,
                 lastName: data.lastName,
-                role: data.lastName,
+                role: data.role,
                 title: data.title,
                 updatedDate: data.updatedDate,
               },

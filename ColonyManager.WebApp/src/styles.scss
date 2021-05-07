@@ -5,6 +5,9 @@
 // Plus imports for other components in your app.
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+//Variable
+@import "assets/variables.scss";
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -50,4 +53,59 @@ body {
   height: 100%;
   background: url("assets/Images/background.png") no-repeat;
   background-size: cover;
+}
+
+.componentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 2%;
+
+  .dataTableOptions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2%;
+
+    mat-form-field {
+      background-color: white;
+    }
+
+    .dataTableOptionButtons {
+      color: $typo-light-grey;
+      background-color: $primary;
+    }
+  }
+}
+
+.dataTableContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  table {
+    width: 100%;
+    box-shadow: 7px 7px 10px $dark-grey;
+
+    .mat-header-cell {
+      background: $light-grey;
+    }
+
+    th {
+      color: $typo-black;
+    }
+
+    tr:hover {
+      background-color: $lighter-grey;
+    }
+
+    td {
+      fa-icon {
+        color: $primary;
+      }
+    }
+  }
 }
