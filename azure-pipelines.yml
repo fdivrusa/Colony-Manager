@@ -52,12 +52,6 @@ steps:
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Build services'
 
-- task: Docker@2
-  displayName: Docker Login
-  inputs:
-    containerRegistry: 'Docker hub'
-    command: 'login'
-
 - task: DockerCompose@0
   displayName: Push Docker services
   inputs:
