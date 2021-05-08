@@ -5,10 +5,13 @@ services:
     image: ${DOCKER_REGISTRY-}colonymanagerwebapihost
     build:
       context: .
-      dockerfile: src/ColonyManager.WebApi.Host/Dockerfile
+      dockerfile: ColonyManager.Api/src/ColonyManager.WebApi.Host/Dockerfile
     ports:
         - "8088:80" 
         - "8089:443"
+    volumes: 
+        - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+        - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     depends_on:
        - sql-server
        - seq-server
