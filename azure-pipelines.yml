@@ -52,13 +52,8 @@ steps:
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Build services'
 
-- task: DockerCompose@0
-  displayName: Push Docker Services
+- task: Docker@2
   inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'Docker hub'
-    dockerComposeFile: '**/docker-compose.yml'
-    projectName: 'flodv06/$(Build.Repository.Name)'
-    action: 'Push services'
-    includeSourceTags: true
-    includeLatestTag: true
+    containerRegistry: 'Docker hub'
+    repository: 'flodv06'
+    command: 'push'
