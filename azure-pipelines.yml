@@ -45,9 +45,19 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: DockerCompose@0
-  displayName: Build Docker Services
+  displayName: Build Docker services
   inputs:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'Docker hub'
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Build services'
+
+- task: DockerCompose@0
+  displayName: Push Docker services
+  inputs:
+    action: Push services
+    dockerComposeFile: docker-compose.yml
+    projectName: $(Build.Repository.Name)
+    includeLatestTag: true
+    qualifyImageNames: true
+    additionalImageTags: $(Build.BuildId)
