@@ -52,10 +52,9 @@ steps:
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Build services'
 
-- task: DockerCompose@0
-  displayName: Push Docker Services
+- task: Docker@2
+  displayName: Push Image
   inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'Docker hub'
-    dockerComposeFile: '**/docker-compose.yml'
-    action: 'Push services'
+    containerRegistry: 'Docker hub'
+    repository: 'ColonyManager'
+    command: 'push'
