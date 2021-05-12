@@ -1,5 +1,6 @@
 CREATE DATABASE COLONY_MANAGER;
-GO
+GO;
+
 
 IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
 BEGIN
@@ -582,7 +583,7 @@ GO
 INSERT INTO [__EFMigrationsHistory]
     ([MigrationId], [ProductVersion])
 VALUES
-    (N'20210331190735_Initial_Creation', N'5.0.1');
+    (N'20210331190735_Initial_Creation', N'5.0.5');
 GO
 
 COMMIT;
@@ -606,7 +607,7 @@ GO
 INSERT INTO [__EFMigrationsHistory]
     ([MigrationId], [ProductVersion])
 VALUES
-    (N'20210401191032_Add_Type_PhoneAndInternetInformation', N'5.0.1');
+    (N'20210401191032_Add_Type_PhoneAndInternetInformation', N'5.0.5');
 GO
 
 COMMIT;
@@ -667,7 +668,7 @@ GO
 INSERT INTO [__EFMigrationsHistory]
     ([MigrationId], [ProductVersion])
 VALUES
-    (N'20210417154945_Add_People_Attributions', N'5.0.1');
+    (N'20210417154945_Add_People_Attributions', N'5.0.5');
 GO
 
 COMMIT;
@@ -685,7 +686,7 @@ GO
 INSERT INTO [__EFMigrationsHistory]
     ([MigrationId], [ProductVersion])
 VALUES
-    (N'20210417204045_Rename_FK_People_Attribution', N'5.0.1');
+    (N'20210417204045_Rename_FK_People_Attribution', N'5.0.5');
 GO
 
 COMMIT;
@@ -768,7 +769,7 @@ GO
 INSERT INTO [__EFMigrationsHistory]
     ([MigrationId], [ProductVersion])
 VALUES
-    (N'20210417220007_Add_Colony_tables', N'5.0.1');
+    (N'20210417220007_Add_Colony_tables', N'5.0.5');
 GO
 
 COMMIT;
@@ -801,7 +802,483 @@ GO
 INSERT INTO [__EFMigrationsHistory]
     ([MigrationId], [ProductVersion])
 VALUES
-    (N'20210417220721_Solve_ColonyBuilding_Error', N'5.0.1');
+    (N'20210417220721_Solve_ColonyBuilding_Error', N'5.0.5');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[ColonyBuildings]') AND [c].[name] = N'Code');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [ColonyBuildings] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [ColonyBuildings] ALTER COLUMN [Code] nvarchar(64) NOT NULL;
+ALTER TABLE [ColonyBuildings] ADD DEFAULT N'' FOR [Code];
+GO
+
+ALTER TABLE [ColonyBuildings] ADD [Location] geography NULL;
+GO
+
+DECLARE @var2 sysname;
+SELECT @var2 = [d].[name]
+FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[ColonyBuildingRooms]') AND [c].[name] = N'Code');
+IF @var2 IS NOT NULL EXEC(N'ALTER TABLE [ColonyBuildingRooms] DROP CONSTRAINT [' + @var2 + '];');
+ALTER TABLE [ColonyBuildingRooms] ALTER COLUMN [Code] nvarchar(64) NOT NULL;
+ALTER TABLE [ColonyBuildingRooms] ADD DEFAULT N'' FOR [Code];
+GO
+
+DECLARE @var3 sysname;
+SELECT @var3 = [d].[name]
+FROM [sys].[default_constraints] [d]
+    INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Colonies]') AND [c].[name] = N'Code');
+IF @var3 IS NOT NULL EXEC(N'ALTER TABLE [Colonies] DROP CONSTRAINT [' + @var3 + '];');
+ALTER TABLE [Colonies] ALTER COLUMN [Code] nvarchar(64) NOT NULL;
+ALTER TABLE [Colonies] ADD DEFAULT N'' FOR [Code];
+GO
+
+INSERT INTO [__EFMigrationsHistory]
+    ([MigrationId], [ProductVersion])
+VALUES
+    (N'20210421200806_Buildings_Locations', N'5.0.5');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+ALTER TABLE [Colonies] ADD [Border] geography NULL;
+GO
+
+INSERT INTO [__EFMigrationsHistory]
+    ([MigrationId], [ProductVersion])
+VALUES
+    (N'20210421201329_Colonies_Border', N'5.0.5');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+ALTER TABLE [ConfigGenericItems] DROP CONSTRAINT [FK_ConfigGenericItems_ConfigGenericGroups];
+GO
+
+ALTER TABLE [Peoples] ADD [ConfigGenericNationalityGroupId] int NULL;
+GO
+
+ALTER TABLE [Peoples] ADD [ConfigGenericNationalityId] int NULL;
+GO
+
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName', N'RelatedSubject') AND [object_id] = OBJECT_ID(N'[ConfigGenericGroups]'))
+    SET IDENTITY_INSERT [ConfigGenericGroups] ON;
+INSERT INTO [ConfigGenericGroups]
+    ([Id], [Code], [Comment], [CreatedDate], [Description], [LastUpdatedDate], [LastUpdatedUserName], [RelatedSubject])
+VALUES
+    (1, N'NATIONALITIES', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Group that contains all the known nationalities', NULL, N'SYSTEM', N'PEOPLES');
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName', N'RelatedSubject') AND [object_id] = OBJECT_ID(N'[ConfigGenericGroups]'))
+    SET IDENTITY_INSERT [ConfigGenericGroups] OFF;
+GO
+
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] ON;
+INSERT INTO [ConfigGenericItems]
+    ([GroupId], [Id], [Code], [Comment], [CreatedDate], [Description], [LastUpdatedDate], [LastUpdatedUserName])
+VALUES
+    (1, 0, N'UNK', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Unknown', NULL, N'SYSTEM');
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] OFF;
+GO
+
+CREATE INDEX [IX_Peoples_ConfigGenericNationalityGroupId_ConfigGenericNationalityId] ON [Peoples] ([ConfigGenericNationalityGroupId], [ConfigGenericNationalityId]);
+GO
+
+ALTER TABLE [ConfigGenericItems] ADD CONSTRAINT [FK_ConfigGenericItems_ConfigGenericGroups] FOREIGN KEY ([GroupId]) REFERENCES [ConfigGenericGroups] ([Id]) ON DELETE NO ACTION;
+GO
+
+ALTER TABLE [Peoples] ADD CONSTRAINT [FK_People_ConfigGenericItem_Nationality] FOREIGN KEY ([ConfigGenericNationalityGroupId], [ConfigGenericNationalityId]) REFERENCES [ConfigGenericItems] ([GroupId], [Id]) ON DELETE NO ACTION;
+GO
+
+INSERT INTO [__EFMigrationsHistory]
+    ([MigrationId], [ProductVersion])
+VALUES
+    (N'20210422201158_People_Nationality_fields', N'5.0.5');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+ALTER TABLE [Peoples] DROP CONSTRAINT [FK_People_ConfigGenericItem_Nationality];
+GO
+
+ALTER TABLE [Peoples] ADD CONSTRAINT [FK_People_ConfigGenericItem_Nationalities] FOREIGN KEY ([ConfigGenericNationalityGroupId], [ConfigGenericNationalityId]) REFERENCES [ConfigGenericItems] ([GroupId], [Id]) ON DELETE NO ACTION;
+GO
+
+INSERT INTO [__EFMigrationsHistory]
+    ([MigrationId], [ProductVersion])
+VALUES
+    (N'20210422201422_People_Nationality_FKName', N'5.0.5');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] ON;
+INSERT INTO [ConfigGenericItems]
+    ([GroupId], [Id], [Code], [Comment], [CreatedDate], [Description], [LastUpdatedDate], [LastUpdatedUserName])
+VALUES
+    (1, 1, N'AFG', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Afghan', NULL, N'SYSTEM'),
+    (1, 124, N'MOZ', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Mozambican', NULL, N'SYSTEM'),
+    (1, 125, N'NAM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Namibian', NULL, N'SYSTEM'),
+    (1, 126, N'NAU', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Nauruan', NULL, N'SYSTEM'),
+    (1, 127, N'NEP', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Nepalese', NULL, N'SYSTEM'),
+    (1, 128, N'NEW', N'Initial seed', '2021-12-31T00:00:00.0000000', N'New Zealander', NULL, N'SYSTEM'),
+    (1, 129, N'NI-', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Ni-Vanuatu', NULL, N'SYSTEM'),
+    (1, 130, N'NIC', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Nicaraguan', NULL, N'SYSTEM'),
+    (1, 131, N'NIG', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Nigerian', NULL, N'SYSTEM'),
+    (1, 132, N'NIGE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Nigerien', NULL, N'SYSTEM'),
+    (1, 123, N'MOT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Motswana', NULL, N'SYSTEM'),
+    (1, 133, N'NOR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'North Korean', NULL, N'SYSTEM'),
+    (1, 135, N'NORW', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Norwegian', NULL, N'SYSTEM'),
+    (1, 136, N'OMA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Omani', NULL, N'SYSTEM'),
+    (1, 137, N'PAK', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Pakistani', NULL, N'SYSTEM'),
+    (1, 138, N'PAL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Palauan', NULL, N'SYSTEM'),
+    (1, 139, N'PAN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Panamanian', NULL, N'SYSTEM'),
+    (1, 140, N'PAP', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Papua New Guinean', NULL, N'SYSTEM'),
+    (1, 141, N'PAR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Paraguayan', NULL, N'SYSTEM'),
+    (1, 142, N'PER', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Peruvian', NULL, N'SYSTEM'),
+    (1, 143, N'POL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Polish', NULL, N'SYSTEM'),
+    (1, 134, N'NORT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Northern Irish', NULL, N'SYSTEM'),
+    (1, 144, N'POR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Portuguese', NULL, N'SYSTEM'),
+    (1, 122, N'MOS', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Mosotho', NULL, N'SYSTEM'),
+    (1, 120, N'MONG', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Mongolian', NULL, N'SYSTEM'),
+    (1, 100, N'LEB', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Lebanese', NULL, N'SYSTEM'),
+    (1, 101, N'LIB', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Liberian', NULL, N'SYSTEM'),
+    (1, 102, N'LIBY', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Libyan', NULL, N'SYSTEM'),
+    (1, 103, N'LIE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Liechtensteiner', NULL, N'SYSTEM'),
+    (1, 104, N'LIT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Lithuanian', NULL, N'SYSTEM'),
+    (1, 105, N'LUX', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Luxembourger', NULL, N'SYSTEM'),
+    (1, 106, N'MAC', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Macedonian', NULL, N'SYSTEM'),
+    (1, 107, N'MAL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Malagasy', NULL, N'SYSTEM'),
+    (1, 108, N'MALA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Malawian', NULL, N'SYSTEM'),
+    (1, 121, N'MOR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Moroccan', NULL, N'SYSTEM'),
+    (1, 109, N'MALA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Malaysian', NULL, N'SYSTEM'),
+    (1, 111, N'MALI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Malian', NULL, N'SYSTEM'),
+    (1, 112, N'MALT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Maltese', NULL, N'SYSTEM'),
+    (1, 113, N'MAR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Marshallese', NULL, N'SYSTEM'),
+    (1, 114, N'MAU', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Mauritanian', NULL, N'SYSTEM'),
+    (1, 115, N'MAUR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Mauritian', NULL, N'SYSTEM'),
+    (1, 116, N'MEX', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Mexican', NULL, N'SYSTEM');
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] OFF;
+GO
+
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] ON;
+INSERT INTO [ConfigGenericItems]
+    ([GroupId], [Id], [Code], [Comment], [CreatedDate], [Description], [LastUpdatedDate], [LastUpdatedUserName])
+VALUES
+    (1, 117, N'MIC', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Micronesian', NULL, N'SYSTEM'),
+    (1, 118, N'MOL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Moldovan', NULL, N'SYSTEM'),
+    (1, 119, N'MON', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Monacan', NULL, N'SYSTEM'),
+    (1, 110, N'MALD', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Maldivian', NULL, N'SYSTEM'),
+    (1, 145, N'QAT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Qatari', NULL, N'SYSTEM'),
+    (1, 146, N'ROM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Romanian', NULL, N'SYSTEM'),
+    (1, 147, N'RUS', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Russian', NULL, N'SYSTEM'),
+    (1, 173, N'SWI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Swiss', NULL, N'SYSTEM'),
+    (1, 174, N'SYR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Syrian', NULL, N'SYSTEM'),
+    (1, 175, N'TAI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Taiwanese', NULL, N'SYSTEM'),
+    (1, 176, N'TAJ', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Tajik', NULL, N'SYSTEM'),
+    (1, 177, N'TAN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Tanzanian', NULL, N'SYSTEM'),
+    (1, 178, N'THA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Thai', NULL, N'SYSTEM'),
+    (1, 179, N'TOG', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Togolese', NULL, N'SYSTEM'),
+    (1, 180, N'TON', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Tongan', NULL, N'SYSTEM'),
+    (1, 181, N'TRI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Trinidadian or Tobagonian', NULL, N'SYSTEM'),
+    (1, 172, N'SWE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Swedish', NULL, N'SYSTEM'),
+    (1, 182, N'TUN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Tunisian', NULL, N'SYSTEM'),
+    (1, 184, N'TUV', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Tuvaluan', NULL, N'SYSTEM'),
+    (1, 185, N'UGA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Ugandan', NULL, N'SYSTEM'),
+    (1, 186, N'UKR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Ukrainian', NULL, N'SYSTEM'),
+    (1, 187, N'URUG', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Uruguayan', NULL, N'SYSTEM'),
+    (1, 188, N'UZB', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Uzbekistani', NULL, N'SYSTEM'),
+    (1, 189, N'VEN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Venezuelan', NULL, N'SYSTEM'),
+    (1, 190, N'VIE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Vietnamese', NULL, N'SYSTEM'),
+    (1, 191, N'WEL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Welsh', NULL, N'SYSTEM'),
+    (1, 192, N'YEM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Yemenite', NULL, N'SYSTEM'),
+    (1, 183, N'TUR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Turkish', NULL, N'SYSTEM'),
+    (1, 171, N'SWA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Swazi', NULL, N'SYSTEM'),
+    (1, 170, N'SUR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Surinamer', NULL, N'SYSTEM'),
+    (1, 169, N'SUD', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Sudanese', NULL, N'SYSTEM'),
+    (1, 148, N'RWA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Rwandan', NULL, N'SYSTEM'),
+    (1, 149, N'SAI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Saint Lucian', NULL, N'SYSTEM'),
+    (1, 150, N'SAL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Salvadoran', NULL, N'SYSTEM'),
+    (1, 151, N'SAM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Samoan', NULL, N'SYSTEM'),
+    (1, 152, N'SAN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'San Marinese', NULL, N'SYSTEM'),
+    (1, 153, N'SAO', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Sao Tomean', NULL, N'SYSTEM'),
+    (1, 154, N'SAU', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Saudi', NULL, N'SYSTEM'),
+    (1, 155, N'SCO', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Scottish', NULL, N'SYSTEM'),
+    (1, 156, N'SEN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Senegalese', NULL, N'SYSTEM'),
+    (1, 157, N'SER', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Serbian', NULL, N'SYSTEM'),
+    (1, 158, N'SEY', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Seychellois', NULL, N'SYSTEM');
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] OFF;
+GO
+
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] ON;
+INSERT INTO [ConfigGenericItems]
+    ([GroupId], [Id], [Code], [Comment], [CreatedDate], [Description], [LastUpdatedDate], [LastUpdatedUserName])
+VALUES
+    (1, 159, N'SIE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Sierra Leonean', NULL, N'SYSTEM'),
+    (1, 160, N'SIN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Singaporean', NULL, N'SYSTEM'),
+    (1, 161, N'SLO', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Slovakian', NULL, N'SYSTEM'),
+    (1, 162, N'SLOV', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Slovenian', NULL, N'SYSTEM'),
+    (1, 163, N'SOL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Solomon Islander', NULL, N'SYSTEM'),
+    (1, 164, N'SOM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Somali', NULL, N'SYSTEM'),
+    (1, 165, N'SOU', N'Initial seed', '2021-12-31T00:00:00.0000000', N'South African', NULL, N'SYSTEM'),
+    (1, 166, N'SOUT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'South Korean', NULL, N'SYSTEM'),
+    (1, 167, N'SPA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Spanish', NULL, N'SYSTEM'),
+    (1, 168, N'SRI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Sri Lankan', NULL, N'SYSTEM'),
+    (1, 99, N'LAT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Latvian', NULL, N'SYSTEM'),
+    (1, 98, N'LAO', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Laotian', NULL, N'SYSTEM'),
+    (1, 97, N'KYR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Kyrgyz', NULL, N'SYSTEM'),
+    (1, 96, N'KUW', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Kuwaiti', NULL, N'SYSTEM'),
+    (1, 27, N'BRI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'British', NULL, N'SYSTEM'),
+    (1, 28, N'BRU', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Bruneian', NULL, N'SYSTEM'),
+    (1, 29, N'BUL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Bulgarian', NULL, N'SYSTEM'),
+    (1, 30, N'BUR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Burkinabe', NULL, N'SYSTEM'),
+    (1, 31, N'BURM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Burmese', NULL, N'SYSTEM'),
+    (1, 32, N'BURU', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Burundian', NULL, N'SYSTEM'),
+    (1, 33, N'CAM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Cambodian', NULL, N'SYSTEM'),
+    (1, 34, N'CAME', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Cameroonian', NULL, N'SYSTEM'),
+    (1, 35, N'CAN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Canadian', NULL, N'SYSTEM'),
+    (1, 26, N'BRA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Brazilian', NULL, N'SYSTEM'),
+    (1, 36, N'CAP', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Cape Verdean', NULL, N'SYSTEM'),
+    (1, 38, N'CHA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Chadian', NULL, N'SYSTEM'),
+    (1, 39, N'CHI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Chilean', NULL, N'SYSTEM'),
+    (1, 40, N'CHIN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Chinese', NULL, N'SYSTEM'),
+    (1, 41, N'COL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Colombian', NULL, N'SYSTEM'),
+    (1, 42, N'COM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Comoran', NULL, N'SYSTEM'),
+    (1, 43, N'CON', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Congolese', NULL, N'SYSTEM'),
+    (1, 44, N'COS', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Costa Rican', NULL, N'SYSTEM'),
+    (1, 45, N'CRO', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Croatian', NULL, N'SYSTEM'),
+    (1, 46, N'CUB', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Cuban', NULL, N'SYSTEM'),
+    (1, 37, N'CEN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Central African', NULL, N'SYSTEM'),
+    (1, 25, N'BOS', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Bosnian', NULL, N'SYSTEM'),
+    (1, 24, N'BOL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Bolivian', NULL, N'SYSTEM'),
+    (1, 23, N'BHU', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Bhutanese', NULL, N'SYSTEM'),
+    (1, 2, N'ALB', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Albanian', NULL, N'SYSTEM'),
+    (1, 3, N'ALG', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Algerian', NULL, N'SYSTEM'),
+    (1, 4, N'AME', N'Initial seed', '2021-12-31T00:00:00.0000000', N'American', NULL, N'SYSTEM'),
+    (1, 5, N'AND', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Andorran', NULL, N'SYSTEM');
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] OFF;
+GO
+
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] ON;
+INSERT INTO [ConfigGenericItems]
+    ([GroupId], [Id], [Code], [Comment], [CreatedDate], [Description], [LastUpdatedDate], [LastUpdatedUserName])
+VALUES
+    (1, 6, N'ANG', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Angolan', NULL, N'SYSTEM'),
+    (1, 7, N'ANT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Antiguans', NULL, N'SYSTEM'),
+    (1, 8, N'ARG', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Argentinean', NULL, N'SYSTEM'),
+    (1, 9, N'ARM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Armenian', NULL, N'SYSTEM'),
+    (1, 10, N'AUS', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Australian', NULL, N'SYSTEM'),
+    (1, 11, N'AUST', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Austrian', NULL, N'SYSTEM'),
+    (1, 12, N'AZE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Azerbaijani', NULL, N'SYSTEM'),
+    (1, 13, N'BAH', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Bahamian', NULL, N'SYSTEM'),
+    (1, 14, N'BAHR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Bahraini', NULL, N'SYSTEM'),
+    (1, 15, N'BAN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Bangladeshi', NULL, N'SYSTEM'),
+    (1, 16, N'BAR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Barbadian', NULL, N'SYSTEM'),
+    (1, 17, N'BARB', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Barbudans', NULL, N'SYSTEM'),
+    (1, 18, N'BAT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Batswana', NULL, N'SYSTEM'),
+    (1, 19, N'BEL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Belarusian', NULL, N'SYSTEM'),
+    (1, 20, N'BELG', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Belgian', NULL, N'SYSTEM'),
+    (1, 21, N'BELI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Belizean', NULL, N'SYSTEM'),
+    (1, 22, N'BEN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Beninese', NULL, N'SYSTEM'),
+    (1, 47, N'CYP', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Cypriot', NULL, N'SYSTEM'),
+    (1, 193, N'ZAM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Zambian', NULL, N'SYSTEM'),
+    (1, 48, N'CZE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Czech', NULL, N'SYSTEM'),
+    (1, 50, N'DJI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Djibouti', NULL, N'SYSTEM'),
+    (1, 76, N'HAI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Haitian', NULL, N'SYSTEM'),
+    (1, 77, N'HER', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Herzegovinian', NULL, N'SYSTEM'),
+    (1, 78, N'HON', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Honduran', NULL, N'SYSTEM'),
+    (1, 79, N'HUN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Hungarian', NULL, N'SYSTEM'),
+    (1, 80, N'I-K', N'Initial seed', '2021-12-31T00:00:00.0000000', N'I-Kiribati', NULL, N'SYSTEM'),
+    (1, 81, N'ICE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Icelander', NULL, N'SYSTEM'),
+    (1, 82, N'IND', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Indian', NULL, N'SYSTEM'),
+    (1, 83, N'INDO', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Indonesian', NULL, N'SYSTEM'),
+    (1, 84, N'IRA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Iranian', NULL, N'SYSTEM'),
+    (1, 75, N'GUY', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Guyanese', NULL, N'SYSTEM'),
+    (1, 85, N'IRAQ', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Iraqi', NULL, N'SYSTEM'),
+    (1, 87, N'ISR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Israeli', NULL, N'SYSTEM'),
+    (1, 88, N'ITA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Italian', NULL, N'SYSTEM'),
+    (1, 89, N'IVO', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Ivorian', NULL, N'SYSTEM'),
+    (1, 90, N'JAM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Jamaican', NULL, N'SYSTEM'),
+    (1, 91, N'JAP', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Japanese', NULL, N'SYSTEM'),
+    (1, 92, N'JOR', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Jordanian', NULL, N'SYSTEM'),
+    (1, 93, N'KAZ', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Kazakhstani', NULL, N'SYSTEM'),
+    (1, 94, N'KEN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Kenyan', NULL, N'SYSTEM'),
+    (1, 95, N'KIT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Kittian and Nevisian', NULL, N'SYSTEM'),
+    (1, 86, N'IRI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Irish', NULL, N'SYSTEM');
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] OFF;
+GO
+
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] ON;
+INSERT INTO [ConfigGenericItems]
+    ([GroupId], [Id], [Code], [Comment], [CreatedDate], [Description], [LastUpdatedDate], [LastUpdatedUserName])
+VALUES
+    (1, 74, N'GUIN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Guinean', NULL, N'SYSTEM'),
+    (1, 73, N'GUI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Guinea-Bissauan', NULL, N'SYSTEM'),
+    (1, 72, N'GUA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Guatemalan', NULL, N'SYSTEM'),
+    (1, 51, N'DOM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Dominican', NULL, N'SYSTEM'),
+    (1, 52, N'DUT', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Dutch', NULL, N'SYSTEM'),
+    (1, 53, N'EAS', N'Initial seed', '2021-12-31T00:00:00.0000000', N'East Timorese', NULL, N'SYSTEM'),
+    (1, 54, N'ECU', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Ecuadorean', NULL, N'SYSTEM'),
+    (1, 55, N'EGY', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Egyptian', NULL, N'SYSTEM'),
+    (1, 56, N'EMI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Emirian', NULL, N'SYSTEM'),
+    (1, 57, N'EQU', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Equatorial Guinean', NULL, N'SYSTEM'),
+    (1, 58, N'ERI', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Eritrean', NULL, N'SYSTEM'),
+    (1, 59, N'EST', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Estonian', NULL, N'SYSTEM'),
+    (1, 60, N'ETH', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Ethiopian', NULL, N'SYSTEM'),
+    (1, 61, N'FIJ', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Fijian', NULL, N'SYSTEM'),
+    (1, 62, N'FIL', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Filipino', NULL, N'SYSTEM'),
+    (1, 63, N'FIN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Finnish', NULL, N'SYSTEM'),
+    (1, 64, N'FRE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'French', NULL, N'SYSTEM'),
+    (1, 65, N'GAB', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Gabonese', NULL, N'SYSTEM'),
+    (1, 66, N'GAM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Gambian', NULL, N'SYSTEM'),
+    (1, 67, N'GEO', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Georgian', NULL, N'SYSTEM'),
+    (1, 68, N'GER', N'Initial seed', '2021-12-31T00:00:00.0000000', N'German', NULL, N'SYSTEM'),
+    (1, 69, N'GHA', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Ghanaian', NULL, N'SYSTEM'),
+    (1, 70, N'GRE', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Greek', NULL, N'SYSTEM'),
+    (1, 71, N'GREN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Grenadian', NULL, N'SYSTEM'),
+    (1, 49, N'DAN', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Danish', NULL, N'SYSTEM'),
+    (1, 194, N'ZIM', N'Initial seed', '2021-12-31T00:00:00.0000000', N'Zimbabwean', NULL, N'SYSTEM');
+IF EXISTS (SELECT *
+FROM [sys].[identity_columns]
+WHERE [name] IN (N'GroupId', N'Id', N'Code', N'Comment', N'CreatedDate', N'Description', N'LastUpdatedDate', N'LastUpdatedUserName') AND [object_id] = OBJECT_ID(N'[ConfigGenericItems]'))
+    SET IDENTITY_INSERT [ConfigGenericItems] OFF;
+GO
+
+INSERT INTO [__EFMigrationsHistory]
+    ([MigrationId], [ProductVersion])
+VALUES
+    (N'20210423195638_Add_Nationalities_Seeding', N'5.0.5');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+UPDATE [ConfigGenericItems] SET [Code] = N'MALAW'
+WHERE [GroupId] = 1 AND [Id] = 108;
+SELECT @@ROWCOUNT;
+
+GO
+
+INSERT INTO [__EFMigrationsHistory]
+    ([MigrationId], [ProductVersion])
+VALUES
+    (N'20210423200057_Update_Malawyan', N'5.0.5');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+ALTER TABLE [SystemDataTypes] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [PeoplesPhoneInformations] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [PeoplesInternetInformations] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [Peoples] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [PeopleAttributions] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [PeopleAddresses] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [ConfigGenericItems] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [ConfigGenericItemExtentionValues] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [ConfigGenericItemExtentions] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [ConfigGenericGroups] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [ColonyBuildings] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [ColonyBuildingRooms] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+ALTER TABLE [Colonies] ADD [IsDeleted] bit NOT NULL DEFAULT CAST(0 AS bit);
+GO
+
+INSERT INTO [__EFMigrationsHistory]
+    ([MigrationId], [ProductVersion])
+VALUES
+    (N'20210424145247_Add_IsDeleted_BaseEntity', N'5.0.5');
 GO
 
 COMMIT;

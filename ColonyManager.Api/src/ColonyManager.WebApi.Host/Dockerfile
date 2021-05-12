@@ -1,11 +1,11 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:latest AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5000
+EXPOSE 5001
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:latest AS build
 WORKDIR /src
 COPY ["ColonyManager.Api/src/ColonyManager.WebApi.Host/ColonyManager.WebApi.Host.csproj", "src/ColonyManager.WebApi.Host/"]
 COPY ["ColonyManager.Api/src/ColonyManager.Application/ColonyManager.Application.csproj", "src/ColonyManager.Application/"]
