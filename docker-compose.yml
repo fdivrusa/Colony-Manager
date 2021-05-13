@@ -53,7 +53,6 @@ services:
     image: mcr.microsoft.com/mssql/server:2019-latest
     hostname: sql-server
     container_name: sql-server
-    user: root
     ports:
       - "1433:1433"
     environment:
