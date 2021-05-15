@@ -57,8 +57,6 @@ steps:
   displayName: Push Docker services
   inputs:
     action: Push services
-    dockerComposeFile: docker-compose.yml
-    projectName: $(Build.Repository.Name)
+    dockerComposeFile: '**/docker-compose.yml'
     includeLatestTag: true
-    qualifyImageNames: false
     additionalImageTags: $(Build.BuildId)
