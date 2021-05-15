@@ -44,19 +44,3 @@ steps:
   inputs:
     command: 'test'
     projects:  '**/*Tests/*.csproj'
-    
-- task: DockerCompose@0
-  displayName: Build Docker services
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'Docker hub'
-    dockerComposeFile: '**/docker-compose.yml'
-    action: 'Build services'
-
-- task: DockerCompose@0
-  displayName: Push Docker services
-  inputs:
-    action: Push services
-    dockerComposeFile: '**/docker-compose.yml'
-    includeLatestTag: true
-    additionalImageTags: $(Build.BuildId)
