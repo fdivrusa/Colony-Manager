@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: ColonyManager.WebApp/Dockerfile
     ports:
-      - "4200:80"
+      - "4201:80"
     volumes:
       - "./dockerVolumes/webApp/app:/app"
       - "./dockerVolumes/webApp/app/node_modules:/app/node_modules"
