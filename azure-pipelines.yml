@@ -52,6 +52,7 @@ steps:
     repository: 'flodv06/colonymanagerapi'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile.ColonyManagerApi'
+    tags: latest
     
 - task: Docker@2
   displayName: Build and Push ColonyManagerWebApp Image
@@ -60,3 +61,4 @@ steps:
     repository: 'flodv06/colonymanagerwebapp'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile.ColonyManagerWebApp'
+    tags: latest
