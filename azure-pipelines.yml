@@ -8,7 +8,7 @@ trigger:
 - developp
 
 pool:
-  vmImage: 'linux-latest'
+  vmImage: "ubuntu-latest"
 
 variables:
   solution: '**/ColonyManager.Api/ColonyManager.sln'
