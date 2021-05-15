@@ -3,7 +3,7 @@ version: "3.4"
 services:
 
   colonymanager.webapp:
-    image: ${DOCKER_REGISTRY-}colonymanagerwebapp
+    image: flodv06/colonymanagerwebapp
     container_name: colonymanager-webapp
     build:
       context: .
@@ -23,7 +23,7 @@ services:
       - ASPNETCORE_HTTPS_PORT=5001
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Test123Test123
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/ColonyManager.WebApi.Host.pfx
-    image: ${DOCKER_REGISTRY-}colonymanagerwebapihost
+    image: flodv06/colonymanagerwebapihost
     container_name: colonymanager-webapi-host
     build:
       context: .
