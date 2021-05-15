@@ -6,6 +6,7 @@ namespace ColonyManager.WebApi.Host
     using Microsoft.Extensions.Hosting;
     using Serilog;
     using System;
+    using System.IO;
 
     public class Program
     {
@@ -43,10 +44,14 @@ namespace ColonyManager.WebApi.Host
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
               Host.CreateDefaultBuilder(args)
-            .UseSerilog()
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
+                  .UseSerilog()
+                  .ConfigureWebHostDefaults(webBuilder =>
+                  {
+                      webBuilder.UseStartup<Startup>()
+                      .UseKestrel()
+                      .UseContentRoot(Directory.GetCurrentDirectory())
+                      .UseUrls("https://*:5001", "http://*:5000")
+                      .UseIISIntegration();
+                  });
     }
 }

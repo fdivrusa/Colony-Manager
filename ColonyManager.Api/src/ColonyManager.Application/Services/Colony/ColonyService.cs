@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using ColonyManager.Data;
+using ColonyManager.Data.Entities;
 using ColonyManager.Domain.Interfaces.Services;
 using ColonyManager.Domain.Models;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -35,7 +37,17 @@ namespace ColonyManager.Application.Services
 
         public async Task<ColonyDto> AddColonyAsync(AddColonyRequestDto request, string fullName)
         {
-            throw new NotImplementedException();
+            _logger.LogDebug($"Add new colony. Request {JsonConvert.SerializeObject(request)}");
+            await _addValidator.ValidateAndThrowAsync(request);
+
+            var entity = _mapper.Map<Colony>(request);
+            entity.CreatedDate = DateTime.Now;
+            entity.LastUpdatedUserName = fullName;
+
+            _dbContext.Add(entity);
+            await _dbContext.SaveChangesAsync();
+
+            return _mapper.Map<ColonyDto>(entity);
         }
     }
 }

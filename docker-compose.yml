@@ -1,0 +1,67 @@
+version: "3.4"
+
+services:
+
+  colonymanager.webapp:
+    image: flodv06/colonymanagerwebapp
+    container_name: colonymanager-webapp
+    build:
+      context: .
+      dockerfile: Dockerfile.ColonyManagerWebApp
+    ports:
+      - "4201:80"
+    volumes:
+      - "./dockerVolumes/webApp/app:/app"
+      - "./dockerVolumes/webApp/app/node_modules:/app/node_modules"
+    depends_on:
+      - "colonymanager.webapi.host"
+
+  colonymanager.webapi.host:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:5001;http://+:5000
+      - ASPNETCORE_HTTPS_PORT=5001
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Test123Test123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/ColonyManager.WebApi.Host.pfx
+    image: flodv06/colonymanagerwebapihost
+    container_name: colonymanager-webapi-host
+    build:
+      context: .
+      dockerfile: Dockerfile.ColonyManagerApi
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    depends_on:
+      - sql-server
+      - seq-server
+
+  seq-server:
+    image: datalust/seq:latest
+    hostname: seq-server
+    container_name: seq-server
+    ports:
+      - "5341:5341"
+      - "8081:80"
+    environment:
+      - ACCEPT_EULA=Y
+    restart: unless-stopped
+    volumes:
+      - ./dockerVolumes/seq:/data
+
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    hostname: sql-server
+    container_name: sql-server
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Test123Test123
+      - MSSQL_PID=Enterprise
+      - TZ=Europe/Brussels
+    volumes:
+      - ./dockerVolumes/mssql/data:/var/opt/mssql/data
+      - ./dockerVolumes/mssql/logs:/var/opt/mssql/log
+      - ./dockerVolumes/mssql/secrets:/var/opt/mssql/secrets
