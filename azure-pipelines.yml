@@ -8,7 +8,7 @@ trigger:
 - developp
 
 pool:
-  vmImage: "windows-latest"
+  vmImage: "ubuntu-latest"
 
 variables:
   solution: '**/ColonyManager.Api/ColonyManager.sln'
@@ -16,34 +16,36 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
+- task: UseDotNet@2
+  displayName: 'Install .NET Core SDK'
   inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
-  displayName: Build solution
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    version: 5.0.x
+    performMultiLevelLookup: true
+    includePreviewVersions: true
     
-- task: VSTest@2
+- task: DotNetCoreCLI@2
+  displayName: 'Restore'
+  inputs:
+    command: 'restore'
+    projects: '$(solution)'
+    feedsToUse: 'select'
+  
+- task: DotNetCoreCLI@2
+  displayName: 'Build solution'
+  inputs:
+    command: 'build'
+    projects: '$(solution)'
+    arguments: --configuration $(buildConfiguration)
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+  
+- task: DotNetCoreCLI@2
   displayName: Executing Tests
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*tests*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-      !**\bin\**\ref\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    codeCoverageEnabled: true
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
+    command: 'test'
+    projects: '$(solution)'
+    testRunTitle: 'Tests'
+    
 - task: DockerCompose@0
   displayName: Build Docker services
   inputs:
