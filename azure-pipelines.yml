@@ -44,21 +44,19 @@ steps:
   inputs:
     command: 'test'
     projects:  '**/*Tests/*.csproj'
-    
-- task: DockerCompose@0
-  displayName: Build Docker services
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'Docker hub'
-    dockerComposeFile: '**/docker-compose.yml'
-    action: 'Build services'
 
-- task: DockerCompose@0
-  displayName: Push Docker services
+- task: Docker@2
+  displayName: Build and Push ColonyManagerWebApi Image
   inputs:
-    action: Push services
-    dockerComposeFile: docker-compose.yml
-    projectName: $(Build.Repository.Name)
-    includeLatestTag: true
-    qualifyImageNames: false
-    additionalImageTags: $(Build.BuildId)
+    containerRegistry: 'Docker hub'
+    repository: 'colonymanagerwebapi'
+    command: 'buildAndPush'
+    Dockerfile: 'ColonyManager.Api/src/ColonyManager.WebApi.Host/Dockerfile'
+    
+- task: Docker@2
+  displayName: Build and Push ColonyManagerWebApp Image
+  inputs:
+    containerRegistry: 'Docker hub'
+    repository: 'colonymanagerwebapi'
+    command: 'buildAndPush'
+    Dockerfile: 'ColonyManager.WebApp/Dockerfile'
