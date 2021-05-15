@@ -43,8 +43,7 @@ steps:
   displayName: Executing Tests
   inputs:
     command: 'test'
-    projects: '$(solution)'
-    testRunTitle: 'Tests'
+    projects:  '**/*Tests/*.csproj'
     
 - task: DockerCompose@0
   displayName: Build Docker services
