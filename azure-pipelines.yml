@@ -44,3 +44,19 @@ steps:
   inputs:
     command: 'test'
     projects:  '**/*Tests/*.csproj'
+
+- task: Docker@2
+  displayName: Build and Push ColonyManagerWebApi Image
+  inputs:
+    containerRegistry: 'Docker hub'
+    repository: 'colonymanagerwebapi'
+    command: 'buildAndPush'
+    Dockerfile: '**/ColonyManager.WebApi/Dockerfile'
+    
+- task: Docker@2
+  displayName: Build and Push ColonyManagerWebApp Image
+  inputs:
+    containerRegistry: 'Docker hub'
+    repository: 'colonymanagerwebapi'
+    command: 'buildAndPush'
+    Dockerfile: '**/ColonyManager.WebApp/Dockerfile'
