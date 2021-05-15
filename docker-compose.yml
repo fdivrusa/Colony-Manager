@@ -3,6 +3,7 @@ version: "3.4"
 services:
 
   colonymanager.webapp:
+    image: ${DOCKER_REGISTRY-}colonymanagerwebapp
     container_name: colonymanager-webapp
     build:
       context: .
