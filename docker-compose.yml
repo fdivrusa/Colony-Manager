@@ -7,7 +7,7 @@ services:
     container_name: colonymanager-webapp
     build:
       context: .
-      dockerfile: ColonyManager.WebApp/Dockerfile
+      dockerfile: Dockerfile.ColonyManagerWebApp
     ports:
       - "4201:80"
     volumes:
@@ -27,7 +27,7 @@ services:
     container_name: colonymanager-webapi-host
     build:
       context: .
-      dockerfile: ColonyManager.Api/src/ColonyManager.WebApi.Host/Dockerfile
+      dockerfile: Dockerfile.ColonyManagerApi
     ports:
       - "5000:5000"
       - "5001:5001"
