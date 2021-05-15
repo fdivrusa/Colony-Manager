@@ -45,20 +45,12 @@ steps:
     command: 'test'
     projects:  '**/*Tests/*.csproj'
 
-- task: Docker@2
-  displayName: Build and Push ColonyManagerWebApi Image
+- task: DockerCompose@0
   inputs:
-    containerRegistry: 'Docker hub'
-    repository: 'flodv06/colonymanagerapi'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile.ColonyManagerApi'
-    tags: latest
-    
-- task: Docker@2
-  displayName: Build and Push ColonyManagerWebApp Image
-  inputs:
-    containerRegistry: 'Docker hub'
-    repository: 'flodv06/colonymanagerwebapp'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile.ColonyManagerWebApp'
-    tags: latest
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: 'Docker hub'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Build services'
+    includeSourceTags: true
+    includeLatestTag: true
+
