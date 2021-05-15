@@ -51,7 +51,7 @@ steps:
     containerRegistry: 'Docker hub'
     repository: 'colonymanagerwebapi'
     command: 'buildAndPush'
-    Dockerfile: '**/ColonyManager.WebApi/Dockerfile'
+    Dockerfile: 'ColonyManager.Api/src/ColonyManager.WebApi.Host/Dockerfile'
     
 - task: Docker@2
   displayName: Build and Push ColonyManagerWebApp Image
@@ -59,4 +59,4 @@ steps:
     containerRegistry: 'Docker hub'
     repository: 'colonymanagerwebapi'
     command: 'buildAndPush'
-    Dockerfile: '**/ColonyManager.WebApp/Dockerfile'
+    Dockerfile: 'ColonyManager.WebApp/Dockerfile'
