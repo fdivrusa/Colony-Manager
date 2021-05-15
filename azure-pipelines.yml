@@ -57,6 +57,6 @@ steps:
   displayName: Build and Push ColonyManagerWebApp Image
   inputs:
     containerRegistry: 'Docker hub'
-    repository: 'colonymanagerwebapi'
+    repository: 'colonymanagerwebapp'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile.ColonyManagerWebApp'
