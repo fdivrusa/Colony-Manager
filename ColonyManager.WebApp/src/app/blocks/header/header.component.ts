@@ -67,11 +67,7 @@ export class HeaderComponent implements OnInit {
         break;
 
       default:
-        if (
-          this.sidenav &&
-          this.sidenav.opened &&
-          this.menuItems.length === 0
-        ) {
+        if (this.sidenav && this.sidenav.opened) {
           this.sidenav.toggle();
         }
         break;
@@ -79,6 +75,9 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToRoute(route: string) {
+    if (this.sidenav && this.sidenav.opened) {
+      this.sidenav.toggle();
+    }
     this.router.navigate([route]);
   }
 }
