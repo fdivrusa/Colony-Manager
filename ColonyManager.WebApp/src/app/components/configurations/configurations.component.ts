@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { ConfigurationGroup } from 'src/app/models/configurations/configurationGroup';
 import { ConfigurationService } from 'src/app/services/configuration.service';
@@ -28,7 +29,11 @@ export class ConfigurationsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private configurationService: ConfigurationService) {}
+  constructor(
+    private configurationService: ConfigurationService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.loadConfigGroups();
@@ -60,6 +65,9 @@ export class ConfigurationsComponent implements OnInit {
   }
 
   selectGroup(id: number) {
+    this.router.navigate([id + '/itemsManagement'], {
+      relativeTo: this.route,
+    });
     console.log(id);
   }
 }

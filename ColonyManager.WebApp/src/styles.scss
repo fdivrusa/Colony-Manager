@@ -66,7 +66,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 
     mat-form-field {
       background-color: white;
@@ -88,8 +88,6 @@ body {
 
   table {
     width: 100%;
-    box-shadow: 7px 7px 10px $dark-grey;
-
     .mat-header-cell {
       background: $light-grey;
     }

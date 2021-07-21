@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ConfigurationsComponent,
     children: [
       {
-        path: 'details/:id',
+        path: ':id/itemsManagement',
         component: ConfigurationItemsComponent,
       },
     ],
