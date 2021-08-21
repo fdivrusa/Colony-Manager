@@ -45,22 +45,22 @@ steps:
     command: 'test'
     projects:  '**/*Tests/*.csproj'
 
-- task: DockerCompose@0
-  displayName: 'Build Docker Compose'
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'Docker hub'
-    dockerComposeFile: '**/docker-compose.yml'
-    action: 'Build services'
-    includeSourceTags: true
-    includeLatestTag: true
+# - task: DockerCompose@0
+#   displayName: 'Build Docker Compose'
+#   inputs:
+#     containerregistrytype: 'Container Registry'
+#     dockerRegistryEndpoint: 'Docker hub'
+#     dockerComposeFile: '**/docker-compose.yml'
+#     action: 'Build services'
+#     includeSourceTags: true
+#     includeLatestTag: true
 
-- task: DockerCompose@0
-  displayName: 'Push Docker Compose'
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'Docker hub'
-    dockerComposeFile: '**/docker-compose.yml'
-    action: 'Push services'
-    includeSourceTags: true
-    includeLatestTag: true
+# - task: DockerCompose@0
+#   displayName: 'Push Docker Compose'
+#   inputs:
+#     containerregistrytype: 'Container Registry'
+#     dockerRegistryEndpoint: 'Docker hub'
+#     dockerComposeFile: '**/docker-compose.yml'
+#     action: 'Push services'
+#     includeSourceTags: true
+#     includeLatestTag: true
