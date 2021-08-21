@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using ColonyManager.Application.Services;
+﻿using ColonyManager.Application.Services;
 using ColonyManager.Domain.Interfaces.Services;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;

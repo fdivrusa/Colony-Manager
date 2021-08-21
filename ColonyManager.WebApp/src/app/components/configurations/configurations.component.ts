@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { ConfigurationGroup } from 'src/app/models/configurations/configurationGroup';
+import { ConfigurationGroup } from 'src/app/models/configurations';
 import { ConfigurationService } from 'src/app/services/configuration.service';
 
 @Component({
@@ -68,6 +68,5 @@ export class ConfigurationsComponent implements OnInit {
     this.router.navigate([id + '/itemsManagement'], {
       relativeTo: this.route,
     });
-    console.log(id);
   }
 }

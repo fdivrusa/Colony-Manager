@@ -46,8 +46,8 @@ namespace ColonyManager.WPF.Pages
                         }
                     }
 
-                    var columnBinding = headerClicked.Column.DisplayMemberBinding as Binding;
-                    var sortBy = columnBinding?.Path.Path ?? headerClicked.Column.Header as string;
+                    Binding columnBinding = headerClicked.Column.DisplayMemberBinding as Binding;
+                    string sortBy = columnBinding?.Path.Path ?? headerClicked.Column.Header as string;
 
                     Sort(sortBy, direction);
 

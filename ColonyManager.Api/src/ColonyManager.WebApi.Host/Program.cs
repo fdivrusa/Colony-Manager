@@ -6,7 +6,6 @@ namespace ColonyManager.WebApi.Host
     using Microsoft.Extensions.Hosting;
     using Serilog;
     using System;
-    using System.IO;
 
     public class Program
     {

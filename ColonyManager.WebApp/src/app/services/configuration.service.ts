@@ -2,7 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ConfigurationGroup } from './../models/configurations/configurationGroup';
+import {
+  ConfigurationGroup,
+  ConfigurationItem,
+} from '../models/configurations';
 
 const apiUrl = environment.apiUrl;
 const httpOptions = {
@@ -18,6 +21,12 @@ export class ConfigurationService {
   getConfigurationGroups(): Observable<ConfigurationGroup[]> {
     return this.httpClient.get<ConfigurationGroup[]>(
       apiUrl + 'configGenericGroups'
+    );
+  }
+
+  getConfigurationItems(id: number): Observable<ConfigurationGroup> {
+    return this.httpClient.get<ConfigurationGroup>(
+      apiUrl + 'configGenericGroups/details?id=' + id
     );
   }
 }
