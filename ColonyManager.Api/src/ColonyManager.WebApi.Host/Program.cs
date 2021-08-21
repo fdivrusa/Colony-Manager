@@ -47,11 +47,7 @@ namespace ColonyManager.WebApi.Host
                   .UseSerilog()
                   .ConfigureWebHostDefaults(webBuilder =>
                   {
-                      webBuilder.UseStartup<Startup>()
-                      .UseKestrel()
-                      .UseContentRoot(Directory.GetCurrentDirectory())
-                      .UseUrls("https://*:5001", "http://*:5000")
-                      .UseIISIntegration();
+                      webBuilder.UseStartup<Startup>();
                   });
     }
 }
