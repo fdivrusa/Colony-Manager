@@ -96,12 +96,10 @@ body {
 
   table {
     width: 100%;
+
     .mat-header-cell {
       background: $light-grey;
-    }
-
-    th {
-      color: $typo-black;
+      text-align: center;
     }
 
     tr:hover {
@@ -109,9 +107,14 @@ body {
     }
 
     td {
+      text-align: center;
       fa-icon {
         color: $primary;
       }
+    }
+
+    .mat-sort-header-container {
+      justify-content: center;
     }
   }
 }

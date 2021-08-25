@@ -18,6 +18,7 @@ export class ConfigurationsComponent implements OnInit {
     'code',
     'description',
     'relatedSubject',
+    'createdDate',
     'lastUpdatedDate',
     'lastUpdatedUserName',
     'comment',

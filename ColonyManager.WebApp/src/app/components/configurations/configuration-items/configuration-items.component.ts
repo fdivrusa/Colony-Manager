@@ -21,6 +21,7 @@ export class ConfigurationItemsComponent implements OnInit {
     'id',
     'code',
     'description',
+    'createdDate',
     'lastUpdatedDate',
     'lastUpdatedUserName',
     'comment',

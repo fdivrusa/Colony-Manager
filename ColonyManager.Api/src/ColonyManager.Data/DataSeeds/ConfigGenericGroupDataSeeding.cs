@@ -18,6 +18,28 @@ namespace ColonyManager.Data.DataSeeds
                     LastUpdatedUserName = "SYSTEM",
                     Comment = "Initial seed",
                     RelatedSubject = "PEOPLES"
+                },
+
+                new ConfigGenericGroup
+                {
+                    Id= 2,
+                    Code = "COUNTRIES",
+                    Description = "Group that contains all the known countries",
+                    CreatedDate = new DateTime(2021, 12, 31),
+                    LastUpdatedUserName = "SYSTEM",
+                    Comment = "Initial seed",
+                    RelatedSubject = "PEOPLES"
+                },
+
+                new ConfigGenericGroup
+                {
+                    Id= 3,
+                    Code = "LANGUAGES",
+                    Description = "Group that contains all the known Languages",
+                    CreatedDate = new DateTime(2021, 12, 31),
+                    LastUpdatedUserName = "SYSTEM",
+                    Comment = "Initial seed",
+                    RelatedSubject = "PEOPLES"
                 }
             };
         }
