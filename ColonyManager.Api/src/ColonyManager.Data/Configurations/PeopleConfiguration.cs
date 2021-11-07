@@ -16,21 +16,21 @@ namespace ColonyManager.Data.Configurations
             builder.Property(x => x.FirstName).HasMaxLength(64);
 
             builder.HasOne(x => x.Gender)
-                .WithMany(x => x.PeopleGenders)
-                .HasForeignKey(x => new { x.ConfigGenericGenderGroupId, x.ConfigGenericGenderId })
-                .HasConstraintName("FK_People_ConfigGenericItem_Genders")
+                .WithMany(x => x.Peoples)
+                .HasForeignKey(x => new { x.GenderTypeId })
+                .HasConstraintName("FK_People_GenderType")
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.HasOne(x => x.Profession)
-                .WithMany(x => x.PeopleProfessions)
-                .HasForeignKey(x => new { x.ConfigGenericProfessionGroupId, x.ConfigGenericProfessionId })
-                .HasConstraintName("FK_People_ConfigGenericItem_Professions")
+                .WithMany(x => x.Peoples)
+                .HasForeignKey(x => new { x.ProfessionTypeId })
+                .HasConstraintName("FK_People_ProfessionType")
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.HasOne(x => x.Nationality)
-                .WithMany(x => x.PeopleNationalities)
-                .HasForeignKey(x => new { x.ConfigGenericNationalityGroupId, x.ConfigGenericNationalityId })
-                .HasConstraintName("FK_People_ConfigGenericItem_Nationalities")
+                .WithMany(x => x.Peoples)
+                .HasForeignKey(x => new { x.NationalityId })
+                .HasConstraintName("FK_People_Nationality")
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             base.Configure(builder);

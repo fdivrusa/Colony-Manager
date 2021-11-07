@@ -21,8 +21,8 @@ namespace ColonyManager.Data.Configurations
 
             builder.HasOne(x => x.AttributionType)
                 .WithMany(x => x.PeopleAttributions)
-                .HasForeignKey(x => new { x.ConfigGenericTypeGroupId, x.ConfigGenericTypeId })
-                .HasConstraintName("FK_PeopleAttribution_ConfigGenericType")
+                .HasForeignKey(x => new { x.AttributionTypeId })
+                .HasConstraintName("FK_PeopleAttribution_AttributionType")
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             base.Configure(builder);

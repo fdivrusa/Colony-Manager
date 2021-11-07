@@ -8,8 +8,7 @@ namespace ColonyManager.Application.Validators
         public AddPeoplePhoneRequestDtoValidator()
         {
             RuleFor(x => x.PeopleId).NotEmpty();
-            RuleFor(x => x.ConfigGenericTypeGroupId).NotEmpty();
-            RuleFor(x => x.ConfigGenericTypeId).NotEmpty();
+            RuleFor(x => x.PhoneTypeId).NotEmpty();
             RuleFor(x => x.Value).NotEmpty();
         }
     }

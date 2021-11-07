@@ -21,9 +21,9 @@ namespace ColonyManager.Data.Configurations
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.HasOne(x => x.ColonyBuidingType)
-                .WithMany(x => x.ColonyBuildings)
-                .HasForeignKey(x => new { x.ConfigGenericTypeGroupId, x.ConfigGenericTypeId })
-                .HasConstraintName("FK_ColonyBuilding_ConfigGenericItem");
+                .WithMany(x => x.Buildings)
+                .HasForeignKey(x => new { x.BuildingTypeId })
+                .HasConstraintName("FK_ColonyBuilding_BuildingType");
 
             base.Configure(builder);
         }

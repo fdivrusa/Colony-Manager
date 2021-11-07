@@ -20,8 +20,8 @@ namespace ColonyManager.Data.Configurations
 
             builder.HasOne(x => x.Type)
                 .WithMany(x => x.PeopleInternetInformations)
-                .HasForeignKey(x => new { x.ConfigGenericTypeGroupId, x.ConfigGenericTypeId })
-                .HasConstraintName("FK_PeopleInternetInformation_ConfigGenericType");
+                .HasForeignKey(x => new { x.InternetInformationTypeId })
+                .HasConstraintName("FK_PeopleInternetInformation_InternetInformationType");
 
             base.Configure(builder);
         }

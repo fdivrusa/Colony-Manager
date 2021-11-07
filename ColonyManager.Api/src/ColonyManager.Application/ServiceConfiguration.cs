@@ -13,13 +13,6 @@ namespace ColonyManager.Application
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddValidatorsFromAssembly(typeof(ServiceConfiguration).Assembly);
 
-            services.AddScoped<IConfigGenericGroupService, ConfigGenericGroupService>();
-            services.AddScoped<IConfigGenericItemService, ConfigGenericItemService>();
-            services.AddScoped<IConfigGenericItemExtentionService, ConfigGenericItemExtentionService>();
-            services.AddScoped<IConfigGenericItemExtentionValueService, ConfigGenericItemExtentionValueService>();
-
-            services.AddScoped<ISystemDataTypeService, SystemDataTypeService>();
-
             services.AddScoped<IPeopleService, PeopleService>();
             services.AddScoped<IPeopleInternetInformationService, PeopleInternetInformationService>();
             services.AddScoped<IPeoplePhoneInformationService, PeoplePhoneInformationService>();

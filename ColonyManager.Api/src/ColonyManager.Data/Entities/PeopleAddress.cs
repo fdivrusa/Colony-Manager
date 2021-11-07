@@ -3,8 +3,7 @@
     public class PeopleAddress : BaseEntity
     {
         public int PeopleId { get; set; }
-        public int ConfigGenericTypeGroupId { get; set; }
-        public int ConfigGenericTypeId { get; set; }
+        public int AddressTypeId { get; set; }
         public string StreetName { get; set; }
         public string City { get; set; }
         public string Area { get; set; }
@@ -14,6 +13,6 @@
 
         public virtual People People { get; set; }
         public virtual Country Country { get; set; }
-        public virtual ConfigGenericItem Type { get; set; }
+        public virtual AddressType Type { get; set; }
     }
 }

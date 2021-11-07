@@ -17,7 +17,7 @@ mat-toolbar {
 }
 
 mat-sidenav-container {
-  background: url("../../../assets/Images/background.png") no-repeat;
+  background: $lighter-grey;
   background-size: cover;
   position: fixed;
   height: 100%;

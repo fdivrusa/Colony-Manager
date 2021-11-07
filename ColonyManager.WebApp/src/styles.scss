@@ -51,7 +51,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   height: 100%;
-  background: url("assets/Images/background.png") no-repeat;
+  background: url("assets/Images/backgroundLogin.png") no-repeat;
   background-size: cover;
 }
 
@@ -88,7 +88,7 @@ body {
 .dataTableContainer {
   width: 100%;
   height: 100%;
-  max-height: 400px;
+  max-height: 380px;
   overflow: auto;
   display: flex;
   align-items: flex-start;
@@ -98,8 +98,13 @@ body {
     width: 100%;
 
     .mat-header-cell {
-      background: $light-grey;
+      background: $primary;
       text-align: center;
+      color: $typo-light-grey;
+    }
+
+    .mat-sort-header-content {
+      color: $typo-light-grey;
     }
 
     tr:hover {

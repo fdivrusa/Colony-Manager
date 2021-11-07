@@ -21,9 +21,9 @@ namespace ColonyManager.Data.Configurations
                 .HasConstraintName("FK_PeopleAddress_Country");
 
             builder.HasOne(x => x.Type)
-                .WithMany(x => x.Addresses)
-                .HasForeignKey(x => new { x.ConfigGenericTypeGroupId, x.ConfigGenericTypeId })
-                .HasConstraintName("FK_PeopleAddress_Type");
+                .WithMany(x => x.PeoplesAdresses)
+                .HasForeignKey(x => new { x.AddressTypeId })
+                .HasConstraintName("FK_PeopleAddress_AddressType");
 
             base.Configure(builder);
         }

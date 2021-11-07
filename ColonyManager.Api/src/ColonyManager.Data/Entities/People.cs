@@ -16,19 +16,16 @@ namespace ColonyManager.Data.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
-        public int? ConfigGenericGenderGroupId { get; set; }
-        public int? ConfigGenericGenderId { get; set; }
-        public int? ConfigGenericProfessionGroupId { get; set; }
-        public int? ConfigGenericProfessionId { get; set; }
-        public int? ConfigGenericNationalityGroupId { get; set; }
-        public int? ConfigGenericNationalityId { get; set; }
+        public int GenderTypeId { get; set; }
+        public int? ProfessionTypeId { get; set; }
+        public int NationalityId { get; set; }
         public bool IsActive { get; set; }
         public bool Deceased { get; set; }
         public DateTime? DateOfDeath { get; set; }
 
-        public virtual ConfigGenericItem Gender { get; set; }
-        public virtual ConfigGenericItem Profession { get; set; }
-        public virtual ConfigGenericItem Nationality { get; set; }
+        public virtual Gender Gender { get; set; }
+        public virtual Profession Profession { get; set; }
+        public virtual Nationality Nationality { get; set; }
 
         public virtual ICollection<PeopleAddress> Addresses { get; set; }
         public virtual ICollection<PeoplePhoneInformation> PhoneInformations { get; set; }

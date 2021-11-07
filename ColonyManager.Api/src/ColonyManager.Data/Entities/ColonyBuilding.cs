@@ -13,12 +13,11 @@ namespace ColonyManager.Data.Entities
         public int ColonyId { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
-        public int ConfigGenericTypeGroupId { get; set; }
-        public int ConfigGenericTypeId { get; set; }
+        public int BuildingTypeId { get; set; }
         public Point Location { get; set; }
 
         public virtual Colony Colony { get; set; }
-        public virtual ConfigGenericItem ColonyBuidingType { get; set; }
+        public virtual BuildingType ColonyBuidingType { get; set; }
         public virtual ICollection<ColonyBuildingRoom> ColonyBuildingRooms { get; set; }
     }
 }

@@ -8,8 +8,7 @@ namespace ColonyManager.Application.Validators
         public AddPeopleInternetInformationRequestDtoValidator()
         {
             RuleFor(x => x.PeopleId).NotEmpty();
-            RuleFor(x => x.ConfigGenericTypeGroupId).NotEmpty();
-            RuleFor(x => x.ConfigGenericTypeId).NotEmpty();
+            RuleFor(x => x.InternetInformationTypeId).NotEmpty();
             RuleFor(x => x.Value).NotEmpty();
         }
     }
