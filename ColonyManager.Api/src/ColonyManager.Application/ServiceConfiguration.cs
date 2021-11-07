@@ -22,6 +22,8 @@ namespace ColonyManager.Application
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IEmailService, EmailService>();
 
+            services.AddScoped<INationalityService, NationalityService>();
+
             return services;
         }
     }

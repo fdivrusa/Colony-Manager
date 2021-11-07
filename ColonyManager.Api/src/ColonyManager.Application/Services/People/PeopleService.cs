@@ -36,7 +36,7 @@ namespace ColonyManager.Application.Services
         public async Task<IEnumerable<PeopleDetailedDto>> GetAllPeoplesAsync()
         {
             _logger.LogDebug("Get all people call");
-            return _mapper.Map<List<PeopleDetailedDto>>(await _dbContext.Peoples.ToListAsync());
+            return _mapper.Map<IEnumerable<PeopleDetailedDto>>(await _dbContext.Peoples.ToListAsync());
         }
 
         public async Task<PeopleDetailedDto> AddPeopleAsync(AddPeopleRequestDto request, string userName)
@@ -59,7 +59,7 @@ namespace ColonyManager.Application.Services
 
         public async Task<PeopleDetailedDto> UpdatePeopleAsync(UpdatePeopleRequestDto request, string userName)
         {
-            _logger.LogError($"Update existing people. Request : {JsonConvert.SerializeObject(request)}");
+            _logger.LogDebug($"Update existing people. Request : {JsonConvert.SerializeObject(request)}");
 
             await _updateValidator.ValidateAndThrowAsync(request);
 
@@ -78,6 +78,12 @@ namespace ColonyManager.Application.Services
             await _dbContext.SaveChangesAsync();
 
             return _mapper.Map<PeopleDetailedDto>(entity);
+        }
+
+        public async Task<PeopleDetailedDto> GetPeopleByIdAsync(int id)
+        {
+            _logger.LogDebug($"Get people by ID : {id}");
+            return _mapper.Map<PeopleDetailedDto>(await _dbContext.Peoples.SingleOrDefaultAsync(x => x.Id == id));
         }
     }
 }

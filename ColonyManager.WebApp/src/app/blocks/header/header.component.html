@@ -28,14 +28,6 @@
           <button
             *ngIf="loggedUser.role === 'Admin'"
             mat-button
-            [routerLink]="['/configurations']"
-            (click)="navigateToRoute('configurations')"
-          >
-            Configurations
-          </button>
-          <button
-            *ngIf="loggedUser.role === 'Admin'"
-            mat-button
             [routerLink]="['/accounts']"
             (click)="loadSideMenuItems('')"
           >

@@ -34,5 +34,11 @@ namespace ColonyManager.WebApi.Host.Controllers
         {
             return await _peopleService.UpdatePeopleAsync(request, Account?.FullName);
         }
+
+        [HttpGet("{id}")]
+        public async Task<PeopleDetailedDto> GetPeopleById(int id)
+        {
+            return await _peopleService.GetPeopleByIdAsync(id);
+        }
     }
 }

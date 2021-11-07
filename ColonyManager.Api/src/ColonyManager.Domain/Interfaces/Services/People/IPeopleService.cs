@@ -27,7 +27,12 @@ namespace ColonyManager.Domain.Interfaces.Services
         /// <param name="userName"></param>
         /// <returns></returns>
         Task<PeopleDetailedDto> UpdatePeopleAsync(UpdatePeopleRequestDto request, string userName);
+
+        /// <summary>
+        /// Get people by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<PeopleDetailedDto> GetPeopleByIdAsync(int id);
     }
-
-
 }
