@@ -136,13 +136,13 @@ namespace ColonyManager.WebApi.Host.Controllers
 
         [Authorize]
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             // users can delete their own account and admins can delete any account
             if (id != Account.Id && Account.Role != Role.Admin)
                 return Unauthorized(new { message = "Unauthorized" });
 
-            _accountService.DeleteAsync(id);
+            await _accountService.DeleteAsync(id);
             return Ok(new { message = "Account deleted successfully" });
         }
 

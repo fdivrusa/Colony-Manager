@@ -2,7 +2,7 @@
 
 namespace ColonyManager.Data.Entities
 {
-    public class Nationality : ConfigBaseEntity
+    public class Nationality : ParamConfigBaseEntity
     {
         public Nationality()
         {

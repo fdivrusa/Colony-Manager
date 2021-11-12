@@ -2,13 +2,13 @@
 
 namespace ColonyManager.Data.Entities
 {
-    public class Profession : ConfigBaseEntity
+    public class Profession : ParamConfigBaseEntity
     {
         public Profession()
         {
             Peoples = new List<People>();
         }
 
-        public ICollection<People> Peoples  { get; set; }
+        public ICollection<People> Peoples { get; set; }
     }
 }

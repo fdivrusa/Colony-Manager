@@ -1,6 +1,6 @@
 ﻿namespace ColonyManager.Data.Entities
 {
-    public class ConfigBaseEntity : BaseEntity
+    public class ParamConfigBaseEntity : BaseEntity
     {
         public string Code { get; set; }
         public string Description { get; set; }

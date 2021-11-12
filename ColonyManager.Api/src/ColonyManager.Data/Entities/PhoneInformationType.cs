@@ -2,7 +2,7 @@
 
 namespace ColonyManager.Data.Entities
 {
-    public class PhoneInformationType : ConfigBaseEntity
+    public class PhoneInformationType : ParamConfigBaseEntity
     {
         public PhoneInformationType()
         {

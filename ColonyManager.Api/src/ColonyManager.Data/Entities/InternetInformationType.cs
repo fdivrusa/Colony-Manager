@@ -2,7 +2,7 @@
 
 namespace ColonyManager.Data.Entities
 {
-    public class InternetInformationType : ConfigBaseEntity
+    public class InternetInformationType : ParamConfigBaseEntity
     {
         public InternetInformationType()
         {

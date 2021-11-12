@@ -2,7 +2,7 @@
 
 namespace ColonyManager.Data.Entities
 {
-    public class RoomType : ConfigBaseEntity
+    public class RoomType : ParamConfigBaseEntity
     {
         public RoomType()
         {

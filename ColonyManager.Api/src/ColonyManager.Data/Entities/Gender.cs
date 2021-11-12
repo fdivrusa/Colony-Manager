@@ -2,7 +2,7 @@
 
 namespace ColonyManager.Data.Entities
 {
-    public class Gender : ConfigBaseEntity
+    public class Gender : ParamConfigBaseEntity
     {
         public Gender()
         {

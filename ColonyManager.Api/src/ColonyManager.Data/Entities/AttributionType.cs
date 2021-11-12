@@ -2,7 +2,7 @@
 
 namespace ColonyManager.Data.Entities
 {
-    public class AttributionType : ConfigBaseEntity
+    public class AttributionType : ParamConfigBaseEntity
     {
         public AttributionType()
         {

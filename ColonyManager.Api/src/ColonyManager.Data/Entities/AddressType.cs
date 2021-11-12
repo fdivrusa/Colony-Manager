@@ -2,7 +2,7 @@
 
 namespace ColonyManager.Data.Entities
 {
-    public class AddressType : ConfigBaseEntity
+    public class AddressType : ParamConfigBaseEntity
     {
         public AddressType()
         {

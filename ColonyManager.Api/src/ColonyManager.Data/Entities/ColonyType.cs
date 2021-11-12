@@ -2,7 +2,7 @@
 
 namespace ColonyManager.Data.Entities
 {
-    public class ColonyType : ConfigBaseEntity
+    public class ColonyType : ParamConfigBaseEntity
     {
         public ColonyType()
         {

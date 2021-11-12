@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ColonyManager.Data.Configurations
 {
-    public class ConfigBaseConfiguration<T> : IEntityTypeConfiguration<T> where T : ConfigBaseEntity
+    public class ConfigBaseConfiguration<T> : IEntityTypeConfiguration<T> where T : ParamConfigBaseEntity
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
