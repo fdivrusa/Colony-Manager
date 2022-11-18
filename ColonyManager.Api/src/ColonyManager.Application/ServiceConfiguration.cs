@@ -16,6 +16,7 @@ namespace ColonyManager.Application
             services.AddScoped<IPeopleService, PeopleService>();
             services.AddScoped<IPeopleInternetInformationService, PeopleInternetInformationService>();
             services.AddScoped<IPeoplePhoneInformationService, PeoplePhoneInformationService>();
+            services.AddScoped<IPeopleAddressService, PeopleAddressService>();
 
             services.AddScoped<IColonyService, ColonyService>();
 
@@ -23,6 +24,7 @@ namespace ColonyManager.Application
             services.AddScoped<IEmailService, EmailService>();
 
             services.AddScoped<INationalityService, NationalityService>();
+            services.AddScoped<IGenderService, GenderService>();
 
             return services;
         }

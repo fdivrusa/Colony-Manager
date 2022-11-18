@@ -15,7 +15,6 @@ namespace ColonyManager.Application.Services
 {
     public class PeopleService : IPeopleService
     {
-
         private readonly ILogger<PeopleService> _logger;
         private readonly IMapper _mapper;
         private readonly ColonyManagerDbContext _dbContext;
